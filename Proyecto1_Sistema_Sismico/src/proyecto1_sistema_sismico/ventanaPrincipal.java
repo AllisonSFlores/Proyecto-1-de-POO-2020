@@ -16,6 +16,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
      */
     public ventanaPrincipal() {
         initComponents();
+        
     }
 
     /**
@@ -28,54 +29,68 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        menu_graficas = new javax.swing.JMenu();
+        menu_provincia = new javax.swing.JMenuItem();
+        menu_tipo = new javax.swing.JMenuItem();
+        menu_rango_fecha = new javax.swing.JMenuItem();
+        menu_annio = new javax.swing.JMenuItem();
+        menu_magnitud = new javax.swing.JMenuItem();
+        menu_agregar_sismo = new javax.swing.JMenu();
+        menu_salir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(436, Short.MAX_VALUE))
+            .addGap(0, 1180, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+            .addGap(0, 558, Short.MAX_VALUE)
         );
 
         jMenuBar2.setBackground(new java.awt.Color(255, 0, 0));
         jMenuBar2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
+        menu_graficas.setText(" Gráficas");
 
-        jMenu4.setText("Salir");
-        jMenuBar2.add(jMenu4);
+        menu_provincia.setText("Provincia");
+        menu_graficas.add(menu_provincia);
+
+        menu_tipo.setText("Causa");
+        menu_graficas.add(menu_tipo);
+
+        menu_rango_fecha.setText("Rango de fecha");
+        menu_graficas.add(menu_rango_fecha);
+
+        menu_annio.setText("Año en meses");
+        menu_annio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_annioActionPerformed(evt);
+            }
+        });
+        menu_graficas.add(menu_annio);
+
+        menu_magnitud.setText("Magnitud");
+        menu_magnitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_magnitudActionPerformed(evt);
+            }
+        });
+        menu_graficas.add(menu_magnitud);
+
+        jMenuBar2.add(menu_graficas);
+
+        menu_agregar_sismo.setText("Agregar sismo");
+        jMenuBar2.add(menu_agregar_sismo);
+
+        menu_salir.setText("Salir");
+        jMenuBar2.add(menu_salir);
 
         setJMenuBar(jMenuBar2);
 
@@ -85,7 +100,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,6 +109,14 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_annioActionPerformed
+
+    private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menu_magnitudActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,11 +154,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JMenu menu_agregar_sismo;
+    private javax.swing.JMenuItem menu_annio;
+    private javax.swing.JMenu menu_graficas;
+    private javax.swing.JMenuItem menu_magnitud;
+    private javax.swing.JMenuItem menu_provincia;
+    private javax.swing.JMenuItem menu_rango_fecha;
+    private javax.swing.JMenu menu_salir;
+    private javax.swing.JMenuItem menu_tipo;
     // End of variables declaration//GEN-END:variables
 }
