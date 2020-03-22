@@ -12,7 +12,7 @@ public class Registro_sismos {
     //Constructores
 
     public Registro_sismos() {
-        lista = new ArrayList<Sismo> ();
+        lista = new ArrayList<Sismo>();
     }
     
     //Metodos
