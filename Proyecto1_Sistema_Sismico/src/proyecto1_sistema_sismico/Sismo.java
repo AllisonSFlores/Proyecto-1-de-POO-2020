@@ -16,6 +16,7 @@ public class Sismo {
     private float longitud;
     private Provincia provincia;
     private String descripcion_detallada;
+    
     //Constructores
     public Sismo(){}
     public Sismo(Date pfecha,Calendar phora,float pprofundidad,TipoOrigen porigen,String pdetalle, float pmagnitud, float platitud, float plongitud,Provincia pprovincia,String pdescripcion){

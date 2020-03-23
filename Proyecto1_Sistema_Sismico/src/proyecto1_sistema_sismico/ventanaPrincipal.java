@@ -15,8 +15,16 @@ public class ventanaPrincipal extends javax.swing.JFrame {
      * Creates new form ventanaPrincipal
      */
     public ventanaPrincipal() {
-        initComponents();
         
+        initComponents();
+        cbxProvincia.removeAllItems();
+        cbxOrigen.removeAllItems();
+        for(Provincia provincia: Provincia.values()) {
+            cbxProvincia.addItem(provincia.toString());
+        }
+        for(TipoOrigen tipo: TipoOrigen.values()) {
+            cbxOrigen.addItem(tipo.toString());
+        }
     }
 
     /**
@@ -162,7 +170,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cbxOrigen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Subducción de placa", "Choque de placas", "Téctonico por subducción", "Deformación Interna", "Fallamiento local", "Téctonico por subducción", "Téctonico por falla local" }));
         cbxOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxOrigenActionPerformed(evt);
@@ -181,7 +188,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        cbxProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "San José", "Alajuela", "Cartago", "Heredia", "Puntarenas", "Limón", "Guanacaste", "Sin asignar" }));
+        cbxProvincia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        cbxProvincia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxProvinciaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,14 +301,14 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(btnAgregar)
                         .addGap(60, 60, 60)
                         .addComponent(btnModificar)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,6 +421,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         System.out.println(txtFecha.getText()+ txtHora.getText() +txtProfundidad.getText()+ cbxOrigen.getSelectedItem().toString());
         System.out.println(txtDetalle.getText()+txtMagnitud.getText()+txtLatitud.getText()+txtLongitud.getText());
         System.out.println(cbxProvincia.getSelectedItem().toString()+ txtDescripcion.getText());
+        
         txtFecha.setText(null);
         txtHora.setText(null);
         txtProfundidad.setText(null);
@@ -438,6 +451,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void cbxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProvinciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxProvinciaActionPerformed
 
     /**
      * @param args the command line arguments
