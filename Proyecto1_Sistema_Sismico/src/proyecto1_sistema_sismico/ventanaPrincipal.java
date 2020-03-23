@@ -406,6 +406,21 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
     */
+        System.out.println(txtFecha.getText()+ txtHora.getText() +txtProfundidad.getText()+ cbxOrigen.getSelectedItem().toString());
+        System.out.println(txtDetalle.getText()+txtMagnitud.getText()+txtLatitud.getText()+txtLongitud.getText());
+        System.out.println(cbxProvincia.getSelectedItem().toString()+ txtDescripcion.getText());
+        txtFecha.setText(null);
+        txtHora.setText(null);
+        txtProfundidad.setText(null);
+        cbxOrigen.setSelectedIndex(0);
+        txtDetalle.setText(null);
+        txtMagnitud.setText(null);
+        txtLatitud.setText(null);
+        txtLongitud.setText(null);
+        cbxProvincia.setSelectedIndex(0);
+        txtDescripcion.setText(null);
+        
+    
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void txtLatitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLatitudActionPerformed
@@ -499,4 +514,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtMagnitud;
     private javax.swing.JTextField txtProfundidad;
     // End of variables declaration//GEN-END:variables
+
+    private void setText(Object object) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
