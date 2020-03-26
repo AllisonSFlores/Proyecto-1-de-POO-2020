@@ -21,6 +21,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         initComponents();
         cbxProvincia.removeAllItems();
         cbxOrigen.removeAllItems();
+        panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(false);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(false);
         for(Provincia provincia: Provincia.values()) {
             cbxProvincia.addItem(provincia.toString());
         }
@@ -38,6 +43,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panel_tipo = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
         panelPrincipal = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -64,17 +71,49 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         txtDescripcion = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
+        panelRangoFecha = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        panelAnnio = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        panelMagnitud = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        panelProvincia = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         BarraDelMenu = new javax.swing.JMenuBar();
+        menu_mas = new javax.swing.JMenu();
+        menu_incio = new javax.swing.JMenuItem();
+        menu_acercade = new javax.swing.JMenuItem();
+        menu_salir = new javax.swing.JMenuItem();
         menu_graficas = new javax.swing.JMenu();
         menu_provincia = new javax.swing.JMenuItem();
         menu_tipo = new javax.swing.JMenuItem();
         menu_rango_fecha = new javax.swing.JMenuItem();
         menu_annio = new javax.swing.JMenuItem();
         menu_magnitud = new javax.swing.JMenuItem();
-        menu_agregar_sismo = new javax.swing.JMenu();
-        menu_salir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panel_tipo.setBackground(new java.awt.Color(204, 255, 204));
+        panel_tipo.setPreferredSize(new java.awt.Dimension(1529, 962));
+
+        jLabel12.setText("PANEL TIPO");
+
+        javax.swing.GroupLayout panel_tipoLayout = new javax.swing.GroupLayout(panel_tipo);
+        panel_tipo.setLayout(panel_tipoLayout);
+        panel_tipoLayout.setHorizontalGroup(
+            panel_tipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_tipoLayout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel12)
+                .addContainerGap(1356, Short.MAX_VALUE))
+        );
+        panel_tipoLayout.setVerticalGroup(
+            panel_tipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_tipoLayout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(jLabel12)
+                .addContainerGap(1127, Short.MAX_VALUE))
+        );
 
         panelPrincipal.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -203,18 +242,22 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInformacionLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(77, 77, 77)
+                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInformacionLayout.createSequentialGroup()
+                        .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(77, 77, 77))
+                    .addGroup(panelInformacionLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(28, 28, 28)))
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFecha)
                     .addComponent(txtHora)
@@ -231,13 +274,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelInformacionLayout.setVerticalGroup(
             panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelInformacionLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(113, 113, 113)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelInformacionLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1))
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(89, 89, 89)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,33 +344,153 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addContainerGap()
                         .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
-                        .addGap(164, 164, 164)
+                        .addGap(128, 128, 128)
                         .addComponent(btnAgregar)
-                        .addGap(60, 60, 60)
+                        .addGap(97, 97, 97)
                         .addComponent(btnModificar)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(panelInformacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(1012, Short.MAX_VALUE))
+        );
+
+        panelRangoFecha.setBackground(new java.awt.Color(255, 102, 51));
+        panelRangoFecha.setPreferredSize(new java.awt.Dimension(1529, 962));
+
+        jLabel13.setText("PANEL POR RANGO DE FECHAS");
+
+        javax.swing.GroupLayout panelRangoFechaLayout = new javax.swing.GroupLayout(panelRangoFecha);
+        panelRangoFecha.setLayout(panelRangoFechaLayout);
+        panelRangoFechaLayout.setHorizontalGroup(
+            panelRangoFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1529, Short.MAX_VALUE)
+            .addGroup(panelRangoFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRangoFechaLayout.createSequentialGroup()
+                    .addContainerGap(48, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1161, Short.MAX_VALUE)))
+        );
+        panelRangoFechaLayout.setVerticalGroup(
+            panelRangoFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 962, Short.MAX_VALUE)
+            .addGroup(panelRangoFechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRangoFechaLayout.createSequentialGroup()
+                    .addContainerGap(54, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(860, Short.MAX_VALUE)))
+        );
+
+        panelAnnio.setBackground(new java.awt.Color(0, 51, 255));
+
+        jLabel15.setText("PANEL DE MES POR ANNIO");
+
+        javax.swing.GroupLayout panelAnnioLayout = new javax.swing.GroupLayout(panelAnnio);
+        panelAnnio.setLayout(panelAnnioLayout);
+        panelAnnioLayout.setHorizontalGroup(
+            panelAnnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1538, Short.MAX_VALUE)
+            .addGroup(panelAnnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelAnnioLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1237, Short.MAX_VALUE)))
+        );
+        panelAnnioLayout.setVerticalGroup(
+            panelAnnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1003, Short.MAX_VALUE)
+            .addGroup(panelAnnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAnnioLayout.createSequentialGroup()
+                    .addContainerGap(29, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(925, Short.MAX_VALUE)))
+        );
+
+        panelMagnitud.setBackground(new java.awt.Color(255, 0, 51));
+
+        jLabel14.setText("PANEL POR MAGNITUD");
+
+        javax.swing.GroupLayout panelMagnitudLayout = new javax.swing.GroupLayout(panelMagnitud);
+        panelMagnitud.setLayout(panelMagnitudLayout);
+        panelMagnitudLayout.setHorizontalGroup(
+            panelMagnitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMagnitudLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel14)
+                .addContainerGap(1321, Short.MAX_VALUE))
+        );
+        panelMagnitudLayout.setVerticalGroup(
+            panelMagnitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMagnitudLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel14)
+                .addContainerGap(941, Short.MAX_VALUE))
+        );
+
+        panelProvincia.setBackground(new java.awt.Color(204, 255, 204));
+        panelProvincia.setMinimumSize(new java.awt.Dimension(1529, 962));
+
+        jLabel11.setText("PANEL PROVINCIA");
+
+        javax.swing.GroupLayout panelProvinciaLayout = new javax.swing.GroupLayout(panelProvincia);
+        panelProvincia.setLayout(panelProvinciaLayout);
+        panelProvinciaLayout.setHorizontalGroup(
+            panelProvinciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProvinciaLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1643, Short.MAX_VALUE))
+        );
+        panelProvinciaLayout.setVerticalGroup(
+            panelProvinciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProvinciaLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1373, Short.MAX_VALUE))
         );
 
         BarraDelMenu.setBackground(new java.awt.Color(0, 0, 0));
         BarraDelMenu.setBorder(new javax.swing.border.MatteBorder(null));
+
+        menu_mas.setText("☰");
+
+        menu_incio.setText("Inicio");
+        menu_incio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_incioActionPerformed(evt);
+            }
+        });
+        menu_mas.add(menu_incio);
+
+        menu_acercade.setText("Acerca de");
+        menu_mas.add(menu_acercade);
+
+        menu_salir.setText("Salir");
+        menu_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_salirActionPerformed(evt);
+            }
+        });
+        menu_mas.add(menu_salir);
+
+        BarraDelMenu.add(menu_mas);
 
         menu_graficas.setText(" Gráficas");
 
@@ -348,6 +511,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menu_graficas.add(menu_tipo);
 
         menu_rango_fecha.setText("Sismos en un rango de fecha");
+        menu_rango_fecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_rango_fechaActionPerformed(evt);
+            }
+        });
         menu_graficas.add(menu_rango_fecha);
 
         menu_annio.setText("Sismos por mes en un año");
@@ -368,12 +536,6 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
         BarraDelMenu.add(menu_graficas);
 
-        menu_agregar_sismo.setText("A cerca de ");
-        BarraDelMenu.add(menu_agregar_sismo);
-
-        menu_salir.setText("Salir");
-        BarraDelMenu.add(menu_salir);
-
         setJMenuBar(BarraDelMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,11 +544,51 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 805, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panel_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 1527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 807, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelRangoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 805, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelAnnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 796, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelMagnitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 792, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 403, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panel_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 1304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 603, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelRangoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 945, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelAnnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 904, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelMagnitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 904, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panelProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 452, Short.MAX_VALUE)))
         );
 
         pack();
@@ -394,27 +596,42 @@ public class ventanaPrincipal extends javax.swing.JFrame {
 
     private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
         // TODO add your handling code here:
+        panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(true);
+        panelMagnitud.setVisible(false);
+        panelPrincipal.setVisible(false);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(false);
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
         // TODO add your handling code here:
+        panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(true);
+        panelPrincipal.setVisible(false);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(false);
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
     private void menu_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_provinciaActionPerformed
         // TODO add your handling code here:
-        panelProvincia panel1 = new panelProvincia();
-        panel1.setSize(1500,900);
-        panel1.setLocation(0,0);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(panel1, BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
-        
-        
+        panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(false);
+        panelPrincipal.setVisible(false);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(true);
     }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
         // TODO add your handling code here:
+        panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(false);
+        panelPrincipal.setVisible(false);
+        panel_tipo.setVisible(true);
+        panelProvincia.setVisible(false);
     }//GEN-LAST:event_menu_tipoActionPerformed
 
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
@@ -467,6 +684,31 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxProvinciaActionPerformed
 
+    private void menu_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_salirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_menu_salirActionPerformed
+
+    private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
+        // TODO add your handling code here:
+       panelRangoFecha.setVisible(false);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(false);
+        panelPrincipal.setVisible(true);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(false);
+    }//GEN-LAST:event_menu_incioActionPerformed
+
+    private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
+        // TODO add your handling code here:
+        panelRangoFecha.setVisible(true);
+        panelAnnio.setVisible(false);
+        panelMagnitud.setVisible(false);
+        panelPrincipal.setVisible(false);
+        panel_tipo.setVisible(false);
+        panelProvincia.setVisible(false);
+    }//GEN-LAST:event_menu_rango_fechaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,6 +743,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ventanaPrincipal().setVisible(true);
+                
             }
         });
     }
@@ -513,6 +756,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbxProvincia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -523,16 +771,23 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JMenu menu_agregar_sismo;
+    private javax.swing.JMenuItem menu_acercade;
     private javax.swing.JMenuItem menu_annio;
     private javax.swing.JMenu menu_graficas;
+    private javax.swing.JMenuItem menu_incio;
     private javax.swing.JMenuItem menu_magnitud;
+    private javax.swing.JMenu menu_mas;
     private javax.swing.JMenuItem menu_provincia;
     private javax.swing.JMenuItem menu_rango_fecha;
-    private javax.swing.JMenu menu_salir;
+    private javax.swing.JMenuItem menu_salir;
     private javax.swing.JMenuItem menu_tipo;
+    private javax.swing.JPanel panelAnnio;
     private javax.swing.JPanel panelInformacion;
+    private javax.swing.JPanel panelMagnitud;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelProvincia;
+    private javax.swing.JPanel panelRangoFecha;
+    private javax.swing.JPanel panel_tipo;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtFecha;
