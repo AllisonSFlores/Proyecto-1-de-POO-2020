@@ -5,6 +5,11 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Allison
@@ -337,9 +342,39 @@ public class panelInicio extends javax.swing.JPanel {
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
         */
-        System.out.println(txtFecha.getText()+ txtHora.getText() +txtProfundidad.getText()+ cbxOrigen.getSelectedItem().toString());
-        System.out.println(txtDetalle.getText()+txtMagnitud.getText()+txtLatitud.getText()+txtLongitud.getText());
-        System.out.println(cbxProvincia.getSelectedItem().toString()+ txtDescripcion.getText());
+        //System.out.println(cbxOrigen.getSelectedItem().toString());
+        //System.out.println(cbxProvincia.getSelectedItem().toString());
+        
+        String origen="";
+        String provincia="";
+        
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
+
+        for (TipoOrigen value : TipoOrigen.values()) {
+            if (cbxOrigen.getSelectedItem().toString().equals(value.toString())) {
+                origen = value.name();
+                break;
+            }
+        }
+        
+        for (Provincia value2 : Provincia.values()) {
+            if (cbxProvincia.getSelectedItem().toString().equals(value2.toString())) {
+                provincia = value2.name();
+                break;
+            }
+        }
+        
+        try {
+            Sismo nuevoSismo;
+            nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+             System.out.println(nuevoSismo.getOrigen());
+             System.out.println(nuevoSismo.getProvincia());
+             System.out.println(nuevoSismo.getDescripcion_detallada());
+        } catch (ParseException ex) {
+             Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
 
         txtFecha.setText(null);
         txtHora.setText(null);
@@ -351,6 +386,7 @@ public class panelInicio extends javax.swing.JPanel {
         txtLongitud.setText(null);
         cbxProvincia.setSelectedIndex(0);
         txtDescripcion.setText(null);
+        
 
     }//GEN-LAST:event_btnAgregarActionPerformed
 

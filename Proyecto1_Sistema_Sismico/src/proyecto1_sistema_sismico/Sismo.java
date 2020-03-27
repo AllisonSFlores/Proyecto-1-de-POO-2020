@@ -7,7 +7,7 @@ import java.util.*;
 public class Sismo {
     //Atributos
     private Date fecha;
-    private Calendar hora;
+    private Date hora;
     private float profundidad;
     private TipoOrigen origen;
     private String detalle;
@@ -19,7 +19,7 @@ public class Sismo {
     
     //Constructores
     public Sismo(){}
-    public Sismo(Date pfecha,Calendar phora,float pprofundidad,TipoOrigen porigen,String pdetalle, float pmagnitud, float platitud, float plongitud,Provincia pprovincia,String pdescripcion){
+    public Sismo(Date pfecha,Date phora,float pprofundidad,TipoOrigen porigen,String pdetalle, float pmagnitud, float platitud, float plongitud,Provincia pprovincia,String pdescripcion){
         fecha=pfecha;
         hora=phora;
         profundidad=pprofundidad;
@@ -41,7 +41,7 @@ public class Sismo {
         fecha = pfecha;
     }
 
-    public void setHora(Calendar phora) {
+    public void setHora(Date phora) {
         hora = phora;
     }
 
@@ -81,7 +81,7 @@ public class Sismo {
         return fecha;
     }
 
-    public Calendar getHora() {
+    public Date getHora() {
         return hora;
     }
 
