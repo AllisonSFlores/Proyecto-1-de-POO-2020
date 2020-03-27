@@ -31,6 +31,7 @@ public class panelInicio extends javax.swing.JPanel {
             cbxOrigen.addItem(tipo.toString());
     }}
 
+    Registro_sismos lista = new Registro_sismos();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -342,15 +343,14 @@ public class panelInicio extends javax.swing.JPanel {
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
         */
-        //System.out.println(cbxOrigen.getSelectedItem().toString());
-        //System.out.println(cbxProvincia.getSelectedItem().toString());
+        
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
         
         String origen="";
         String provincia="";
         
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
-
+    
         for (TipoOrigen value : TipoOrigen.values()) {
             if (cbxOrigen.getSelectedItem().toString().equals(value.toString())) {
                 origen = value.name();
@@ -366,11 +366,13 @@ public class panelInicio extends javax.swing.JPanel {
         }
         
         try {
-            Sismo nuevoSismo;
-            nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-             System.out.println(nuevoSismo.getOrigen());
+           
+            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+            /* System.out.println(nuevoSismo.getOrigen());
              System.out.println(nuevoSismo.getProvincia());
-             System.out.println(nuevoSismo.getDescripcion_detallada());
+             System.out.println(nuevoSismo.getDescripcion_detallada());*/
+            lista.agregar_sismo(nuevoSismo);
+            
         } catch (ParseException ex) {
              Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }

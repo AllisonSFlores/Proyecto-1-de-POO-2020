@@ -1,5 +1,13 @@
 package proyecto1_sistema_sismico;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.*;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -22,6 +30,61 @@ public class Registro_sismos {
     
     public void agregar_sismo(Sismo psismo){
         
+        String fileName = "BD.xlsx";
+        String filePath =  fileName; //"D:\\SEMESTRE 1 2020\\POO\\PROYECTOS\\Proyecto-1-de-POO-2020\\" +
+        //Seteando el nombre de la hoja donde agregaremos los items
+        String hoja = "Hoja1"; 
+         
+        //Creando objeto libro de Excel
+        XSSFWorkbook book = new XSSFWorkbook();
+        XSSFSheet hoja1 = book.createSheet(hoja);
+         
+        //Cabecera de la hoja de excel
+        String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia y descripcion Detallada"};
+ 
+        //Contenido de la hoja de excel
+        String[][] document = new String[][]{
+            {psismo.getFecha().toString(), psismo.getHora().toString(), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
+        };
+ 
+        //Aplicando estilo color negrita a los encabezados
+        CellStyle style = book.createCellStyle();
+        Font font = book.createFont();
+        font.setBold(true);//Seteando fuente negrita al encabezado del archivo excel
+        style.setFont(font);
+ 
+        //Generando el contenido del archivo de Excel
+        for (int i = 0; i <= document.length; i++) {
+            XSSFRow row = hoja1.createRow(i);//se crea las filas
+            for (int j = 0; j < header.length; j++) {
+                if (i == 0) {//Recorriendo cabecera
+                    XSSFCell cell = row.createCell(j);//Creando la celda de la cabecera en conjunto con la posiciÃ³n
+                    cell.setCellStyle(style); //AÃ±adiendo estilo a la celda creada anteriormente
+                    cell.setCellValue(header[j]);//AÃ±adiendo el contenido de nuestra lista de productos
+                } else {//para el contenido
+                    XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
+                    cell.setCellValue(document[i - 1][j]); //AÃ±adiendo el contenido
+                }
+            }
+        }
+ 
+        File excelFile;
+        excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+        
+        try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) {
+            if (excelFile.exists()) { // Si el archivo existe lo eliminaremos
+                excelFile.delete();
+                
+            }
+            book.write(fileOuS);
+            fileOuS.flush();
+            fileOuS.close();
+            System.out.println("Archivo Creado!");
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+ 
     }
     
     public void modificar_sismo(Sismo psismo){
