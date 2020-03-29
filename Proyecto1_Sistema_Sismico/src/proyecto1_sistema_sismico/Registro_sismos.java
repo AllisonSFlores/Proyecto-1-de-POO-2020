@@ -1,6 +1,7 @@
 package proyecto1_sistema_sismico;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -30,6 +31,10 @@ public class Registro_sismos {
     
     public void agregar_sismo(Sismo psismo){
         
+        
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
+        
         String fileName = "BD.xlsx";
         String filePath =  fileName; //"D:\\SEMESTRE 1 2020\\POO\\PROYECTOS\\Proyecto-1-de-POO-2020\\" +
         //Seteando el nombre de la hoja donde agregaremos los items
@@ -44,7 +49,7 @@ public class Registro_sismos {
  
         //Contenido de la hoja de excel
         String[][] document = new String[][]{
-            {psismo.getFecha().toString(), psismo.getHora().toString(), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
+            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
         };
  
         //Aplicando estilo color negrita a los encabezados
@@ -55,12 +60,15 @@ public class Registro_sismos {
  
         //Generando el contenido del archivo de Excel
         for (int i = 0; i <= document.length; i++) {
-            XSSFRow row = hoja1.createRow(i);//se crea las filas
+            XSSFRow row = hoja1.createRow(i);//se crea la fila
+            
             for (int j = 0; j < header.length; j++) {
+                
                 if (i == 0) {//Recorriendo cabecera
-                    XSSFCell cell = row.createCell(j);//Creando la celda de la cabecera en conjunto con la posiciÃ³n
-                    cell.setCellStyle(style); //AÃ±adiendo estilo a la celda creada anteriormente
-                    cell.setCellValue(header[j]);//AÃ±adiendo el contenido de nuestra lista de productos
+                    XSSFCell cell = row.createCell(j);//Crear la celda de la cabecera 
+                    cell.setCellStyle(style); //annadir estilo a la celda creada anteriormente
+                    cell.setCellValue(header[j]);//se ponen los titulos del header
+                    
                 } else {//para el contenido
                     XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
                     cell.setCellValue(document[i - 1][j]); //AÃ±adiendo el contenido
@@ -78,7 +86,7 @@ public class Registro_sismos {
             }
             book.write(fileOuS);
             fileOuS.flush();
-            fileOuS.close();
+            fileOuS.close(); 
             System.out.println("Archivo Creado!");
  
         } catch (Exception e) {

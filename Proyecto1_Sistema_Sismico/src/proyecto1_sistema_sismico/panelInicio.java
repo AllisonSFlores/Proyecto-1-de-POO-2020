@@ -9,13 +9,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleContext;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Allison
  */
 public class panelInicio extends javax.swing.JPanel {
-
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    Registro_sismos lista = new Registro_sismos();
     /**
      * Creates new form panelInicio
      */
@@ -23,15 +27,16 @@ public class panelInicio extends javax.swing.JPanel {
         initComponents();
         cbxProvincia.removeAllItems();
         cbxOrigen.removeAllItems();
-     
+        modelo = (DefaultTableModel) tabla.getModel();
+        
         for(Provincia provincia: Provincia.values()) {
             cbxProvincia.addItem(provincia.toString());
         }
         for(TipoOrigen tipo: TipoOrigen.values()) {
             cbxOrigen.addItem(tipo.toString());
-    }}
+        }
+    }
 
-    Registro_sismos lista = new Registro_sismos();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +48,7 @@ public class panelInicio extends javax.swing.JPanel {
 
         panelInicio = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         panelInformacion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,54 +78,16 @@ public class panelInicio extends javax.swing.JPanel {
         panelInicio.setBackground(new java.awt.Color(204, 255, 204));
         panelInicio.setMaximumSize(new java.awt.Dimension(1500, 900));
 
-        jTable1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha", "Hora", "Profundidad", "Magnitud", "Origen", "Detalle", "Latitud", "Longitud", "Descripcion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         panelInformacion.setBackground(new java.awt.Color(204, 255, 204));
         panelInformacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del sismo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Black", 0, 18))); // NOI18N
@@ -368,15 +335,15 @@ public class panelInicio extends javax.swing.JPanel {
         try {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-            /* System.out.println(nuevoSismo.getOrigen());
-             System.out.println(nuevoSismo.getProvincia());
-             System.out.println(nuevoSismo.getDescripcion_detallada());*/
             lista.agregar_sismo(nuevoSismo);
+            modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
+            tabla.setModel(modelo);
             
         } catch (ParseException ex) {
              Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+       // modelo.addRow(new Object[]{"2","Computadora","$ 7000"});
 
         txtFecha.setText(null);
         txtHora.setText(null);
@@ -388,10 +355,9 @@ public class panelInicio extends javax.swing.JPanel {
         txtLongitud.setText(null);
         cbxProvincia.setSelectedIndex(0);
         txtDescripcion.setText(null);
-        
 
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+       
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -437,9 +403,9 @@ public class panelInicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelInformacion;
     private javax.swing.JPanel panelInicio;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtFecha;

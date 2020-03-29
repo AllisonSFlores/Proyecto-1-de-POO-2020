@@ -14,7 +14,7 @@ public enum Provincia {
         nombre = pnombre;
     }
 
-    public String getName() {
+    public String getNombre() {
         return nombre;
     }
 
