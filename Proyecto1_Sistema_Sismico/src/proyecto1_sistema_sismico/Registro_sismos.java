@@ -1,6 +1,9 @@
 package proyecto1_sistema_sismico;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -16,7 +19,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class Registro_sismos {
     //Atributo
-    private ArrayList<Sismo> lista ;
+    private final ArrayList<Sismo> lista ;
+    //Creando objeto libro de Excel
+    String fileName = "BD.xlsx";
+    String filePath =  fileName; 
+    String hoja = "Hoja1"; 
+    XSSFWorkbook book = new XSSFWorkbook();
+    XSSFSheet hoja1 = book.createSheet(hoja);
+    String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia y descripcion Detallada"};
+   
     
     //Constructores
 
@@ -28,71 +39,87 @@ public class Registro_sismos {
     public void cargar(){
         
     }
-    
-    public void agregar_sismo(Sismo psismo){
-        
-        
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
-        
-        String fileName = "BD.xlsx";
-        String filePath =  fileName; //"D:\\SEMESTRE 1 2020\\POO\\PROYECTOS\\Proyecto-1-de-POO-2020\\" +
-        //Seteando el nombre de la hoja donde agregaremos los items
-        String hoja = "Hoja1"; 
-         
-        //Creando objeto libro de Excel
-        XSSFWorkbook book = new XSSFWorkbook();
-        XSSFSheet hoja1 = book.createSheet(hoja);
-         
+    public void crearExcel(Sismo psismo) throws FileNotFoundException, IOException{
+        /*
+        Funcion: Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo
+        Entradas:
+        Salidas:
+        */
+
         //Cabecera de la hoja de excel
-        String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia y descripcion Detallada"};
- 
-        //Contenido de la hoja de excel
-        String[][] document = new String[][]{
-            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
-        };
- 
+        
+    
         //Aplicando estilo color negrita a los encabezados
         CellStyle style = book.createCellStyle();
         Font font = book.createFont();
         font.setBold(true);//Seteando fuente negrita al encabezado del archivo excel
         style.setFont(font);
- 
-        //Generando el contenido del archivo de Excel
-        for (int i = 0; i <= document.length; i++) {
-            XSSFRow row = hoja1.createRow(i);//se crea la fila
-            
-            for (int j = 0; j < header.length; j++) {
+        
+        File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+
+        if (excelFile.exists()) { // Si el archivo existe 
+            agregar_sismo(psismo);   
+             //excelFile.delete();
                 
-                if (i == 0) {//Recorriendo cabecera
-                    XSSFCell cell = row.createCell(j);//Crear la celda de la cabecera 
+         }else{
+            try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
+
+                XSSFRow row = hoja1.createRow(0);//se crea una fila
+
+                for (int j = 0; j < header.length; j++) {
+                    XSSFCell cell = row.createCell(j);//Crear la celda para el header
                     cell.setCellStyle(style); //annadir estilo a la celda creada anteriormente
                     cell.setCellValue(header[j]);//se ponen los titulos del header
-                    
-                } else {//para el contenido
-                    XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
-                    cell.setCellValue(document[i - 1][j]); //AÃ±adiendo el contenido
-                }
+
+                } 
+
+                System.out.println("Archivo Creado!");
+                agregar_sismo(psismo);
+                book.write(fileOuS);
+                fileOuS.flush();
+                fileOuS.close(); 
+  
+            }catch (Exception e) {
+                 e.printStackTrace();
             }
-        }
- 
-        File excelFile;
-        excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+        }  
+    }
+    
+    public void agregar_sismo(Sismo psismo) throws FileNotFoundException, IOException{
         
-        try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) {
-            if (excelFile.exists()) { // Si el archivo existe lo eliminaremos
-                excelFile.delete();
-                
+        System.out.println("ESTA AGREGANDO UUH");
+        
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
+  
+        //Contenido de la hoja de excel
+        String[][] document = new String[][]{
+            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
+        };
+        
+        //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
+        /*FileInputStream file = new FileInputStream(new File(filePath));
+        XSSFWorkbook wb = new XSSFWorkbook(file);
+        XSSFSheet hoja1 = wb.getSheetAt(0);
+
+        int numFilas = hoja1.getLastRowNum(); //obtener numero de filas
+        System.out.println("El num de filas");
+        System.out.println(numFilas);*/
+       
+  
+       
+        //Generando el contenido del archivo de Excel
+        for (int i = 0; i <= document.length; i++) {
+            XSSFRow row = hoja1.createRow(1);//se crea la fila
+   
+            for (int j = 0; j < header.length; j++) {
+                System.out.println("ENTRO AL LOOP");
+                XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
+                cell.setCellValue(document[0][j]); //Annadiendo el contenido 
+              
             }
-            book.write(fileOuS);
-            fileOuS.flush();
-            fileOuS.close(); 
-            System.out.println("Archivo Creado!");
- 
-        } catch (Exception e) {
-            e.printStackTrace();
         }
- 
+
     }
     
     public void modificar_sismo(Sismo psismo){

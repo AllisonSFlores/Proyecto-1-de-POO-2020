@@ -360,20 +360,29 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="15" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Descripcion Detalleda"/>
+                <Property name="text" type="java.lang.String" value="Descripcion Detallada"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtFecha">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="24/02/2020"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="02:02:08"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHoraActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtProfundidad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="4"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbxOrigen">
               <Properties>
@@ -389,15 +398,27 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDetalle">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="hola"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMagnitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="7"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLatitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="9"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLatitudActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLongitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="4"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLongitudActionPerformed"/>
               </Events>
@@ -418,6 +439,12 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDescripcion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="adios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnModificar">
               <Properties>

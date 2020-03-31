@@ -145,41 +145,41 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
-        PanelMesEnAnnio varpanel =new PanelMesEnAnnio();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+        PanelMesEnAnnio varpanel1 =new PanelMesEnAnnio();
+        varpanel1.setLocation(0,0);
+        varpanel1.setSize(varpanel1.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel1,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
-        PanelMagnitud varpanel =new PanelMagnitud();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+        PanelMagnitud varpanel2 =new PanelMagnitud();
+        varpanel2.setLocation(0,0);
+        varpanel2.setSize(varpanel2.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel2,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
     private void menu_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_provinciaActionPerformed
-        PanelProvincia varpanel =new PanelProvincia();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+       /* PanelProvincia varpanel3 =new PanelProvincia();
+        varpanel3.setLocation(0,0);
+        varpanel3.setSize(varpanel3.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel3,BorderLayout.CENTER);
         panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        panelPrincipal.repaint();*/
     }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
-        panelTipo varpanel =new panelTipo();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+        panelTipo varpanel4 =new panelTipo();
+        varpanel4.setLocation(0,0);
+        varpanel4.setSize(varpanel4.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel4,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
         
@@ -190,22 +190,22 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_salirActionPerformed
 
     private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
-        panelInicio varpanel = new panelInicio();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+        panelInicio varpanel5 = new panelInicio();
+        varpanel5.setLocation(0,0);
+        varpanel5.setSize(varpanel5.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel5,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
         
     }//GEN-LAST:event_menu_incioActionPerformed
 
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
-        PanelRangoFecha varpanel =new PanelRangoFecha();
-        varpanel.setLocation(0,0);
-        varpanel.setSize(varpanel.getMaximumSize());
+        PanelRangoFecha varpanel6 =new PanelRangoFecha();
+        varpanel6.setLocation(0,0);
+        varpanel6.setSize(varpanel6.getMaximumSize());
         panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel,BorderLayout.CENTER);
+        panelPrincipal.add(varpanel6,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_menu_rango_fechaActionPerformed

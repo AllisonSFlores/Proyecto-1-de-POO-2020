@@ -5,6 +5,7 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -120,19 +121,23 @@ public class panelInicio extends javax.swing.JPanel {
         jLabel9.setText("Provincia");
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 15)); // NOI18N
-        jLabel10.setText("Descripcion Detalleda");
+        jLabel10.setText("Descripcion Detallada");
 
+        txtFecha.setText("24/02/2020");
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaActionPerformed(evt);
             }
         });
 
+        txtHora.setText("02:02:08");
         txtHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHoraActionPerformed(evt);
             }
         });
+
+        txtProfundidad.setText("4");
 
         cbxOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,12 +145,18 @@ public class panelInicio extends javax.swing.JPanel {
             }
         });
 
+        txtDetalle.setText("hola");
+
+        txtMagnitud.setText("7");
+
+        txtLatitud.setText("9");
         txtLatitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLatitudActionPerformed(evt);
             }
         });
 
+        txtLongitud.setText("4");
         txtLongitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLongitudActionPerformed(evt);
@@ -156,6 +167,13 @@ public class panelInicio extends javax.swing.JPanel {
         cbxProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxProvinciaActionPerformed(evt);
+            }
+        });
+
+        txtDescripcion.setText("adios");
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionActionPerformed(evt);
             }
         });
 
@@ -335,15 +353,16 @@ public class panelInicio extends javax.swing.JPanel {
         try {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-            lista.agregar_sismo(nuevoSismo);
+            //lista.agregar_sismo(nuevoSismo);
+            lista.crearExcel(nuevoSismo);
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
             
-        } catch (ParseException ex) {
+        } catch (ParseException | IOException ex) {
              Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-       // modelo.addRow(new Object[]{"2","Computadora","$ 7000"});
+
 
         txtFecha.setText(null);
         txtHora.setText(null);
@@ -385,6 +404,10 @@ public class panelInicio extends javax.swing.JPanel {
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
+
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
