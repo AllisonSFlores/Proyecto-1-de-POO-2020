@@ -327,6 +327,8 @@ public class panelInicio extends javax.swing.JPanel {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
+        Entradas:
+        Salidas:
         */
         
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");

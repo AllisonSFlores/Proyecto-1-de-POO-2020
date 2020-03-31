@@ -42,8 +42,8 @@ public class Registro_sismos {
     public void crearExcel(Sismo psismo) throws FileNotFoundException, IOException{
         /*
         Funcion: Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo
-        Entradas:
-        Salidas:
+        Entradas: Un objeto del tipo Sismo
+        Salidas: Ninguna
         */
 
         //Cabecera de la hoja de excel
@@ -89,7 +89,11 @@ public class Registro_sismos {
     
     public void agregar_sismo(Sismo psismo) throws FileNotFoundException, IOException{
         
-        System.out.println("ESTA AGREGANDO UUH");
+        /*
+        Funcion: Agregar un sismo al archivo excel
+        Entradas: Un objeto Sismo
+        Salidas: Ninguna
+        */
         
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
@@ -102,20 +106,14 @@ public class Registro_sismos {
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
         FileInputStream file = new FileInputStream(new File(filePath));
         FileOutputStream fileOuS;
+        
         try (XSSFWorkbook libro = new XSSFWorkbook(file)) {
             XSSFSheet hojaBD = libro.getSheetAt(0);
-            //XSSFRow filaNueva = hojaBD.createRow(hojaBD.getLastRowNum() + 1);
-            
-            int numFilas = hojaBD.getLastRowNum(); //obtener numero de filas
-            System.out.println("El num de filas");
-            System.out.println(numFilas);
-            
+          
             //Generando el contenido del archivo de Excel
-            
             XSSFRow row = hojaBD.createRow(hojaBD.getLastRowNum() + 1);
-                //XSSFRow row = hoja1.createRow(1);//se crea la fila
+          
             for (int j = 0; j < header.length; j++) {
-                System.out.println("ENTRO AL LOOP");
                 XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
                 cell.setCellValue(document[0][j]); //Annadiendo el contenido
             }
@@ -127,32 +125,60 @@ public class Registro_sismos {
         }
         fileOuS.close();
 
-        System.out.println("Finalizado");
+        System.out.println("Agregado con exito!");
  
 
     }
     
     public void modificar_sismo(Sismo psismo){
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
         
     }
     
     public void cant_sismos_provincia(){
+         /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
         
     }
     
     public void cant_sismos_mesEnAnnio(String pannio){
-        
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
+                
     }
     
     public void ocurrido_en_rango(Date pfecha_inicio,Date pfecha_final){
-        
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
     }
     
     public void cant_sismos_tipo(){
-        
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
     }
     
     public void clasificacion_por_magnitud(){
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
         
     }
     
