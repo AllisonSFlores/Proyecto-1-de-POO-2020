@@ -60,10 +60,12 @@ public class Registro_sismos {
         if (excelFile.exists()) { // Si el archivo existe 
             agregar_sismo(psismo);   
              //excelFile.delete();
+             System.out.println("EL ARCHIVO EXISTE CON ANTERIORIDAD");
                 
          }else{
+            System.out.println("EL ARCHIVO NO EXISTE");
             try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
-
+                System.out.println("EL ARCHIVO AHORA EXISTE");
                 XSSFRow row = hoja1.createRow(0);//se crea una fila
 
                 for (int j = 0; j < header.length; j++) {
@@ -72,12 +74,12 @@ public class Registro_sismos {
                     cell.setCellValue(header[j]);//se ponen los titulos del header
 
                 } 
-
+                
                 System.out.println("Archivo Creado!");
-                agregar_sismo(psismo);
                 book.write(fileOuS);
                 fileOuS.flush();
                 fileOuS.close(); 
+                agregar_sismo(psismo);
   
             }catch (Exception e) {
                  e.printStackTrace();
@@ -98,27 +100,35 @@ public class Registro_sismos {
         };
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
-        /*FileInputStream file = new FileInputStream(new File(filePath));
-        XSSFWorkbook wb = new XSSFWorkbook(file);
-        XSSFSheet hoja1 = wb.getSheetAt(0);
-
-        int numFilas = hoja1.getLastRowNum(); //obtener numero de filas
-        System.out.println("El num de filas");
-        System.out.println(numFilas);*/
-       
-  
-       
-        //Generando el contenido del archivo de Excel
-        for (int i = 0; i <= document.length; i++) {
-            XSSFRow row = hoja1.createRow(1);//se crea la fila
-   
+        FileInputStream file = new FileInputStream(new File(filePath));
+        FileOutputStream fileOuS;
+        try (XSSFWorkbook libro = new XSSFWorkbook(file)) {
+            XSSFSheet hojaBD = libro.getSheetAt(0);
+            //XSSFRow filaNueva = hojaBD.createRow(hojaBD.getLastRowNum() + 1);
+            
+            int numFilas = hojaBD.getLastRowNum(); //obtener numero de filas
+            System.out.println("El num de filas");
+            System.out.println(numFilas);
+            
+            //Generando el contenido del archivo de Excel
+            
+            XSSFRow row = hojaBD.createRow(hojaBD.getLastRowNum() + 1);
+                //XSSFRow row = hoja1.createRow(1);//se crea la fila
             for (int j = 0; j < header.length; j++) {
                 System.out.println("ENTRO AL LOOP");
                 XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
-                cell.setCellValue(document[0][j]); //Annadiendo el contenido 
-              
+                cell.setCellValue(document[0][j]); //Annadiendo el contenido
             }
+            
+            fileOuS = null;
+            File excelFile = new File(filePath);
+            fileOuS= new FileOutputStream(excelFile);
+            libro.write(fileOuS);
         }
+        fileOuS.close();
+
+        System.out.println("Finalizado");
+ 
 
     }
     
