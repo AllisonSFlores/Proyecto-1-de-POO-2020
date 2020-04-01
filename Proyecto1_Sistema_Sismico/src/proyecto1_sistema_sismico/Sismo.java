@@ -19,6 +19,7 @@ public class Sismo {
     
     //Constructores
     public Sismo(){}
+    
     public Sismo(Date pfecha,Date phora,float pprofundidad,TipoOrigen porigen,String pdetalle, float pmagnitud, float platitud, float plongitud,Provincia pprovincia,String pdescripcion){
         fecha=pfecha;
         hora=phora;

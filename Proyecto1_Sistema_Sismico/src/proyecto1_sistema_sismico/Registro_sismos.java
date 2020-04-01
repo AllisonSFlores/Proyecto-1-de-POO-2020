@@ -6,8 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -17,8 +19,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author Allison
  */
-public class Registro_sismos {
-    //Atributo
+public final class Registro_sismos {
+    //Atributos
     private final ArrayList<Sismo> lista ;
     //Creando objeto libro de Excel
     String fileName = "BD.xlsx";
@@ -31,14 +33,38 @@ public class Registro_sismos {
     
     //Constructores
 
-    public Registro_sismos() {
+    public Registro_sismos() throws IOException {
         lista = new ArrayList<Sismo>();
+        cargar();
     }
     
     //Metodos
-    public void cargar(){
+    public void cargar() throws FileNotFoundException, IOException{
         
-    }
+        
+            FileInputStream file = new FileInputStream(new File(filePath));
+
+            XSSFWorkbook libro = new XSSFWorkbook(file);
+            XSSFSheet hojaBD = libro.getSheetAt(0);
+
+            int numFilas = hojaBD.getLastRowNum();
+
+            for (int a = 0; a <= numFilas; a++) {
+                Row fila = hojaBD.getRow(a);
+                int numCols = fila.getLastCellNum();
+
+                for (int b = 0; b < numCols; b++) {
+                    Cell celda = fila.getCell(b);
+                    System.out.print(celda.getStringCellValue() + " ");   
+                }
+                System.out.println("");
+            }
+ 
+ }
+
+     
+        
+    
     public void crearExcel(Sismo psismo) throws FileNotFoundException, IOException{
         /*
         Funcion: Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo

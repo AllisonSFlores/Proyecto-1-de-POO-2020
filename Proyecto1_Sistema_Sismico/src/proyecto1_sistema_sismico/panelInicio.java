@@ -17,27 +17,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Allison
  */
-public class panelInicio extends javax.swing.JPanel {
+public final class panelInicio extends javax.swing.JPanel {
     
     DefaultTableModel modelo = new DefaultTableModel();
     Registro_sismos lista = new Registro_sismos();
+    
     /**
      * Creates new form panelInicio
      */
     public panelInicio() {
         initComponents();
-        cbxProvincia.removeAllItems();
-        cbxOrigen.removeAllItems();
         modelo = (DefaultTableModel) tabla.getModel();
+        llenarCombo();
         
-        for(Provincia provincia: Provincia.values()) {
-            cbxProvincia.addItem(provincia.toString());
-        }
-        for(TipoOrigen tipo: TipoOrigen.values()) {
-            cbxOrigen.addItem(tipo.toString());
-        }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -323,7 +316,22 @@ public class panelInicio extends javax.swing.JPanel {
             .addComponent(panelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void llenarCombo(){
+        /*
+        Funcion: Llenar los ComboBox con la informacion en formato string
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
+        cbxProvincia.removeAllItems();
+        cbxOrigen.removeAllItems();
+        for(Provincia provincia: Provincia.values()) {
+            cbxProvincia.addItem(provincia.toString());
+        }
+        for(TipoOrigen tipo: TipoOrigen.values()) {
+            cbxOrigen.addItem(tipo.toString());
+        }
+    }
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
@@ -410,7 +418,6 @@ public class panelInicio extends javax.swing.JPanel {
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
