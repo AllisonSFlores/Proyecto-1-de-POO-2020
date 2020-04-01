@@ -19,6 +19,7 @@ public class panelInicio extends javax.swing.JPanel {
     /**
      * Creates new form panelInicio
      */
+    
     public panelInicio() {
         initComponents();
         cbxProvincia.removeAllItems();
@@ -30,8 +31,8 @@ public class panelInicio extends javax.swing.JPanel {
         for(TipoOrigen tipo: TipoOrigen.values()) {
             cbxOrigen.addItem(tipo.toString());
     }}
-
     Registro_sismos lista = new Registro_sismos();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
