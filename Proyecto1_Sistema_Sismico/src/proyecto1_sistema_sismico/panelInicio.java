@@ -5,33 +5,32 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.accessibility.AccessibleContext;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Allison
  */
-public class panelInicio extends javax.swing.JPanel {
-
+public final class panelInicio extends javax.swing.JPanel {
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    Registro_sismos lista = new Registro_sismos();
+    
     /**
      * Creates new form panelInicio
      */
     public panelInicio() {
         initComponents();
-        cbxProvincia.removeAllItems();
-        cbxOrigen.removeAllItems();
-     
-        for(Provincia provincia: Provincia.values()) {
-            cbxProvincia.addItem(provincia.toString());
-        }
-        for(TipoOrigen tipo: TipoOrigen.values()) {
-            cbxOrigen.addItem(tipo.toString());
-    }}
-
-    Registro_sismos lista = new Registro_sismos();
+        modelo = (DefaultTableModel) tabla.getModel();
+        llenarCombo();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +42,7 @@ public class panelInicio extends javax.swing.JPanel {
 
         panelInicio = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla = new javax.swing.JTable();
         panelInformacion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -73,54 +72,16 @@ public class panelInicio extends javax.swing.JPanel {
         panelInicio.setBackground(new java.awt.Color(204, 255, 204));
         panelInicio.setMaximumSize(new java.awt.Dimension(1500, 900));
 
-        jTable1.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Fecha", "Hora", "Profundidad", "Magnitud", "Origen", "Detalle", "Latitud", "Longitud", "Descripcion"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla);
 
         panelInformacion.setBackground(new java.awt.Color(204, 255, 204));
         panelInformacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del sismo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Black", 0, 18))); // NOI18N
@@ -153,19 +114,23 @@ public class panelInicio extends javax.swing.JPanel {
         jLabel9.setText("Provincia");
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 15)); // NOI18N
-        jLabel10.setText("Descripcion Detalleda");
+        jLabel10.setText("Descripcion Detallada");
 
+        txtFecha.setText("24/02/2020");
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaActionPerformed(evt);
             }
         });
 
+        txtHora.setText("02:02:08");
         txtHora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHoraActionPerformed(evt);
             }
         });
+
+        txtProfundidad.setText("4");
 
         cbxOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,12 +138,18 @@ public class panelInicio extends javax.swing.JPanel {
             }
         });
 
+        txtDetalle.setText("hola");
+
+        txtMagnitud.setText("7");
+
+        txtLatitud.setText("9");
         txtLatitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLatitudActionPerformed(evt);
             }
         });
 
+        txtLongitud.setText("4");
         txtLongitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLongitudActionPerformed(evt);
@@ -189,6 +160,13 @@ public class panelInicio extends javax.swing.JPanel {
         cbxProvincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxProvinciaActionPerformed(evt);
+            }
+        });
+
+        txtDescripcion.setText("adios");
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescripcionActionPerformed(evt);
             }
         });
 
@@ -338,10 +316,27 @@ public class panelInicio extends javax.swing.JPanel {
             .addComponent(panelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public void llenarCombo(){
+        /*
+        Funcion: Llenar los ComboBox con la informacion en formato string
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
+        cbxProvincia.removeAllItems();
+        cbxOrigen.removeAllItems();
+        for(Provincia provincia: Provincia.values()) {
+            cbxProvincia.addItem(provincia.toString());
+        }
+        for(TipoOrigen tipo: TipoOrigen.values()) {
+            cbxOrigen.addItem(tipo.toString());
+        }
+    }
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
+        Entradas:
+        Salidas:
         */
         
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
@@ -368,15 +363,16 @@ public class panelInicio extends javax.swing.JPanel {
         try {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-            /* System.out.println(nuevoSismo.getOrigen());
-             System.out.println(nuevoSismo.getProvincia());
-             System.out.println(nuevoSismo.getDescripcion_detallada());*/
-            lista.agregar_sismo(nuevoSismo);
+            //lista.agregar_sismo(nuevoSismo);
+            lista.crearExcel(nuevoSismo);
+            modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
+            tabla.setModel(modelo);
             
-        } catch (ParseException ex) {
+        } catch (ParseException | IOException ex) {
              Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+
 
         txtFecha.setText(null);
         txtHora.setText(null);
@@ -388,10 +384,9 @@ public class panelInicio extends javax.swing.JPanel {
         txtLongitud.setText(null);
         cbxProvincia.setSelectedIndex(0);
         txtDescripcion.setText(null);
-        
 
     }//GEN-LAST:event_btnAgregarActionPerformed
-
+       
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -420,6 +415,9 @@ public class panelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
 
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -437,9 +435,9 @@ public class panelInicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelInformacion;
     private javax.swing.JPanel panelInicio;
+    private javax.swing.JTable tabla;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtFecha;

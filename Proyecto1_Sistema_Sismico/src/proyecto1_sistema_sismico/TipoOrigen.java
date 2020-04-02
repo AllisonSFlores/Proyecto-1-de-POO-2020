@@ -1,3 +1,4 @@
+
 package proyecto1_sistema_sismico;
 
 /**

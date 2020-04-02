@@ -77,13 +77,13 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="tabla">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="15" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="9" rowCount="39">
+                  <Table columnCount="9" rowCount="0">
                     <Column editable="true" title="Fecha" type="java.lang.Object"/>
                     <Column editable="true" title="Hora" type="java.lang.Object"/>
                     <Column editable="true" title="Profundidad" type="java.lang.Object"/>
@@ -94,6 +94,55 @@
                     <Column editable="true" title="Longitud" type="java.lang.Object"/>
                     <Column editable="true" title="Descripcion" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -311,20 +360,29 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="15" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Descripcion Detalleda"/>
+                <Property name="text" type="java.lang.String" value="Descripcion Detallada"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtFecha">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="24/02/2020"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtHora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="02:02:08"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHoraActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtProfundidad">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="4"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbxOrigen">
               <Properties>
@@ -340,15 +398,27 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDetalle">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="hola"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtMagnitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="7"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLatitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="9"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLatitudActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtLongitud">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="4"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtLongitudActionPerformed"/>
               </Events>
@@ -369,6 +439,12 @@
               </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="txtDescripcion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="adios"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDescripcionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnModificar">
               <Properties>
