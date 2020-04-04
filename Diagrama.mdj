@@ -149,7 +149,7 @@
 											"top": 237,
 											"width": 511.44970703125,
 											"height": 13,
-											"text": "-hora: Calendar",
+											"text": "-hora: Date",
 											"horizontalAlignment": 0
 										},
 										{
@@ -473,7 +473,7 @@
 											"top": 500,
 											"width": 511.44970703125,
 											"height": 13,
-											"text": "+setHora(Calendar): void",
+											"text": "+setHora(Date): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -626,7 +626,7 @@
 											"top": 635,
 											"width": 511.44970703125,
 											"height": 13,
-											"text": "+Sismo(Date, Calendar, float, TipoOrigen, String, float, float, float, Provincia, String): void",
+											"text": "+Sismo(Date, Date, float, TipoOrigen, String, float, float, float, Provincia, String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -818,11 +818,30 @@
 									"model": {
 										"$ref": "AAAAAAFw/sbkWd4IpG8="
 									},
+									"subViews": [
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFxM1LDx/7EZo0=",
+											"_parent": {
+												"$ref": "AAAAAAFw/sbkWt4RRNU="
+											},
+											"model": {
+												"$ref": "AAAAAAFxM1LDSv7Bzag="
+											},
+											"font": "Arial;13;0",
+											"left": 1245,
+											"top": 232,
+											"width": 111,
+											"height": 13,
+											"text": "+cargar(void): void",
+											"horizontalAlignment": 0
+										}
+									],
 									"font": "Arial;13;0",
 									"left": 1240,
 									"top": 227,
 									"width": 121,
-									"height": 10
+									"height": 23
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -1814,23 +1833,6 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFw/ubaWeAeF2E=",
-											"_parent": {
-												"$ref": "AAAAAAFw/uX3id/y0qo="
-											},
-											"model": {
-												"$ref": "AAAAAAFw/ubaFOAbChU="
-											},
-											"font": "Arial;13;0",
-											"left": 901,
-											"top": 245,
-											"width": 234.4697265625,
-											"height": 13,
-											"text": "+cargar(void): void",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFw/ubgv+AkaUw=",
 											"_parent": {
 												"$ref": "AAAAAAFw/uX3id/y0qo="
@@ -1840,7 +1842,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 260,
+											"top": 245,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+agregar_sismo(Sismo): void",
@@ -1857,7 +1859,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 275,
+											"top": 260,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+modificar_sismo(Sismo)",
@@ -1874,7 +1876,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 290,
+											"top": 275,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+cant_sismos_provincia(void): void",
@@ -1891,7 +1893,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 305,
+											"top": 290,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+cant_sismos_tipo(void): void",
@@ -1908,7 +1910,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 320,
+											"top": 305,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+ocurridos_en_rango(Date, Date): void",
@@ -1925,7 +1927,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 335,
+											"top": 320,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+cant_sismos_mesEnAnnio(String): void",
@@ -1942,7 +1944,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 350,
+											"top": 335,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+clasificacion_por_magnitud(void): void",
@@ -1959,7 +1961,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 901,
-											"top": 365,
+											"top": 350,
 											"width": 234.4697265625,
 											"height": 13,
 											"text": "+Registro_sismos(): void",
@@ -1970,7 +1972,7 @@
 									"left": 896,
 									"top": 240,
 									"width": 244.4697265625,
-									"height": 143
+									"height": 128
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2151,9 +2153,9 @@
 										"$ref": "AAAAAAFw/uzKneAvjzQ="
 									},
 									"font": "Arial;13;0",
-									"left": 397,
+									"left": 396,
 									"top": 164,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -2619,7 +2621,7 @@
 							},
 							"name": "hora",
 							"visibility": "private",
-							"type": "Calendar"
+							"type": "Date"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -2910,8 +2912,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/xpZM+WKmLA="
 									},
-									"name": "Calendar",
-									"type": ""
+									"name": "Date"
 								},
 								{
 									"_type": "UMLParameter",
@@ -2938,7 +2939,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/xpfK+WiSdo="
 									},
-									"name": "float"
+									"name": "float",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3170,8 +3172,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "Date",
-									"type": ""
+									"name": "Date"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3179,8 +3180,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "Calendar",
-									"type": ""
+									"name": "Date"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3188,8 +3188,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "float",
-									"type": ""
+									"name": "float"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3197,8 +3196,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "TipoOrigen",
-									"type": ""
+									"name": "TipoOrigen"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3206,8 +3204,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "String",
-									"type": ""
+									"name": "String"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3215,8 +3212,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "float",
-									"type": ""
+									"name": "float"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3224,8 +3220,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "float",
-									"type": ""
+									"name": "float"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3233,8 +3228,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "float",
-									"type": ""
+									"name": "float"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3242,8 +3236,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "Provincia",
-									"type": ""
+									"name": "Provincia"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3251,8 +3244,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/yGzaOigSbo="
 									},
-									"name": "String",
-									"type": ""
+									"name": "String"
 								}
 							]
 						},
@@ -3339,6 +3331,36 @@
 									"$ref": "AAAAAAFw/uX3h9/pSxc="
 								}
 							}
+						}
+					],
+					"operations": [
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFxM1LDSv7Bzag=",
+							"_parent": {
+								"$ref": "AAAAAAFw/sbkWd4IpG8="
+							},
+							"name": "cargar",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFxM1LR6v7aDZY=",
+									"_parent": {
+										"$ref": "AAAAAAFxM1LDSv7Bzag="
+									},
+									"name": "void",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFxM1LR6v7bS+I=",
+									"_parent": {
+										"$ref": "AAAAAAFxM1LDSv7Bzag="
+									},
+									"type": "void",
+									"direction": "return"
+								}
+							]
 						}
 					]
 				},
@@ -3529,33 +3551,6 @@
 					"operations": [
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAFw/ubaFOAbChU=",
-							"_parent": {
-								"$ref": "AAAAAAFw/uX3h9/pSxc="
-							},
-							"name": "cargar",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFw/u6Nd+DwEX0=",
-									"_parent": {
-										"$ref": "AAAAAAFw/ubaFOAbChU="
-									},
-									"name": "void"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFw/u8RwOEFqyk=",
-									"_parent": {
-										"$ref": "AAAAAAFw/ubaFOAbChU="
-									},
-									"type": "void",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
 							"_id": "AAAAAAFw/ubgfeAhP0I=",
 							"_parent": {
 								"$ref": "AAAAAAFw/uX3h9/pSxc="
@@ -3708,7 +3703,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFw/wKCquGyf+c="
 									},
-									"name": "String"
+									"name": "String",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",

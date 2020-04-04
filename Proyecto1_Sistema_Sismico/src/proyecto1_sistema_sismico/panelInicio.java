@@ -5,12 +5,12 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.accessibility.AccessibleContext;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,8 +24,12 @@ public final class panelInicio extends javax.swing.JPanel {
     
     /**
      * Creates new form panelInicio
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
+     * @throws java.text.ParseException
      */
-    public panelInicio() {
+    public panelInicio() throws IOException, FileNotFoundException, ParseException {
+       
         initComponents();
         modelo = (DefaultTableModel) tabla.getModel();
         llenarCombo();
@@ -138,7 +142,7 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtDetalle.setText("hola");
+        txtDetalle.setText("Detalle");
 
         txtMagnitud.setText("7");
 
@@ -163,7 +167,7 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtDescripcion.setText("adios");
+        txtDescripcion.setText("Descripcion Detallada");
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDescripcionActionPerformed(evt);
@@ -222,9 +226,9 @@ public final class panelInicio extends javax.swing.JPanel {
                     .addComponent(txtDetalle)
                     .addComponent(txtLongitud)
                     .addComponent(txtLatitud)
-                    .addComponent(txtDescripcion)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(cbxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbxOrigen, 0, 204, Short.MAX_VALUE)
+                    .addComponent(cbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMagnitud))
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInformacionLayout.createSequentialGroup()
@@ -291,7 +295,7 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
         panelInicioLayout.setVerticalGroup(
             panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,9 +311,7 @@ public final class panelInicio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+            .addComponent(panelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.poi.ss.usermodel.Cell;
@@ -33,32 +34,94 @@ public final class Registro_sismos {
     
     //Constructores
 
-    public Registro_sismos() throws IOException {
+    @SuppressWarnings("Convert2Diamond")
+    public Registro_sismos() throws IOException, FileNotFoundException, ParseException {
         lista = new ArrayList<Sismo>();
         cargar();
     }
     
     //Metodos
-    public void cargar() throws FileNotFoundException, IOException{
-        
-        
-            FileInputStream file = new FileInputStream(new File(filePath));
+    public void cargar() throws FileNotFoundException, IOException, ParseException{
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";
+        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
+               
+        FileInputStream file = new FileInputStream(new File(filePath));
 
-            XSSFWorkbook libro = new XSSFWorkbook(file);
-            XSSFSheet hojaBD = libro.getSheetAt(0);
+        XSSFWorkbook libro = new XSSFWorkbook(file);
+        XSSFSheet hojaBD = libro.getSheetAt(0);
 
-            int numFilas = hojaBD.getLastRowNum();
+        int numFilas = hojaBD.getLastRowNum();
 
-            for (int a = 0; a <= numFilas; a++) {
-                Row fila = hojaBD.getRow(a);
-                int numCols = fila.getLastCellNum();
+        for (int a = 0; a <= numFilas; a++) {
+            Row fila = hojaBD.getRow(a);
+            int numCols = fila.getLastCellNum();
 
-                for (int b = 0; b < numCols; b++) {
-                    Cell celda = fila.getCell(b);
-                    System.out.print(celda.getStringCellValue() + " ");   
+            for (int b = 0; b < numCols; b++) {
+                Cell celda = fila.getCell(b);
+                
+                switch(b){
+                    case 0:
+                        laFecha = celda.getStringCellValue();
+                        break;
+                        
+                    case 1:
+                        laHora = celda.getStringCellValue();
+                        break;
+                        
+                    case 2:
+                        profundidad = celda.getStringCellValue();
+                        break;
+                        
+                    case 3:
+                        origen = celda.getStringCellValue();
+                        break;
+                        
+                    case 4:
+                        detalle = celda.getStringCellValue();
+                        break;
+                    
+                    case 5:
+                        magnitud = celda.getStringCellValue();
+                        break;
+                        
+                    case 6:
+                        latitud = celda.getStringCellValue();
+                        break;
+                        
+                    case 7:
+                        longitud = celda.getStringCellValue();
+                        break;
+                    
+                    case 8:
+                        provincia = celda.getStringCellValue();
+                        break;
+                       
+                    case 9:
+                        descripcion = celda.getStringCellValue();
+                        break;
+                        
+                    default:
+                        break;
+                        
                 }
-                System.out.println("");
             }
+            //Sismo nuevoSismo2 = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
+            //lista.add(nuevoSismo);
+        }
+        
+       /* for (int i = 0; i < lista.size()+1; i++){
+            System.out.println(lista.get(i).getDetalle());
+            System.out.println("QUE VERGA");
+        }*/
+
+        
+            
  
  }
 
@@ -86,12 +149,10 @@ public final class Registro_sismos {
         if (excelFile.exists()) { // Si el archivo existe 
             agregar_sismo(psismo);   
              //excelFile.delete();
-             System.out.println("EL ARCHIVO EXISTE CON ANTERIORIDAD");
-                
+    
          }else{
-            System.out.println("EL ARCHIVO NO EXISTE");
             try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
-                System.out.println("EL ARCHIVO AHORA EXISTE");
+                
                 XSSFRow row = hoja1.createRow(0);//se crea una fila
 
                 for (int j = 0; j < header.length; j++) {
@@ -121,6 +182,7 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
         
+        lista.add(psismo);
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
   
@@ -152,7 +214,8 @@ public final class Registro_sismos {
         fileOuS.close();
 
         System.out.println("Agregado con exito!");
- 
+        System.out.println("TAMANO LISTA DESPUES DE AGREGAR");
+        System.out.println(lista.size());
 
     }
     

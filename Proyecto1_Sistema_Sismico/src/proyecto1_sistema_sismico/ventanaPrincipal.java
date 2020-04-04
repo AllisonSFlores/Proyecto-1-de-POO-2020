@@ -6,15 +6,21 @@
 package proyecto1_sistema_sismico;
 
 import java.awt.BorderLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author XT
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
-    //Atributos de ventanaPrincipal
-    panelInicio varpanel = new panelInicio();
-    public ventanaPrincipal() {
+    panelInicio varpanel;
+    
+    public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
+        this.varpanel = new panelInicio();
         initComponents();
         //Hacer que empiece con el panelInicio
         varpanel.setLocation(0,0);
@@ -26,7 +32,8 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }
 
 
-    /**
+//Atributos de ventanaPrincipal
+        /**
      *Este metodo se debe llamar en constructor de la clase para que corra la interfaz
      * WARNING: El codigo con fondo blanco no se puede modificar porque lo genera netbeans mientra estamos arrastrando
      * cosas de la interfaz.
@@ -190,13 +197,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_salirActionPerformed
 
     private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
-        panelInicio varpanel5 = new panelInicio();
-        varpanel5.setLocation(0,0);
-        varpanel5.setSize(varpanel5.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel5,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        try {
+            panelInicio varpanel5 = new panelInicio();
+            varpanel5.setLocation(0,0);
+            varpanel5.setSize(varpanel5.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varpanel5,BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_menu_incioActionPerformed
 
@@ -241,10 +252,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new ventanaPrincipal().setVisible(true);
-                
+            } catch (IOException | ParseException ex) {
+                Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
