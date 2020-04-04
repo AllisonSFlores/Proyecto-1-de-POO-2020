@@ -29,7 +29,7 @@ public final class Registro_sismos {
     String hoja = "Hoja1"; 
     XSSFWorkbook book = new XSSFWorkbook();
     XSSFSheet hoja1 = book.createSheet(hoja);
-    String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia y descripcion Detallada"};
+    String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia", "Descripcion Detallada"};
    
     
     //Constructores
@@ -37,16 +37,16 @@ public final class Registro_sismos {
     @SuppressWarnings("Convert2Diamond")
     public Registro_sismos() throws IOException, FileNotFoundException, ParseException {
         lista = new ArrayList<Sismo>();
-        cargar();
+        
     }
     
     //Metodos
-    public void cargar() throws FileNotFoundException, IOException, ParseException{
-        /*
+  public void cargar() throws FileNotFoundException, IOException, ParseException{
+       /*
         Funcion:
         Entradas:
         Salidas:
-        */
+       */
         String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
@@ -58,7 +58,7 @@ public final class Registro_sismos {
 
         int numFilas = hojaBD.getLastRowNum();
 
-        for (int a = 0; a <= numFilas; a++) {
+        for (int a = 1; a <= numFilas; a++) {
             Row fila = hojaBD.getRow(a);
             int numCols = fila.getLastCellNum();
 
@@ -66,6 +66,7 @@ public final class Registro_sismos {
                 Cell celda = fila.getCell(b);
                 
                 switch(b){
+                    
                     case 0:
                         laFecha = celda.getStringCellValue();
                         break;
@@ -110,18 +111,18 @@ public final class Registro_sismos {
                         break;
                         
                 }
+                
             }
-            //Sismo nuevoSismo2 = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
-            //lista.add(nuevoSismo);
+            //Sismo nuevoSismo = new Sismo(fecha.parse("31/03/2020"), hora.parse("24:02:50"),7, TipoOrigen.CHOQUE_PLACAS ,"detalle",4, 5,6,Provincia.CARTAGO, "descripcion");
+            Sismo nuevoSismo = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
+            lista.add(nuevoSismo);
+        }
+        System.out.println(lista.size());
+        for (int i = 0; i < lista.size(); i++){
+            System.out.println(lista.get(i).getFecha());
+            System.out.println(lista.get(i).getOrigen());
         }
         
-       /* for (int i = 0; i < lista.size()+1; i++){
-            System.out.println(lista.get(i).getDetalle());
-            System.out.println("QUE VERGA");
-        }*/
-
-        
-            
  
  }
 
@@ -183,12 +184,13 @@ public final class Registro_sismos {
         */
         
         lista.add(psismo);
+        
         SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
   
         //Contenido de la hoja de excel
         String[][] document = new String[][]{
-            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name()+", "+ psismo.getDescripcion_detallada()}
+            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
         };
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
@@ -214,8 +216,7 @@ public final class Registro_sismos {
         fileOuS.close();
 
         System.out.println("Agregado con exito!");
-        System.out.println("TAMANO LISTA DESPUES DE AGREGAR");
-        System.out.println(lista.size());
+        System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
 
     }
     

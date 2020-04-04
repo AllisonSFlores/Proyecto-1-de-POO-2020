@@ -18,8 +18,12 @@ import java.util.logging.Logger;
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
     panelInicio varpanel;
+    Registro_sismos cargar = new Registro_sismos();
     
     public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
+        
+        cargar.cargar();
+        
         this.varpanel = new panelInicio();
         initComponents();
         //Hacer que empiece con el panelInicio

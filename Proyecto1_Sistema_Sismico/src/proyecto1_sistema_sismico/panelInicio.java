@@ -34,6 +34,7 @@ public final class panelInicio extends javax.swing.JPanel {
         modelo = (DefaultTableModel) tabla.getModel();
         llenarCombo();
         
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -365,8 +366,8 @@ public final class panelInicio extends javax.swing.JPanel {
         try {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-            //lista.agregar_sismo(nuevoSismo);
             lista.crearExcel(nuevoSismo);
+            
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
             
