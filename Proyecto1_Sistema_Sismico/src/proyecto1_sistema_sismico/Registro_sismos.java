@@ -22,7 +22,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public final class Registro_sismos {
     //Atributos
+    private static Registro_sismos registro; //para el singleton
     private final ArrayList<Sismo> lista ;
+    
     //Creando objeto libro de Excel
     String fileName = "BD.xlsx";
     String filePath =  fileName; 
@@ -41,6 +43,14 @@ public final class Registro_sismos {
     }
     
     //Metodos
+    
+  public static Registro_sismos getRegistro_sismos() throws IOException, FileNotFoundException, ParseException{
+        if (registro == null){
+            registro = new Registro_sismos();
+        }
+        return registro;
+    }
+  
   public void cargar() throws FileNotFoundException, IOException, ParseException{
        /*
         Funcion:
