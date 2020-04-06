@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
@@ -22,45 +23,41 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public final class Registro_sismos {
     //Atributos
-    private static Registro_sismos registro; //para el singleton
     private final ArrayList<Sismo> lista ;
-    
-    //Creando objeto libro de Excel
+    SimpleDateFormat fecha;
+    SimpleDateFormat hora;
+   
+    //Para el libro de Excel
     String fileName = "BD.xlsx";
     String filePath =  fileName; 
     String hoja = "Hoja1"; 
-    XSSFWorkbook book = new XSSFWorkbook();
-    XSSFSheet hoja1 = book.createSheet(hoja);
     String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia", "Descripcion Detallada"};
    
-    
-    //Constructores
 
     @SuppressWarnings("Convert2Diamond")
     public Registro_sismos() throws IOException, FileNotFoundException, ParseException {
         lista = new ArrayList<Sismo>();
-        
+        fecha = new SimpleDateFormat("dd/mm/yyyy");
+        hora = new SimpleDateFormat("HH:mm:ss");
     }
-    
+
     //Metodos
-    
-  public static Registro_sismos getRegistro_sismos() throws IOException, FileNotFoundException, ParseException{
-        if (registro == null){
-            registro = new Registro_sismos();
-        }
-        return registro;
-    }
-  
-  public void cargar() throws FileNotFoundException, IOException, ParseException{
+    /**
+     * 
+     * @return 
+     * @throws java.io.FileNotFoundException
+     * @throws IOException
+     * @throws java.text.ParseException
+     */
+ 
+    public ArrayList<Sismo> cargar() throws FileNotFoundException, IOException, ParseException{
        /*
         Funcion:
         Entradas:
         Salidas:
        */
-        String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
-               
+       
+        String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
         FileInputStream file = new FileInputStream(new File(filePath));
 
         XSSFWorkbook libro = new XSSFWorkbook(file);
@@ -127,17 +124,11 @@ public final class Registro_sismos {
             Sismo nuevoSismo = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
             lista.add(nuevoSismo);
         }
-        System.out.println(lista.size());
-        for (int i = 0; i < lista.size(); i++){
-            System.out.println(lista.get(i).getFecha());
-            System.out.println(lista.get(i).getOrigen());
-        }
-        
- 
- }
-
+        return lista;
      
-        
+
+    }
+ 
     
     public void crearExcel(Sismo psismo) throws FileNotFoundException, IOException{
         /*
@@ -147,7 +138,8 @@ public final class Registro_sismos {
         */
 
         //Cabecera de la hoja de excel
-        
+        XSSFWorkbook book = new XSSFWorkbook();
+        XSSFSheet hoja1 = book.createSheet(hoja);
     
         //Aplicando estilo color negrita a los encabezados
         CellStyle style = book.createCellStyle();
@@ -161,7 +153,7 @@ public final class Registro_sismos {
             agregar_sismo(psismo);   
              //excelFile.delete();
     
-         }else{
+        }else{
             try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
                 
                 XSSFRow row = hoja1.createRow(0);//se crea una fila
@@ -180,11 +172,11 @@ public final class Registro_sismos {
                 agregar_sismo(psismo);
   
             }catch (Exception e) {
-                 e.printStackTrace();
             }
         }  
     }
     
+    @SuppressWarnings("UnusedAssignment")
     public void agregar_sismo(Sismo psismo) throws FileNotFoundException, IOException{
         
         /*
@@ -193,11 +185,8 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
         
-        lista.add(psismo);
+       // lista.add(psismo);
         
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
-  
         //Contenido de la hoja de excel
         String[][] document = new String[][]{
             {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
@@ -227,6 +216,7 @@ public final class Registro_sismos {
 
         System.out.println("Agregado con exito!");
         System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
+        JOptionPane.showMessageDialog(null, "AGREGARSISMO"+lista.size());
 
     }
     
@@ -280,6 +270,10 @@ public final class Registro_sismos {
         Salidas: 
         */
         
+    }
+
+    Object size() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

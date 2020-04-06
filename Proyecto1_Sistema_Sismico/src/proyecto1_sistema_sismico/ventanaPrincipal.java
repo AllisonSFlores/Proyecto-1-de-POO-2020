@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +19,14 @@ import java.util.logging.Logger;
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
     panelInicio varpanel;
-    Registro_sismos cargar = new Registro_sismos();
+    Registro_sismos lista = Registro_Singleton.getRegistro_Singleton();
+   // int lenLista = 0;
     
     public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
         
-        cargar.cargar();
-        
         this.varpanel = new panelInicio();
         initComponents();
+        //lenLista = lista.cargar().size();
         //Hacer que empiece con el panelInicio
         varpanel.setLocation(0,0);
         varpanel.setSize(varpanel.getMaximumSize());
@@ -33,6 +34,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(varpanel,BorderLayout.CENTER); //agrega el atributo tipo panelinicio al panelPrincipal en el centro
         panelPrincipal.revalidate();//Le dice al administrador de diseño que vuelva a calcular el diseño
         panelPrincipal.repaint();//Le dice a Swing que un área de la ventana está sucia
+     
     }
 
 
@@ -163,6 +165,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(varpanel1,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
@@ -173,6 +176,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(varpanel2,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
     private void menu_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_provinciaActionPerformed
@@ -194,6 +198,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
         
+        
     }//GEN-LAST:event_menu_tipoActionPerformed
 
     private void menu_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_salirActionPerformed
@@ -213,6 +218,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        
     }//GEN-LAST:event_menu_incioActionPerformed
 
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
@@ -223,6 +229,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(varpanel6,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+        
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
     /**

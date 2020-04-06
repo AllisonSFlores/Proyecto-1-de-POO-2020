@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,9 +20,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class panelInicio extends javax.swing.JPanel {
     
-    DefaultTableModel modelo = new DefaultTableModel();
+    SimpleDateFormat fecha;
+    SimpleDateFormat hora;
+    int lenLista = 0;
+    DefaultTableModel modelo;
+   // Registro_sismos lista = Registro_Singleton.getRegistro_Singleton();
     Registro_sismos lista = new Registro_sismos();
-    
     /**
      * Creates new form panelInicio
      * @throws java.io.IOException
@@ -31,8 +35,13 @@ public final class panelInicio extends javax.swing.JPanel {
     public panelInicio() throws IOException, FileNotFoundException, ParseException {
        
         initComponents();
+        fecha = new SimpleDateFormat("dd/mm/yyyy");
+        hora = new SimpleDateFormat("HH:mm:ss");
+        modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
         llenarCombo();
+        lenLista = lista.cargar().size();
+        llenarJTable();
         
         
     }
@@ -335,6 +344,16 @@ public final class panelInicio extends javax.swing.JPanel {
         }
     }
     
+    public void llenarJTable() throws IOException, FileNotFoundException, ParseException{
+        
+        JOptionPane.showMessageDialog(null,"LLENARJTABLE"+lenLista);
+        for (int i = 0; i < lenLista; i++){
+            modelo.addRow(new Object[]{fecha.format(lista.cargar().get(i).getFecha()), hora.format(lista.cargar().get(i).getHora()), String.valueOf(lista.cargar().get(i).getProfundidad()),lista.cargar().get(i).getOrigen().name(), lista.cargar().get(i).getDetalle(), String.valueOf(lista.cargar().get(i).getMagnitud()), String.valueOf(lista.cargar().get(i).getLatitud()),String.valueOf(lista.cargar().get(i).getLongitud()),lista.cargar().get(i).getProvincia().name()+", "+ lista.cargar().get(i).getDescripcion_detallada()});
+            tabla.setModel(modelo);
+        }
+        
+
+    }
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
@@ -342,8 +361,7 @@ public final class panelInicio extends javax.swing.JPanel {
         Salidas:
         */
         
-        SimpleDateFormat fecha = new SimpleDateFormat("dd/mm/yyyy");
-        SimpleDateFormat hora = new SimpleDateFormat("HH:mm:ss");
+        
         
         String origen="";
         String provincia="";
@@ -367,9 +385,9 @@ public final class panelInicio extends javax.swing.JPanel {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
             lista.crearExcel(nuevoSismo);
-            
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
+            
             
         } catch (ParseException | IOException ex) {
              Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
