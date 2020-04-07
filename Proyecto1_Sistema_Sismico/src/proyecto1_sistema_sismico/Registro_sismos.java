@@ -185,7 +185,8 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
         
-       // lista.add(psismo);
+        lista.add(psismo);   //ALGO FEO PASA
+       
         
         //Contenido de la hoja de excel
         String[][] document = new String[][]{
@@ -216,7 +217,7 @@ public final class Registro_sismos {
 
         System.out.println("Agregado con exito!");
         System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
-        JOptionPane.showMessageDialog(null, "AGREGARSISMO"+lista.size());
+        JOptionPane.showMessageDialog(null, "AGREGAR_SISMO: "+lista.size());
 
     }
     

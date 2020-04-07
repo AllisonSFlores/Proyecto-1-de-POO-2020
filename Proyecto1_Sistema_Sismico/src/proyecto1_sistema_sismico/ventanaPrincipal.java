@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,13 +19,13 @@ import javax.swing.JOptionPane;
 public class ventanaPrincipal extends javax.swing.JFrame {
     panelInicio varpanel;
     Registro_sismos lista = Registro_Singleton.getRegistro_Singleton();
-   // int lenLista = 0;
+    int lenLista = 0;
     
     public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
         
         this.varpanel = new panelInicio();
         initComponents();
-        //lenLista = lista.cargar().size();
+        lenLista = lista.cargar().size();
         //Hacer que empiece con el panelInicio
         varpanel.setLocation(0,0);
         varpanel.setSize(varpanel.getMaximumSize());
@@ -165,17 +164,23 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(varpanel1,BorderLayout.CENTER);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
+   
         
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
-        PanelMagnitud varpanel2 =new PanelMagnitud();
-        varpanel2.setLocation(0,0);
-        varpanel2.setSize(varpanel2.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel2,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+       
+        try {
+            PanelMagnitud varpanel2 =new PanelMagnitud();
+            varpanel2.setLocation(0,0);
+            varpanel2.setSize(varpanel2.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varpanel2,BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
@@ -217,7 +222,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         } catch (IOException | ParseException ex) {
             Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+       
         
     }//GEN-LAST:event_menu_incioActionPerformed
 

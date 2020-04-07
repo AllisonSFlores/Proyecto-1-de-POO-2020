@@ -14,7 +14,7 @@ import java.text.ParseException;
  */
 public class Registro_Singleton {
     //Atributos
-    private static Registro_sismos registro; //para el singleton
+    private static Registro_sismos registro; 
     
     private Registro_Singleton(){}
     

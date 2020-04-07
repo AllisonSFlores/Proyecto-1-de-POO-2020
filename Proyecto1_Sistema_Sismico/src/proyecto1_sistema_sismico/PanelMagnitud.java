@@ -1,4 +1,10 @@
 package proyecto1_sistema_sismico;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Allison
@@ -7,8 +13,13 @@ public class PanelMagnitud extends javax.swing.JPanel {
     /**
      * Creates new form PanelMagnitud
      */
-    public PanelMagnitud() {
+    Registro_sismos lista = new Registro_sismos();
+    int lenLista = 0;
+    
+    public PanelMagnitud() throws IOException, FileNotFoundException, ParseException {
         initComponents();
+        lenLista = lista.cargar().size();
+        JOptionPane.showMessageDialog(null,"MENU ANNIO: "+lenLista);
     }
     /**
      * This method is called from within the constructor to initialize the form.

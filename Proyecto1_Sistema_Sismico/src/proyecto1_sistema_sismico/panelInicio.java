@@ -24,7 +24,7 @@ public final class panelInicio extends javax.swing.JPanel {
     SimpleDateFormat hora;
     int lenLista = 0;
     DefaultTableModel modelo;
-   // Registro_sismos lista = Registro_Singleton.getRegistro_Singleton();
+    Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     Registro_sismos lista = new Registro_sismos();
     /**
      * Creates new form panelInicio
@@ -346,7 +346,7 @@ public final class panelInicio extends javax.swing.JPanel {
     
     public void llenarJTable() throws IOException, FileNotFoundException, ParseException{
         
-        JOptionPane.showMessageDialog(null,"LLENARJTABLE"+lenLista);
+        JOptionPane.showMessageDialog(null,"LLENAR_JTABLE: "+lenLista);
         for (int i = 0; i < lenLista; i++){
             modelo.addRow(new Object[]{fecha.format(lista.cargar().get(i).getFecha()), hora.format(lista.cargar().get(i).getHora()), String.valueOf(lista.cargar().get(i).getProfundidad()),lista.cargar().get(i).getOrigen().name(), lista.cargar().get(i).getDetalle(), String.valueOf(lista.cargar().get(i).getMagnitud()), String.valueOf(lista.cargar().get(i).getLatitud()),String.valueOf(lista.cargar().get(i).getLongitud()),lista.cargar().get(i).getProvincia().name()+", "+ lista.cargar().get(i).getDescripcion_detallada()});
             tabla.setModel(modelo);
@@ -384,7 +384,7 @@ public final class panelInicio extends javax.swing.JPanel {
         try {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
-            lista.crearExcel(nuevoSismo);
+            listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
             
