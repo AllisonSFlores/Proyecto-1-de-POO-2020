@@ -19,13 +19,12 @@ public class panelTipo extends javax.swing.JPanel {
     /**
      * Creates new form panelTipo
      */
-    Registro_sismos lista = new Registro_sismos();
-    int lenLista = 0;
+     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
     public panelTipo() throws IOException, FileNotFoundException, ParseException {
         initComponents();
-        lenLista = lista.cargar().size();
-        JOptionPane.showMessageDialog(null,"PANEL TIPO: "+lenLista);
+        //VER QUE SE MANTIENE LA LISTA
+        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
         
     }
 

@@ -19,13 +19,13 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
     /**
      * Creates new form PanelMesEnAnnio
      */
-    Registro_sismos lista = new Registro_sismos();
-    int lenLista = 0;
+     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
     public PanelMesEnAnnio() throws IOException, FileNotFoundException, ParseException {
         initComponents();
-        lenLista = lista.cargar().size();
-        JOptionPane.showMessageDialog(null,"PANEL MES ANNIO: "+lenLista);
+        //VER QUE SE MANTIENE LA LISTA
+        
+        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
     }
 
     /**

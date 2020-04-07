@@ -13,13 +13,16 @@ public class PanelMagnitud extends javax.swing.JPanel {
     /**
      * Creates new form PanelMagnitud
      */
-    Registro_sismos lista = new Registro_sismos();
-    int lenLista = 0;
+    
+    Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
+    
     
     public PanelMagnitud() throws IOException, FileNotFoundException, ParseException {
         initComponents();
-        lenLista = lista.cargar().size();
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+lenLista);
+        //VER QUE SE MANTIENE LA LISTA
+        
+        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD DES DETALL : "+ listaG.lista.get(1).getDescripcion_detallada());
+        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -25,7 +25,6 @@ public final class panelInicio extends javax.swing.JPanel {
     int lenLista = 0;
     DefaultTableModel modelo;
     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
-    Registro_sismos lista = new Registro_sismos();
     /**
      * Creates new form panelInicio
      * @throws java.io.IOException
@@ -40,7 +39,8 @@ public final class panelInicio extends javax.swing.JPanel {
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
         llenarCombo();
-        lenLista = lista.cargar().size();
+        listaG.lista.clear();
+        lenLista = listaG.cargar().size();
         llenarJTable();
         
         
@@ -95,6 +95,11 @@ public final class panelInicio extends javax.swing.JPanel {
                 "Fecha", "Hora", "Profundidad", "Magnitud", "Origen", "Detalle", "Latitud", "Longitud", "Descripcion"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         panelInformacion.setBackground(new java.awt.Color(204, 255, 204));
@@ -347,8 +352,9 @@ public final class panelInicio extends javax.swing.JPanel {
     public void llenarJTable() throws IOException, FileNotFoundException, ParseException{
         
         JOptionPane.showMessageDialog(null,"LLENAR_JTABLE: "+lenLista);
+   
         for (int i = 0; i < lenLista; i++){
-            modelo.addRow(new Object[]{fecha.format(lista.cargar().get(i).getFecha()), hora.format(lista.cargar().get(i).getHora()), String.valueOf(lista.cargar().get(i).getProfundidad()),lista.cargar().get(i).getOrigen().name(), lista.cargar().get(i).getDetalle(), String.valueOf(lista.cargar().get(i).getMagnitud()), String.valueOf(lista.cargar().get(i).getLatitud()),String.valueOf(lista.cargar().get(i).getLongitud()),lista.cargar().get(i).getProvincia().name()+", "+ lista.cargar().get(i).getDescripcion_detallada()});
+            modelo.addRow(new Object[]{fecha.format(listaG.lista.get(i).getFecha()), hora.format(listaG.lista.get(i).getHora()), String.valueOf(listaG.lista.get(i).getProfundidad()),listaG.lista.get(i).getOrigen().toString(), listaG.lista.get(i).getDetalle(), String.valueOf(listaG.lista.get(i).getMagnitud()), String.valueOf(listaG.lista.get(i).getLatitud()),String.valueOf(listaG.lista.get(i).getLongitud()),listaG.lista.get(i).getProvincia().toString()+", "+ listaG.lista.get(i).getDescripcion_detallada()});
             tabla.setModel(modelo);
         }
         
@@ -357,8 +363,8 @@ public final class panelInicio extends javax.swing.JPanel {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
-        Entradas:
-        Salidas:
+        Entradas: Ninguna
+        Salidas: Ninguna
         */
         
         
@@ -385,7 +391,7 @@ public final class panelInicio extends javax.swing.JPanel {
            
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
             listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
-            modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().name(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().name()+", "+ nuevoSismo.getDescripcion_detallada()});
+            modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
             
             
@@ -439,6 +445,11 @@ public final class panelInicio extends javax.swing.JPanel {
     private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here
+        JOptionPane.showMessageDialog(null,"CLICK");
+    }//GEN-LAST:event_tablaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

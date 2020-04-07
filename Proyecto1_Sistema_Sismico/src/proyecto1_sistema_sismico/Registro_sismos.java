@@ -23,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public final class Registro_sismos {
     //Atributos
-    private final ArrayList<Sismo> lista ;
+    ArrayList<Sismo> lista ;
     SimpleDateFormat fecha;
     SimpleDateFormat hora;
    
@@ -184,7 +184,7 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
         
-        lista.add(psismo);   
+        lista.add(psismo);  
 
         //Contenido de la hoja de excel
         String[][] document = new String[][]{

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,14 +19,12 @@ import java.util.logging.Logger;
  */
 public class ventanaPrincipal extends javax.swing.JFrame {
     panelInicio varpanel;
-    Registro_sismos lista = Registro_Singleton.getRegistro_Singleton();
-    int lenLista = 0;
     
     public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
         
         this.varpanel = new panelInicio();
         initComponents();
-        lenLista = lista.cargar().size();
+
         //Hacer que empiece con el panelInicio
         varpanel.setLocation(0,0);
         varpanel.setSize(varpanel.getMaximumSize());
@@ -61,9 +60,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menu_magnitud = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1500, 980));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1530, 1000));
 
         panelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
         panelPrincipal.setMaximumSize(new java.awt.Dimension(1500, 962));
@@ -95,6 +92,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menu_mas.add(menu_incio);
 
         menu_acercade.setText("Acerca de");
+        menu_acercade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_acercadeActionPerformed(evt);
+            }
+        });
         menu_mas.add(menu_acercade);
 
         menu_salir.setText("Salir");
@@ -249,12 +251,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
+    private void menu_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_acercadeActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano");
+    }//GEN-LAST:event_menu_acercadeActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
