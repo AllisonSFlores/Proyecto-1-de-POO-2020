@@ -157,13 +157,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
-        PanelMesEnAnnio varpanel1 =new PanelMesEnAnnio();
-        varpanel1.setLocation(0,0);
-        varpanel1.setSize(varpanel1.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel1,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        try {
+            PanelMesEnAnnio varpanel1 =new PanelMesEnAnnio();
+            varpanel1.setLocation(0,0);
+            varpanel1.setSize(varpanel1.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varpanel1,BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
    
         
     }//GEN-LAST:event_menu_annioActionPerformed
@@ -195,13 +199,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
-        panelTipo varpanel4 =new panelTipo();
-        varpanel4.setLocation(0,0);
-        varpanel4.setSize(varpanel4.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel4,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        try {
+            panelTipo varpanel4 =new panelTipo();
+            varpanel4.setLocation(0,0);
+            varpanel4.setSize(varpanel4.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varpanel4,BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_menu_tipoActionPerformed
@@ -227,13 +235,17 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_incioActionPerformed
 
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
-        PanelRangoFecha varpanel6 =new PanelRangoFecha();
-        varpanel6.setLocation(0,0);
-        varpanel6.setSize(varpanel6.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel6,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        try {
+            PanelRangoFecha varpanel6 =new PanelRangoFecha();
+            varpanel6.setLocation(0,0);
+            varpanel6.setSize(varpanel6.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varpanel6,BorderLayout.CENTER);
+            panelPrincipal.revalidate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 

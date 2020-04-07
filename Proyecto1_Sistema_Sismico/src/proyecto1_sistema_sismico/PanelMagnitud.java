@@ -19,7 +19,7 @@ public class PanelMagnitud extends javax.swing.JPanel {
     public PanelMagnitud() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         lenLista = lista.cargar().size();
-        JOptionPane.showMessageDialog(null,"MENU ANNIO: "+lenLista);
+        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+lenLista);
     }
     /**
      * This method is called from within the constructor to initialize the form.

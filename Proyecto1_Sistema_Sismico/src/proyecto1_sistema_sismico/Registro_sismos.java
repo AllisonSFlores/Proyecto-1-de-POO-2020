@@ -52,9 +52,9 @@ public final class Registro_sismos {
  
     public ArrayList<Sismo> cargar() throws FileNotFoundException, IOException, ParseException{
        /*
-        Funcion:
-        Entradas:
-        Salidas:
+        Funcion: Cargar en una lista, todos los objetos que se encuentran en el excel
+        Entradas: Ninguna
+        Salidas: Ninguna
        */
        
         String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
@@ -120,7 +120,7 @@ public final class Registro_sismos {
                 }
                 
             }
-            //Sismo nuevoSismo = new Sismo(fecha.parse("31/03/2020"), hora.parse("24:02:50"),7, TipoOrigen.CHOQUE_PLACAS ,"detalle",4, 5,6,Provincia.CARTAGO, "descripcion");
+            //Crear objetos con la informacion del excel
             Sismo nuevoSismo = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
             lista.add(nuevoSismo);
         }
@@ -151,7 +151,6 @@ public final class Registro_sismos {
 
         if (excelFile.exists()) { // Si el archivo existe 
             agregar_sismo(psismo);   
-             //excelFile.delete();
     
         }else{
             try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
@@ -185,9 +184,8 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
         
-        lista.add(psismo);   //ALGO FEO PASA
-       
-        
+        lista.add(psismo);   
+
         //Contenido de la hoja de excel
         String[][] document = new String[][]{
             {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
