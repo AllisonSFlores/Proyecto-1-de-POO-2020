@@ -5,12 +5,14 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,6 +46,7 @@ public final class panelInicio extends javax.swing.JPanel {
         llenarJTable();
         
         
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +57,7 @@ public final class panelInicio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelInicio = new javax.swing.JPanel();
+        txtHora = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         panelInformacion = new javax.swing.JPanel();
@@ -69,7 +72,6 @@ public final class panelInicio extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
-        txtHora = new javax.swing.JTextField();
         txtProfundidad = new javax.swing.JTextField();
         cbxOrigen = new javax.swing.JComboBox<>();
         txtDetalle = new javax.swing.JTextField();
@@ -80,11 +82,12 @@ public final class panelInicio extends javax.swing.JPanel {
         txtDescripcion = new javax.swing.JTextField();
         btnModificar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
+        txthora = new javax.swing.JTextField();
 
         setMaximumSize(getMaximumSize());
 
-        panelInicio.setBackground(new java.awt.Color(204, 255, 204));
-        panelInicio.setMaximumSize(new java.awt.Dimension(1500, 900));
+        txtHora.setBackground(new java.awt.Color(204, 255, 204));
+        txtHora.setMaximumSize(new java.awt.Dimension(1500, 900));
 
         tabla.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -139,13 +142,6 @@ public final class panelInicio extends javax.swing.JPanel {
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFechaActionPerformed(evt);
-            }
-        });
-
-        txtHora.setText("02:02:08");
-        txtHora.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHoraActionPerformed(evt);
             }
         });
 
@@ -207,6 +203,13 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
+        txthora.setText("02:02:08");
+        txthora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txthoraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
         panelInformacion.setLayout(panelInformacionLayout);
         panelInformacionLayout.setHorizontalGroup(
@@ -236,7 +239,6 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addGap(77, 77, 77)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtFecha)
-                    .addComponent(txtHora)
                     .addComponent(txtProfundidad)
                     .addComponent(txtDetalle)
                     .addComponent(txtLongitud)
@@ -244,7 +246,8 @@ public final class panelInicio extends javax.swing.JPanel {
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addComponent(cbxProvincia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbxOrigen, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMagnitud))
+                    .addComponent(txtMagnitud)
+                    .addComponent(txthora))
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInformacionLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -260,9 +263,9 @@ public final class panelInicio extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel2)
+                    .addComponent(txthora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtProfundidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,22 +304,22 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
-        panelInicio.setLayout(panelInicioLayout);
-        panelInicioLayout.setHorizontalGroup(
-            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInicioLayout.createSequentialGroup()
+        javax.swing.GroupLayout txtHoraLayout = new javax.swing.GroupLayout(txtHora);
+        txtHora.setLayout(txtHoraLayout);
+        txtHoraLayout.setHorizontalGroup(
+            txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtHoraLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(151, Short.MAX_VALUE))
         );
-        panelInicioLayout.setVerticalGroup(
-            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelInicioLayout.createSequentialGroup()
+        txtHoraLayout.setVerticalGroup(
+            txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(txtHoraLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(95, Short.MAX_VALUE))
@@ -326,11 +329,11 @@ public final class panelInicio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     public void llenarCombo(){
@@ -347,9 +350,15 @@ public final class panelInicio extends javax.swing.JPanel {
         for(TipoOrigen tipo: TipoOrigen.values()) {
             cbxOrigen.addItem(tipo.toString());
         }
+        
     }
     
     public void llenarJTable() throws IOException, FileNotFoundException, ParseException{
+        /*
+        Funcion: Llena el Jtable con la informacion del excel
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
         
         JOptionPane.showMessageDialog(null,"LLENAR_JTABLE: "+lenLista);
    
@@ -357,9 +366,9 @@ public final class panelInicio extends javax.swing.JPanel {
             modelo.addRow(new Object[]{fecha.format(listaG.lista.get(i).getFecha()), hora.format(listaG.lista.get(i).getHora()), String.valueOf(listaG.lista.get(i).getProfundidad()),listaG.lista.get(i).getOrigen().toString(), listaG.lista.get(i).getDetalle(), String.valueOf(listaG.lista.get(i).getMagnitud()), String.valueOf(listaG.lista.get(i).getLatitud()),String.valueOf(listaG.lista.get(i).getLongitud()),listaG.lista.get(i).getProvincia().toString()+", "+ listaG.lista.get(i).getDescripcion_detallada()});
             tabla.setModel(modelo);
         }
-        
 
     }
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         /*
         Funcion: Al presionar este boton se toman los datos de los campos de texto
@@ -367,7 +376,7 @@ public final class panelInicio extends javax.swing.JPanel {
         Salidas: Ninguna
         */
         
-        
+        validarCampos();
         
         String origen="";
         String provincia="";
@@ -389,7 +398,7 @@ public final class panelInicio extends javax.swing.JPanel {
         
         try {
            
-            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txtHora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
             listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
@@ -402,7 +411,7 @@ public final class panelInicio extends javax.swing.JPanel {
 
 
         txtFecha.setText(null);
-        txtHora.setText(null);
+        txthora.setText(null);
         txtProfundidad.setText(null);
         cbxOrigen.setSelectedIndex(0);
         txtDetalle.setText(null);
@@ -413,7 +422,22 @@ public final class panelInicio extends javax.swing.JPanel {
         txtDescripcion.setText(null);
 
     }//GEN-LAST:event_btnAgregarActionPerformed
-       
+    
+    public boolean validarCampos(){
+        
+        if ("".equals(txtFecha.getText())){
+            txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            return false;
+        }else if ("".equals(txthora.getText())){
+            txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            return false;
+        }
+        
+         
+    
+    }
+    
+    
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnModificarActionPerformed
@@ -434,10 +458,6 @@ public final class panelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxOrigenActionPerformed
 
-    private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHoraActionPerformed
-
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
@@ -450,6 +470,10 @@ public final class panelInicio extends javax.swing.JPanel {
         // TODO add your handling code here
         JOptionPane.showMessageDialog(null,"CLICK");
     }//GEN-LAST:event_tablaMouseClicked
+
+    private void txthoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txthoraActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
@@ -468,15 +492,15 @@ public final class panelInicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelInformacion;
-    private javax.swing.JPanel panelInicio;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDetalle;
     private javax.swing.JTextField txtFecha;
-    private javax.swing.JTextField txtHora;
+    private javax.swing.JPanel txtHora;
     private javax.swing.JTextField txtLatitud;
     private javax.swing.JTextField txtLongitud;
     private javax.swing.JTextField txtMagnitud;
     private javax.swing.JTextField txtProfundidad;
+    private javax.swing.JTextField txthora;
     // End of variables declaration//GEN-END:variables
 }

@@ -159,6 +159,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
         try {
             PanelMesEnAnnio varpanel1 =new PanelMesEnAnnio();
             varpanel1.setLocation(0,0);
@@ -175,7 +180,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
-       
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
         try {
             PanelMagnitud varpanel2 =new PanelMagnitud();
             varpanel2.setLocation(0,0);
@@ -191,7 +200,13 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
     private void menu_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_provinciaActionPerformed
-       /* PanelProvincia varpanel3 =new PanelProvincia();
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        
+        /* PanelProvincia varpanel3 =new PanelProvincia();
         varpanel3.setLocation(0,0);
         varpanel3.setSize(varpanel3.getMaximumSize());
         panelPrincipal.removeAll();
@@ -201,6 +216,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
         try {
             panelTipo varpanel4 =new panelTipo();
             varpanel4.setLocation(0,0);
@@ -217,10 +237,20 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_tipoActionPerformed
 
     private void menu_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_salirActionPerformed
+        /*
+        Funcion: Cerrar el programa
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
         System.exit(0); //Termina de correr el programa
     }//GEN-LAST:event_menu_salirActionPerformed
 
     private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
         try {
             panelInicio varpanel5 = new panelInicio();
             varpanel5.setLocation(0,0);
@@ -237,6 +267,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_incioActionPerformed
 
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
         try {
             PanelRangoFecha varpanel6 =new PanelRangoFecha();
             varpanel6.setLocation(0,0);
@@ -252,7 +287,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
     private void menu_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_acercadeActionPerformed
-        // TODO add your handling code here:
+        /*
+        Funcion: Mostrar informacion a cerca del programa
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
         JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano");
     }//GEN-LAST:event_menu_acercadeActionPerformed
 

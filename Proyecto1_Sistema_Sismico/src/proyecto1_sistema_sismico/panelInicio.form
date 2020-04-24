@@ -21,17 +21,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelInicio" alignment="0" max="32767" attributes="0"/>
+          <Component id="txtHora" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="panelInicio" alignment="0" max="32767" attributes="0"/>
+          <Component id="txtHora" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="panelInicio">
+    <Container class="javax.swing.JPanel" name="txtHora">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -200,7 +200,6 @@
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtFecha" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtHora" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtProfundidad" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtDetalle" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtLongitud" alignment="0" max="32767" attributes="0"/>
@@ -209,6 +208,7 @@
                           <Component id="cbxProvincia" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbxOrigen" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtMagnitud" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txthora" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="84" max="32767" attributes="0"/>
                   </Group>
@@ -229,10 +229,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtHora" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txthora" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtProfundidad" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -371,14 +371,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFechaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtHora">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="02:02:08"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHoraActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtProfundidad">
               <Properties>
                 <Property name="text" type="java.lang.String" value="4"/>
@@ -472,6 +464,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAgregarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txthora">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="02:02:08"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txthoraActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
