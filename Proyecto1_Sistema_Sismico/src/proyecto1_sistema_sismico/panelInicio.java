@@ -376,7 +376,7 @@ public final class panelInicio extends javax.swing.JPanel {
         Salidas: Ninguna
         */
         
-        validarCampos();
+        //validarCampos();
         
         String origen="";
         String provincia="";
@@ -423,7 +423,7 @@ public final class panelInicio extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnAgregarActionPerformed
     
-    public boolean validarCampos(){
+  /*  public boolean validarCampos(){
         
         if ("".equals(txtFecha.getText())){
             txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
@@ -435,7 +435,7 @@ public final class panelInicio extends javax.swing.JPanel {
         
          
     
-    }
+    }*/
     
     
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
