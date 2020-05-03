@@ -36,7 +36,7 @@ public final class panelInicio extends javax.swing.JPanel {
     public panelInicio() throws IOException, FileNotFoundException, ParseException {
        
         initComponents();
-        fecha = new SimpleDateFormat("dd/mm/yyyy");
+        fecha = new SimpleDateFormat("dd/MM/yyyy");
         hora = new SimpleDateFormat("HH:mm:ss");
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
@@ -370,46 +370,61 @@ public final class panelInicio extends javax.swing.JPanel {
     }
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        /*
-        Funcion: Al presionar este boton se toman los datos de los campos de texto
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
         
-        //validarCampos();
+            /*
+            Funcion: Al presionar este boton se toman los datos de los campos de texto
+            Entradas: Ninguna
+            Salidas: Ninguna
+            */
+        try { 
+            
+            if (validarCamposNoVacios()){
+                nuevoSismo();
+            }else{
+                System.out.println("No se pudo agregar porque algun dato es incorrecto");
+            }
+            
+            
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnAgregarActionPerformed
+    public void nuevoSismo(){
         
         String origen="";
         String provincia="";
-        
-    
+            
+            
         for (TipoOrigen value : TipoOrigen.values()) {
             if (cbxOrigen.getSelectedItem().toString().equals(value.toString())) {
                 origen = value.name();
                 break;
-            }
-        }
-        
+             }
+         }
+            
         for (Provincia value2 : Provincia.values()) {
-            if (cbxProvincia.getSelectedItem().toString().equals(value2.toString())) {
+           if (cbxProvincia.getSelectedItem().toString().equals(value2.toString())) {
                 provincia = value2.name();
                 break;
             }
         }
-        
+            
         try {
-           
+                
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
             listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
             modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
-            
-            
+                
+                
         } catch (ParseException | IOException ex) {
-             Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex); 
         }
-        
-
-
+            
+            
+            
         txtFecha.setText(null);
         txthora.setText(null);
         txtProfundidad.setText(null);
@@ -420,22 +435,138 @@ public final class panelInicio extends javax.swing.JPanel {
         txtLongitud.setText(null);
         cbxProvincia.setSelectedIndex(0);
         txtDescripcion.setText(null);
-
-    }//GEN-LAST:event_btnAgregarActionPerformed
+            
     
-  /*  public boolean validarCampos(){
-        
-        if ("".equals(txtFecha.getText())){
-            txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
-            return false;
-        }else if ("".equals(txthora.getText())){
-            txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+    }
+    public boolean validarFecha() {
+        /* 
+        Funciones: Validar que la fecha sea una fecha valida en el calendario
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
+        try{
+            fecha.setLenient(false);
+            fecha.parse(txtFecha.getText());
+            //System.out.println(fecha);
+
+            return true;
+        }
+        catch(ParseException e){
             return false;
         }
         
-         
+ 
+    }
     
-    }*/
+    
+    public boolean validarHora() {
+        /* 
+        Funciones: Validar que la hora sea  valida 
+        Entradas: Ninguna
+        Salidas: Ninguna
+        */
+        try{
+            hora.setLenient(false);
+            hora.parse(txthora.getText());
+            //System.out.println(fecha)
+            return true;
+        }
+        catch(ParseException e){
+            return false;
+        }
+        
+ 
+    }
+    
+    
+   public boolean validarCamposNoVacios() throws ParseException{
+        
+       boolean bool = true;
+        if ("".equals(txtFecha.getText())){
+            txtFecha.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            bool = false;
+        }
+        
+        if("".equals(txthora.getText())){
+            txthora.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            bool = false;
+        }
+            
+        if ("".equals(txtProfundidad.getText())){
+            txtProfundidad.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+             bool = false;
+        }
+                
+        if ("".equals(txtDetalle.getText())){
+            txtDetalle.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+             bool = false;
+        }
+                  
+        if ("".equals(txtMagnitud.getText())){
+            txtMagnitud.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+             bool = false;
+        }
+                        
+        if ("".equals(txtLatitud.getText())){
+            txtLatitud.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            bool = false;
+        }
+                        
+        if ("".equals(txtLongitud.getText())){
+            txtLongitud.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            bool = false;
+        }
+                                
+        if("".equals(txtDescripcion.getText())){
+            txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+            bool = false;
+        }
+                                   
+        if (bool){
+            return validarContenidoCampos();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Debe completar todos los espacios");
+            return false;
+        }
+       
+                       
+
+    }
+   public boolean validarContenidoCampos(){
+       
+       boolean bool = true;
+       
+        if(txtFecha.getText().matches("\\d{1,2}/\\d{1,2}/\\d{4}")){
+            if (validarFecha() == false){
+                JOptionPane.showMessageDialog(null,"Fecha inválida");
+                bool = false;
+        }}
+        else{
+            JOptionPane.showMessageDialog(null,"Debe poner la fecha en formato dd/mm/aaaa");
+            bool = false;
+        }
+        
+        if(txthora.getText().matches("\\d{2}:\\d{2}:\\d{2}")){
+            if (validarHora() == false){
+                JOptionPane.showMessageDialog(null,"Hora inválida");
+                bool = false;
+        }}
+        else{
+            JOptionPane.showMessageDialog(null,"Debe poner la hora en formato hh:mm:ss");
+            bool = false;
+        }
+       
+        if (txtProfundidad.getText().matches("[0-9]*") == false || txtMagnitud.getText().matches("[0-9]*") == false || 
+            txtLatitud.getText().matches("[0-9]*") == false || txtLongitud.getText().matches("[0-9]*") == false){
+            
+            JOptionPane.showMessageDialog(null, "Solo se permite introducir valores numéricos");
+            bool = false;
+    }
+        
+       
+       return bool;
+}
     
     
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -503,4 +634,8 @@ public final class panelInicio extends javax.swing.JPanel {
     private javax.swing.JTextField txtProfundidad;
     private javax.swing.JTextField txthora;
     // End of variables declaration//GEN-END:variables
+
+    private void or(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
