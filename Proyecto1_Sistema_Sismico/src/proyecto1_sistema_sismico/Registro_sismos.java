@@ -187,9 +187,9 @@ public final class Registro_sismos {
         lista.add(psismo);  
 
         //Contenido de la hoja de excel
-        String[][] document = new String[][]{
-            {fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
-        };
+        String[] document = new String[]{
+            fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
+        ;
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
         FileInputStream file = new FileInputStream(new File(filePath));
@@ -203,7 +203,7 @@ public final class Registro_sismos {
           
             for (int j = 0; j < header.length; j++) {
                 XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
-                cell.setCellValue(document[0][j]); //Annadiendo el contenido
+                cell.setCellValue(document[j]); //Annadiendo el contenido
             }
             
             fileOuS = null;
@@ -219,12 +219,42 @@ public final class Registro_sismos {
 
     }
     
-    public void modificar_sismo(Sismo psismo){
+    public void modificar_sismo(Sismo psismo, int pos) throws FileNotFoundException, IOException{
         /*
         Funcion: 
         Entradas: 
         Salidas: 
         */
+        String[] document = new String[]{
+        fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()};
+        
+        //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
+            
+        FileInputStream file = new FileInputStream(new File(filePath));
+        FileOutputStream fileOuS;
+        
+        try (XSSFWorkbook libro = new XSSFWorkbook(file)) {
+            XSSFSheet hojaBD = libro.getSheetAt(0);
+          
+            
+            //Generando el contenido del archivo de Excel          
+            XSSFRow fila = hojaBD.getRow(pos);
+          
+            for (int j = 0; j < header.length; j++) {
+                XSSFCell cell = fila.createCell(j);//Creando celda para el contenido del producto
+                cell.setCellValue(document[j]); //Annadiendo el contenido
+            }
+            
+            fileOuS = null;
+            File excelFile = new File(filePath);
+            fileOuS= new FileOutputStream(excelFile);
+            libro.write(fileOuS);
+        }
+        fileOuS.close();
+
+        System.out.println("Modificado con exito!");
+        System.out.println("TAMANO LISTA DESPUES DE MODIFICAR: "); System.out.println(lista.size());
+        JOptionPane.showMessageDialog(null, "Modificado correctamente!");
         
     }
     

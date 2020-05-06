@@ -83,6 +83,7 @@ public final class panelInicio extends javax.swing.JPanel {
         btnModificar = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         txthora = new javax.swing.JTextField();
+        btnVerMapa = new javax.swing.JButton();
 
         setMaximumSize(getMaximumSize());
 
@@ -200,6 +201,7 @@ public final class panelInicio extends javax.swing.JPanel {
         btnModificar.setBackground(new java.awt.Color(255, 51, 0));
         btnModificar.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         btnModificar.setText("Modificar");
+        btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
@@ -223,44 +225,52 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
+        btnVerMapa.setBackground(new java.awt.Color(255, 51, 0));
+        btnVerMapa.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        btnVerMapa.setText("Ver en mapa");
+        btnVerMapa.setEnabled(false);
+
         javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
         panelInformacion.setLayout(panelInformacionLayout);
         panelInformacionLayout.setHorizontalGroup(
             panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelInformacionLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnModificar)
-                .addGap(147, 147, 147))
             .addGroup(panelInformacionLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
+                    .addGroup(panelInformacionLayout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addGap(60, 60, 60)
+                        .addComponent(btnModificar)
+                        .addGap(42, 42, 42)
+                        .addComponent(btnVerMapa))
+                    .addGroup(panelInformacionLayout.createSequentialGroup()
                         .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabel10)))
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(77, 77, 77)
-                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtDetalle, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLongitud, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLatitud, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(cbxProvincia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbxOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMagnitud, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txthora, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtProfundidad, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(txtFecha))
+                                .addComponent(jLabel1)
+                                .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel10)))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(77, 77, 77)
+                        .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDetalle, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLongitud, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLatitud, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(cbxProvincia, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtMagnitud, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txthora, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtProfundidad, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(txtFecha))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         panelInformacionLayout.setVerticalGroup(
@@ -309,7 +319,8 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addGroup(panelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
-                    .addComponent(btnAgregar))
+                    .addComponent(btnAgregar)
+                    .addComponent(btnVerMapa))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -381,7 +392,7 @@ public final class panelInicio extends javax.swing.JPanel {
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
             /*
-            Funcion: Al presionar este boton se toman los datos de los campos de texto
+            Funcion: Al presionar este boton se hacen llamadas a otras funciones para generar el proceso de agregacion de un sismo
             Entradas: Ninguna
             Salidas: Ninguna
             */
@@ -459,6 +470,49 @@ public final class panelInicio extends javax.swing.JPanel {
             
     
     }
+    
+    public void ModificarSismo() throws IOException{
+        /* 
+        Funciones: 
+        Entradas: 
+        Salidas: 
+        */
+       
+        int posicion = tabla.getSelectedRow();
+
+        
+        String origen="";
+        String provincia="";
+            
+            
+        for (TipoOrigen value : TipoOrigen.values()) {
+            if (cbxOrigen.getSelectedItem().toString().equals(value.toString())) {
+                origen = value.name();
+                break;
+             }
+         }
+            
+        for (Provincia value2 : Provincia.values()) {
+           if (cbxProvincia.getSelectedItem().toString().equals(value2.toString())) {
+                provincia = value2.name();
+                break;
+            }
+        }
+            
+        try {
+ 
+            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+            listaG.modificar_sismo(nuevoSismo, posicion+1);
+           // modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
+           //tabla.setModel(modelo);
+                
+                
+        } catch (ParseException ex) {
+            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex); 
+        }
+        
+        
+    }
     public boolean validarFecha() {
         /* 
         Funciones: Validar que la fecha sea una fecha valida en el calendario
@@ -468,8 +522,6 @@ public final class panelInicio extends javax.swing.JPanel {
         try{
             fecha.setLenient(false);
             fecha.parse(txtFecha.getText());
-            //System.out.println(fecha);
-
             return true;
         }
         catch(ParseException e){
@@ -501,7 +553,11 @@ public final class panelInicio extends javax.swing.JPanel {
     
     
    public boolean validarCamposNoVacios() throws ParseException{
-        
+       /*
+       Funcion:
+       Entradas:
+       Salidas:
+       */
        boolean bool = true;
         if ("".equals(txtFecha.getText())){
             txtFecha.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -555,6 +611,11 @@ public final class panelInicio extends javax.swing.JPanel {
 
     }
    public boolean validarContenidoCampos(){
+       /*
+       Funcion:
+       Entradas:
+       Salidas:
+       */
        
        boolean bool = true;
        
@@ -591,7 +652,12 @@ public final class panelInicio extends javax.swing.JPanel {
     
     
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            ModificarSismo();
+        } catch (IOException ex) {
+            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void cbxProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProvinciaActionPerformed
@@ -619,8 +685,27 @@ public final class panelInicio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        // TODO add your handling code here
-        JOptionPane.showMessageDialog(null,"CLICK");
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        int posicion = tabla.getSelectedRow();
+        txtFecha.setText(tabla.getValueAt(posicion, 0).toString());
+        txthora.setText(tabla.getValueAt(posicion, 1).toString());
+        txtProfundidad.setText(tabla.getValueAt(posicion, 2).toString());
+        cbxOrigen.setSelectedItem(tabla.getValueAt(posicion, 3).toString());
+        txtDetalle.setText(tabla.getValueAt(posicion, 4).toString());
+        txtMagnitud.setText(tabla.getValueAt(posicion, 5).toString());
+        txtLatitud.setText(tabla.getValueAt(posicion, 6).toString());
+        txtLongitud.setText(tabla.getValueAt(posicion, 7).toString());
+        String[] descrip = tabla.getValueAt(posicion, 8).toString().split(", ");
+        cbxProvincia.setSelectedItem(descrip[0]);
+        txtDescripcion.setText(descrip[1]);
+        
+        btnModificar.setEnabled(true);
+        btnVerMapa.setEnabled(true);  
+       
     }//GEN-LAST:event_tablaMouseClicked
 
     private void txthoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthoraActionPerformed
@@ -634,6 +719,7 @@ public final class panelInicio extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnVerMapa;
     private javax.swing.JComboBox<String> cbxOrigen;
     private javax.swing.JComboBox<String> cbxProvincia;
     private javax.swing.JLabel jLabel1;
