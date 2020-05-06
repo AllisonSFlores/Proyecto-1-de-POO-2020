@@ -213,7 +213,6 @@ public final class Registro_sismos {
         }
         fileOuS.close();
 
-        System.out.println("Agregado con exito!");
         System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
         JOptionPane.showMessageDialog(null, "AGREGAR_SISMO: "+lista.size());
 
@@ -251,9 +250,6 @@ public final class Registro_sismos {
             libro.write(fileOuS);
         }
         fileOuS.close();
-
-        System.out.println("Modificado con exito!");
-        System.out.println("TAMANO LISTA DESPUES DE MODIFICAR: "); System.out.println(lista.size());
         JOptionPane.showMessageDialog(null, "Modificado correctamente!");
         
     }

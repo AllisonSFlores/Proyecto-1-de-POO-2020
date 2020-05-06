@@ -60,6 +60,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         menu_magnitud = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(6);
         setUndecorated(true);
 
         panelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
@@ -69,11 +70,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1530, Short.MAX_VALUE)
+            .addGap(0, 333, Short.MAX_VALUE)
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 969, Short.MAX_VALUE)
+            .addGap(0, 243, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelPrincipal, java.awt.BorderLayout.CENTER);

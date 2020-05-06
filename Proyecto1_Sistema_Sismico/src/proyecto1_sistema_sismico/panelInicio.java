@@ -84,6 +84,7 @@ public final class panelInicio extends javax.swing.JPanel {
         btnAgregar = new javax.swing.JButton();
         txthora = new javax.swing.JTextField();
         btnVerMapa = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setMaximumSize(getMaximumSize());
 
@@ -269,7 +270,7 @@ public final class panelInicio extends javax.swing.JPanel {
                             .addComponent(cbxOrigen, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtMagnitud, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txthora, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtProfundidad, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(txtProfundidad)
                             .addComponent(txtFecha))))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
@@ -324,36 +325,54 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
+        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto1_sistema_sismico/interfaz.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout txtHoraLayout = new javax.swing.GroupLayout(txtHora);
         txtHora.setLayout(txtHoraLayout);
         txtHoraLayout.setHorizontalGroup(
             txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtHoraLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(72, 72, 72)
                 .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(81, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtHoraLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         txtHoraLayout.setVerticalGroup(
             txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtHoraLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(36, 36, 36)
+                .addGroup(txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void llenarCombo(){
@@ -503,8 +522,9 @@ public final class panelInicio extends javax.swing.JPanel {
  
             Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
             listaG.modificar_sismo(nuevoSismo, posicion+1);
-           // modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
-           //tabla.setModel(modelo);
+            modelo.removeRow(posicion);
+            modelo.insertRow(posicion,new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
+            tabla.setModel(modelo);
                 
                 
         } catch (ParseException ex) {
@@ -639,8 +659,8 @@ public final class panelInicio extends javax.swing.JPanel {
             bool = false;
         }
        
-        if (txtProfundidad.getText().matches("[0-9]*") == false || txtMagnitud.getText().matches("[0-9]*") == false || 
-            txtLatitud.getText().matches("[0-9]*") == false || txtLongitud.getText().matches("[0-9]*") == false){
+        if (txtProfundidad.getText().matches("[0-9]*.*[0-9]*") == false || txtMagnitud.getText().matches("[0-9]*.*[0-9]*") == false || 
+            txtLatitud.getText().matches("[0-9]*.*[0-9]*") == false || txtLongitud.getText().matches("[0-9]*.*[0-9]*") == false){
             
             JOptionPane.showMessageDialog(null, "Solo se permite introducir valores numéricos");
             bool = false;
@@ -652,9 +672,43 @@ public final class panelInicio extends javax.swing.JPanel {
     
     
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        try {
-            // TODO add your handling code here:
-            ModificarSismo();
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        try { 
+            
+            if (validarCamposNoVacios()){
+                ModificarSismo();
+                txtFecha.setText(null);
+                txthora.setText(null);
+                txtProfundidad.setText(null);
+                cbxOrigen.setSelectedIndex(0);
+                txtDetalle.setText(null);
+                txtMagnitud.setText(null);
+                txtLatitud.setText(null);
+                txtLongitud.setText(null);
+                cbxProvincia.setSelectedIndex(0);
+                txtDescripcion.setText(null);
+                
+                txtFecha.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txthora.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtProfundidad.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtDetalle.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtMagnitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtLatitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtLongitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+            
+            }else{
+                System.out.println("No se pudo agregar porque algun dato es incorrecto");
+            }
+            
+            
+            
+        } catch (ParseException ex) {
+            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -716,12 +770,18 @@ public final class panelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDetalleActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnVerMapa;
     private javax.swing.JComboBox<String> cbxOrigen;
     private javax.swing.JComboBox<String> cbxProvincia;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
