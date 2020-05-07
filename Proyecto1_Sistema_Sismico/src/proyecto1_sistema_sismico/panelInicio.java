@@ -5,6 +5,7 @@
  */
 package proyecto1_sistema_sismico;
 
+import com.placeholder.PlaceHolder;
 import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public final class panelInicio extends javax.swing.JPanel {
     
+    PlaceHolder holder;
     SimpleDateFormat fecha;
     SimpleDateFormat hora;
     int lenLista = 0;
@@ -33,6 +35,7 @@ public final class panelInicio extends javax.swing.JPanel {
      * @throws java.io.FileNotFoundException
      * @throws java.text.ParseException
      */
+    
     public panelInicio() throws IOException, FileNotFoundException, ParseException {
        
         initComponents();
@@ -44,6 +47,9 @@ public final class panelInicio extends javax.swing.JPanel {
         listaG.lista.clear();
         lenLista = listaG.cargar().size();
         llenarJTable();
+        
+       placeHold();
+       
         
         
         
@@ -140,7 +146,6 @@ public final class panelInicio extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 15)); // NOI18N
         jLabel10.setText("Descripcion Detallada");
 
-        txtFecha.setText("24/02/2020");
         txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txtFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,8 +153,12 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtProfundidad.setText("4");
         txtProfundidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        txtProfundidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtProfundidadActionPerformed(evt);
+            }
+        });
 
         cbxOrigen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +166,6 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtDetalle.setText("Detalle");
         txtDetalle.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txtDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,10 +173,8 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtMagnitud.setText("7");
         txtMagnitud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
 
-        txtLatitud.setText("9");
         txtLatitud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txtLatitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,7 +182,6 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtLongitud.setText("4");
         txtLongitud.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txtLongitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,7 +196,6 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txtDescripcion.setText("Descripcion Detallada");
         txtDescripcion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +222,6 @@ public final class panelInicio extends javax.swing.JPanel {
             }
         });
 
-        txthora.setText("02:02:08");
         txthora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         txthora.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,6 +378,24 @@ public final class panelInicio extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    public void placeHold(){
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        
+        holder = new PlaceHolder(txtFecha, " dd/MM/yyyy");
+        holder = new PlaceHolder(txthora, " HH:mm:ss");
+        holder = new PlaceHolder(txtProfundidad, " 0.0");
+        holder = new PlaceHolder(txtDetalle, " Ingrese los detalles");
+        holder = new PlaceHolder(txtMagnitud, " 0.0");
+        holder = new PlaceHolder(txtLatitud, " 0.0");
+        holder = new PlaceHolder(txtLongitud, " 0.0");
+        holder = new PlaceHolder(txtDescripcion, " Más detalles");
+        
+    }
+    
     public void llenarCombo(){
         /*
         Funcion: Llenar los ComboBox con la informacion en formato string
@@ -774,6 +795,10 @@ public final class panelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
          System.exit(0); 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtProfundidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfundidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtProfundidadActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
