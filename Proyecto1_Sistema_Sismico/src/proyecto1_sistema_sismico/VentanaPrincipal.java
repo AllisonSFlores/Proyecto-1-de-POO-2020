@@ -17,15 +17,15 @@ import javax.swing.JOptionPane;
  *
  * @author XT
  */
-public class ventanaPrincipal extends javax.swing.JFrame {
-    panelInicio varpanel;
+public class VentanaPrincipal extends javax.swing.JFrame {
+    PanelInicio varpanel;
     
-    public ventanaPrincipal() throws IOException, FileNotFoundException, ParseException {
+    public VentanaPrincipal() throws IOException, FileNotFoundException, ParseException {
         
-        this.varpanel = new panelInicio();
+        this.varpanel = new PanelInicio();
         initComponents();
 
-        //Hacer que empiece con el panelInicio
+        //Hacer que empiece con el PanelInicio
         varpanel.setLocation(0,0);
         varpanel.setSize(varpanel.getMaximumSize());
         panelPrincipal.removeAll();//quita lo que hay en el panelPrincipal
@@ -36,7 +36,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }
 
 
-//Atributos de ventanaPrincipal
+//Atributos de VentanaPrincipal
         /**
      *Este metodo se debe llamar en constructor de la clase para que corra la interfaz
      * WARNING: El codigo con fondo blanco no se puede modificar porque lo genera netbeans mientra estamos arrastrando
@@ -174,7 +174,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {
-            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
    
         
@@ -195,7 +195,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {
-            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_menu_magnitudActionPerformed
@@ -223,7 +223,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         Salidas:
         */
         try {
-            panelTipo varpanel4 =new panelTipo();
+            PanelTipo varpanel4 =new PanelTipo();
             varpanel4.setLocation(0,0);
             varpanel4.setSize(varpanel4.getMaximumSize());
             panelPrincipal.removeAll();
@@ -231,7 +231,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {
-            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -253,7 +253,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         Salidas:
         */
         try {
-            panelInicio varpanel5 = new panelInicio();
+            PanelInicio varpanel5 = new PanelInicio();
             varpanel5.setLocation(0,0);
             varpanel5.setSize(varpanel5.getMaximumSize());
             panelPrincipal.removeAll();
@@ -261,7 +261,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {
-            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         
@@ -282,7 +282,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {
-            Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
@@ -314,22 +314,23 @@ public class ventanaPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new ventanaPrincipal().setVisible(true);
+                new VentanaPrincipal().setVisible(true);
             } catch (IOException | ParseException ex) {
-                Logger.getLogger(ventanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

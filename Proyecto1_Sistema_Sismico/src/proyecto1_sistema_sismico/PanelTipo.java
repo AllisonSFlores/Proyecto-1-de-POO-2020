@@ -14,14 +14,14 @@ import javax.swing.JOptionPane;
  *
  * @author Allison
  */
-public class panelTipo extends javax.swing.JPanel {
+public class PanelTipo extends javax.swing.JPanel {
 
     /**
-     * Creates new form panelTipo
+     * Creates new form PanelTipo
      */
      Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
-    public panelTipo() throws IOException, FileNotFoundException, ParseException {
+    public PanelTipo() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         //VER QUE SE MANTIENE LA LISTA
         JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());

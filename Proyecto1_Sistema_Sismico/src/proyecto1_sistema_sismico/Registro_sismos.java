@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,11 +21,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Allison
  */
 public final class Registro_sismos {
-    //Atributos
-    ArrayList<Sismo> lista ;
-    SimpleDateFormat fecha;
-    SimpleDateFormat hora;
-   
+  
+    ArrayList<Sismo> lista ;   
     //Para el libro de Excel
     String fileName = "BD.xlsx";
     String filePath =  fileName; 
@@ -37,8 +33,6 @@ public final class Registro_sismos {
     @SuppressWarnings("Convert2Diamond")
     public Registro_sismos() throws IOException, FileNotFoundException, ParseException {
         lista = new ArrayList<Sismo>();
-        fecha = new SimpleDateFormat("dd/mm/yyyy");
-        hora = new SimpleDateFormat("HH:mm:ss");
     }
 
     //Metodos
@@ -56,77 +50,84 @@ public final class Registro_sismos {
         Entradas: Ninguna
         Salidas: Ninguna
        */
-       
-        String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
-        FileInputStream file = new FileInputStream(new File(filePath));
+        File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+        if (excelFile.exists()) {
 
-        XSSFWorkbook libro = new XSSFWorkbook(file);
-        XSSFSheet hojaBD = libro.getSheetAt(0);
+            String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
+            FileInputStream file = new FileInputStream(new File(filePath));
 
-        int numFilas = hojaBD.getLastRowNum();
+            XSSFWorkbook libro = new XSSFWorkbook(file);
+            XSSFSheet hojaBD = libro.getSheetAt(0);
 
-        for (int a = 1; a <= numFilas; a++) {
-            Row fila = hojaBD.getRow(a);
-            int numCols = fila.getLastCellNum();
+            int numFilas = hojaBD.getLastRowNum();
 
-            for (int b = 0; b < numCols; b++) {
-                Cell celda = fila.getCell(b);
-                
-                switch(b){
-                    
-                    case 0:
-                        laFecha = celda.getStringCellValue();
-                        break;
-                        
-                    case 1:
-                        laHora = celda.getStringCellValue();
-                        break;
-                        
-                    case 2:
-                        profundidad = celda.getStringCellValue();
-                        break;
-                        
-                    case 3:
-                        origen = celda.getStringCellValue();
-                        break;
-                        
-                    case 4:
-                        detalle = celda.getStringCellValue();
-                        break;
-                    
-                    case 5:
-                        magnitud = celda.getStringCellValue();
-                        break;
-                        
-                    case 6:
-                        latitud = celda.getStringCellValue();
-                        break;
-                        
-                    case 7:
-                        longitud = celda.getStringCellValue();
-                        break;
-                    
-                    case 8:
-                        provincia = celda.getStringCellValue();
-                        break;
-                       
-                    case 9:
-                        descripcion = celda.getStringCellValue();
-                        break;
-                        
-                    default:
-                        break;
-                        
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = hojaBD.getRow(a);
+                int numCols = fila.getLastCellNum();
+
+                for (int b = 0; b < numCols; b++) {
+                    Cell celda = fila.getCell(b);
+
+                    switch(b){
+
+                        case 0:
+                            laFecha = celda.getStringCellValue();
+                            break;
+
+                        case 1:
+                            laHora = celda.getStringCellValue();
+                            break;
+
+                        case 2:
+                            profundidad = celda.getStringCellValue();
+                            break;
+
+                        case 3:
+                            origen = celda.getStringCellValue();
+                            break;
+
+                        case 4:
+                            detalle = celda.getStringCellValue();
+                            break;
+
+                        case 5:
+                            magnitud = celda.getStringCellValue();
+                            break;
+
+                        case 6:
+                            latitud = celda.getStringCellValue();
+                            break;
+
+                        case 7:
+                            longitud = celda.getStringCellValue();
+                            break;
+
+                        case 8:
+                            provincia = celda.getStringCellValue();
+                            break;
+
+                        case 9:
+                            descripcion = celda.getStringCellValue();
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
                 }
-                
-            }
-            //Crear objetos con la informacion del excel
-            Sismo nuevoSismo = new Sismo(fecha.parse(laFecha), hora.parse(laHora),Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
-            lista.add(nuevoSismo);
-        }
-        return lista;
-     
+                //Crear objetos con la informacion del excel
+                Sismo nuevoSismo = new Sismo(FormatosUtilitaria.convertirAFecha(laFecha), FormatosUtilitaria.convertirAHora(laHora),
+                        Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), 
+                        Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
+                lista.add(nuevoSismo);
 
+            }
+
+     
+        }
+        
+        return lista;
     }
  
     
@@ -185,10 +186,13 @@ public final class Registro_sismos {
         */
         
         lista.add(psismo);  
-
+        
         //Contenido de la hoja de excel
         String[] document = new String[]{
-            fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
+            FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
+            String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), 
+            String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()),
+            psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
         ;
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
@@ -225,7 +229,10 @@ public final class Registro_sismos {
         Salidas: 
         */
         String[] document = new String[]{
-        fecha.format(psismo.getFecha()), hora.format(psismo.getHora()), String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()};
+            FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
+            String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), 
+            psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),
+            String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()};
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
             

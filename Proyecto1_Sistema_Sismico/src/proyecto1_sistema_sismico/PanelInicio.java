@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
@@ -21,14 +20,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Allison
  */
-public final class panelInicio extends javax.swing.JPanel {
+public final class PanelInicio extends javax.swing.JPanel {
     
     PlaceHolder holder;
-    SimpleDateFormat fecha;
-    SimpleDateFormat hora;
     int lenLista = 0;
     DefaultTableModel modelo;
     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
+    
     /**
      * Creates new form panelInicio
      * @throws java.io.IOException
@@ -36,11 +34,9 @@ public final class panelInicio extends javax.swing.JPanel {
      * @throws java.text.ParseException
      */
     
-    public panelInicio() throws IOException, FileNotFoundException, ParseException {
+    public PanelInicio() throws IOException, FileNotFoundException, ParseException {
        
         initComponents();
-        fecha = new SimpleDateFormat("dd/MM/yyyy");
-        hora = new SimpleDateFormat("HH:mm:ss");
         modelo = new DefaultTableModel();
         modelo = (DefaultTableModel) tabla.getModel();
         llenarCombo();
@@ -48,10 +44,8 @@ public final class panelInicio extends javax.swing.JPanel {
         lenLista = listaG.cargar().size();
         llenarJTable();
         
-       placeHold();
-       
-        
-        
+       //placeHold();
+
         
     }
     /**
@@ -421,63 +415,45 @@ public final class panelInicio extends javax.swing.JPanel {
         */
         
         JOptionPane.showMessageDialog(null,"LLENAR_JTABLE: "+lenLista);
-   
+
         for (int i = 0; i < lenLista; i++){
-            modelo.addRow(new Object[]{fecha.format(listaG.lista.get(i).getFecha()), hora.format(listaG.lista.get(i).getHora()), String.valueOf(listaG.lista.get(i).getProfundidad()),listaG.lista.get(i).getOrigen().toString(), listaG.lista.get(i).getDetalle(), String.valueOf(listaG.lista.get(i).getMagnitud()), String.valueOf(listaG.lista.get(i).getLatitud()),String.valueOf(listaG.lista.get(i).getLongitud()),listaG.lista.get(i).getProvincia().toString()+", "+ listaG.lista.get(i).getDescripcion_detallada()});
+            modelo.addRow(new Object[]{FormatosUtilitaria.formatoFecha(listaG.lista.get(i).getFecha()),FormatosUtilitaria.formatoHora(listaG.lista.get(i).getHora()),
+                String.valueOf(listaG.lista.get(i).getProfundidad()),listaG.lista.get(i).getOrigen().toString(), listaG.lista.get(i).getDetalle(), 
+                String.valueOf(listaG.lista.get(i).getMagnitud()), String.valueOf(listaG.lista.get(i).getLatitud()),String.valueOf(listaG.lista.get(i).getLongitud()),
+                listaG.lista.get(i).getProvincia().toString()+", "+ listaG.lista.get(i).getDescripcion_detallada()});
             tabla.setModel(modelo);
         }
-
+        
     }
+    
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
-            /*
-            Funcion: Al presionar este boton se hacen llamadas a otras funciones para generar el proceso de agregacion de un sismo
-            Entradas: Ninguna
-            Salidas: Ninguna
-            */
+        /*
+        Funcion: Al presionar este boton se hacen llamadas a otras funciones para generar el proceso de agregacion de un sismo
+        Entradas: Ninguna
+        Salidas: Ninguna
+         */
         try { 
             
             if (validarCamposNoVacios()){
                 nuevoSismo();
-                txtFecha.setText(null);
-                txthora.setText(null);
-                txtProfundidad.setText(null);
-                cbxOrigen.setSelectedIndex(0);
-                txtDetalle.setText(null);
-                txtMagnitud.setText(null);
-                txtLatitud.setText(null);
-                txtLongitud.setText(null);
-                cbxProvincia.setSelectedIndex(0);
-                txtDescripcion.setText(null);
-                
-                txtFecha.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txthora.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtProfundidad.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtDetalle.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtMagnitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtLatitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtLongitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                configCampos(); //vaciar y limpiar campos
             
             }else{
                 System.out.println("No se pudo agregar porque algun dato es incorrecto");
             }
-            
-            
+
             
         } catch (ParseException ex) {
-            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PanelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
-    public void nuevoSismo(){
-         /*
-         Funcion: Toma los datos de los campos de texto para crear un objeto sismo 
-         Entradas: Ninguna
-         Salidas: Ninguna
-         */
-         
+    
+ 
+    public Sismo crearSismo() throws ParseException{
+        
         String origen="";
         String provincia="";
             
@@ -495,19 +471,37 @@ public final class panelInicio extends javax.swing.JPanel {
                 break;
             }
         }
-            
+        
+        Sismo nuevoSismo = new Sismo(FormatosUtilitaria.convertirAFecha(txtFecha.getText()), 
+                FormatosUtilitaria.convertirAHora(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), 
+                TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()),
+                Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),
+                Provincia.valueOf(provincia), txtDescripcion.getText());
+        
+        
+        return nuevoSismo;
+}
+    
+    
+    public void nuevoSismo(){
+         /*
+         Funcion: Toma los datos de los campos de texto para crear un objeto sismo 
+         Entradas: Ninguna
+         Salidas: Ninguna
+         */
         try {
-                
-            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+            Sismo nuevoSismo = crearSismo();
             listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
-            modelo.addRow(new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
+            modelo.addRow(new Object[]{FormatosUtilitaria.formatoFecha(nuevoSismo.getFecha()), 
+                FormatosUtilitaria.formatoHora(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),
+                nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()),
+                String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), 
+                nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
             tabla.setModel(modelo);
-                
-                
+
         } catch (ParseException | IOException ex) {
-            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex); 
-        }
-            
+            Logger.getLogger(PanelInicio.class.getName()).log(Level.SEVERE, null, ex); 
+        }        
     
     }
     
@@ -518,81 +512,24 @@ public final class panelInicio extends javax.swing.JPanel {
         Salidas: 
         */
        
-        int posicion = tabla.getSelectedRow();
-
-        
-        String origen="";
-        String provincia="";
-            
-            
-        for (TipoOrigen value : TipoOrigen.values()) {
-            if (cbxOrigen.getSelectedItem().toString().equals(value.toString())) {
-                origen = value.name();
-                break;
-             }
-         }
-            
-        for (Provincia value2 : Provincia.values()) {
-           if (cbxProvincia.getSelectedItem().toString().equals(value2.toString())) {
-                provincia = value2.name();
-                break;
-            }
-        }
-            
+        int posicion = tabla.getSelectedRow(); 
         try {
- 
-            Sismo nuevoSismo = new Sismo(fecha.parse(txtFecha.getText()), hora.parse(txthora.getText()),Float.parseFloat(txtProfundidad.getText()), TipoOrigen.valueOf(origen) ,txtDetalle.getText(),Float.parseFloat(txtMagnitud.getText()), Float.parseFloat(txtLatitud.getText()),Float.parseFloat(txtLongitud.getText()),Provincia.valueOf(provincia), txtDescripcion.getText());
+            Sismo nuevoSismo = crearSismo();
             listaG.modificar_sismo(nuevoSismo, posicion+1);
             modelo.removeRow(posicion);
-            modelo.insertRow(posicion,new Object[]{fecha.format(nuevoSismo.getFecha()), hora.format(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()+", "+ nuevoSismo.getDescripcion_detallada()});
-            tabla.setModel(modelo);
-                
+            modelo.insertRow(posicion,new Object[]{FormatosUtilitaria.formatoFecha(nuevoSismo.getFecha()), 
+                FormatosUtilitaria.formatoHora(nuevoSismo.getHora()), String.valueOf(nuevoSismo.getProfundidad()),
+                nuevoSismo.getOrigen().toString(), nuevoSismo.getDetalle(), String.valueOf(nuevoSismo.getMagnitud()), 
+                String.valueOf(nuevoSismo.getLatitud()),String.valueOf(nuevoSismo.getLongitud()), nuevoSismo.getProvincia().toString()
+                +", "+ nuevoSismo.getDescripcion_detallada()});
+            tabla.setModel(modelo);   
                 
         } catch (ParseException ex) {
-            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex); 
+            Logger.getLogger(PanelInicio.class.getName()).log(Level.SEVERE, null, ex); 
         }
-        
-        
+
     }
-    public boolean validarFecha() {
-        /* 
-        Funciones: Validar que la fecha sea una fecha valida en el calendario
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
-        try{
-            fecha.setLenient(false);
-            fecha.parse(txtFecha.getText());
-            return true;
-        }
-        catch(ParseException e){
-            return false;
-        }
-        
- 
-    }
-    
-    
-    public boolean validarHora() {
-        /* 
-        Funciones: Validar que la hora sea  valida 
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
-        try{
-            hora.setLenient(false);
-            hora.parse(txthora.getText());
-            //System.out.println(fecha)
-            return true;
-        }
-        catch(ParseException e){
-            return false;
-        }
-        
- 
-    }
-    
-    
+
    public boolean validarCamposNoVacios() throws ParseException{
        /*
        Funcion:
@@ -651,7 +588,7 @@ public final class panelInicio extends javax.swing.JPanel {
                        
 
     }
-   public boolean validarContenidoCampos(){
+   public boolean validarContenidoCampos() throws ParseException{
        /*
        Funcion:
        Entradas:
@@ -659,9 +596,9 @@ public final class panelInicio extends javax.swing.JPanel {
        */
        
        boolean bool = true;
-       
+       System.out.println(txtFecha.getText());
         if(txtFecha.getText().matches("\\d{1,2}/\\d{1,2}/\\d{4}")){
-            if (validarFecha() == false){
+            if (FormatosUtilitaria.validarFecha(txtFecha.getText()) == false){
                 JOptionPane.showMessageDialog(null,"Fecha inválida");
                 bool = false;
         }}
@@ -671,7 +608,7 @@ public final class panelInicio extends javax.swing.JPanel {
         }
         
         if(txthora.getText().matches("\\d{2}:\\d{2}:\\d{2}")){
-            if (validarHora() == false){
+            if (FormatosUtilitaria.validarHora(txthora.getText())== false){
                 JOptionPane.showMessageDialog(null,"Hora inválida");
                 bool = false;
         }}
@@ -691,7 +628,34 @@ public final class panelInicio extends javax.swing.JPanel {
        return bool;
 }
     
+    public void configCampos(){
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+        
+        txtFecha.setText(null);
+        txthora.setText(null);
+        txtProfundidad.setText(null);
+        cbxOrigen.setSelectedIndex(0);
+        txtDetalle.setText(null);
+        txtMagnitud.setText(null);
+        txtLatitud.setText(null);
+        txtLongitud.setText(null);
+        cbxProvincia.setSelectedIndex(0);
+        txtDescripcion.setText(null);
+                
+        txtFecha.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txthora.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtProfundidad.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtDetalle.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtMagnitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtLatitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtLongitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+        txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
     
+    }
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         /*
         Funcion:
@@ -702,36 +666,14 @@ public final class panelInicio extends javax.swing.JPanel {
             
             if (validarCamposNoVacios()){
                 ModificarSismo();
-                txtFecha.setText(null);
-                txthora.setText(null);
-                txtProfundidad.setText(null);
-                cbxOrigen.setSelectedIndex(0);
-                txtDetalle.setText(null);
-                txtMagnitud.setText(null);
-                txtLatitud.setText(null);
-                txtLongitud.setText(null);
-                cbxProvincia.setSelectedIndex(0);
-                txtDescripcion.setText(null);
-                
-                txtFecha.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txthora.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtProfundidad.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtDetalle.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtMagnitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtLatitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtLongitud.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
-                txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
+                configCampos();
             
             }else{
                 System.out.println("No se pudo agregar porque algun dato es incorrecto");
-            }
+            } 
             
-            
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(panelInicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException | IOException ex) {
+            Logger.getLogger(PanelInicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
