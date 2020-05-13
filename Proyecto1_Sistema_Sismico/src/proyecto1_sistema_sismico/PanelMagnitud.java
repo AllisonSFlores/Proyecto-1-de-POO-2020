@@ -19,9 +19,7 @@ public class PanelMagnitud extends javax.swing.JPanel {
     
     public PanelMagnitud() throws IOException, FileNotFoundException, ParseException {
         initComponents();
-        //VER QUE SE MANTIENE LA LISTA
-        
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD DES DETALL : "+ listaG.lista.get(1).getDescripcion_detallada());
+     
         JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
     }
     /**
@@ -33,33 +31,63 @@ public class PanelMagnitud extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(153, 0, 255));
+        setBackground(new java.awt.Color(204, 255, 204));
         setMaximumSize(getMaximumSize());
+        setMinimumSize(new java.awt.Dimension(1500, 900));
 
-        jLabel1.setBackground(new java.awt.Color(153, 0, 255));
-        jLabel1.setText("Magnitud");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Rango de maginitudes", "Descripción", "Porcentaje"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel1.setText("Clasificación de sismos por magnitud");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(554, 554, 554)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(286, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(122, 122, 122)
                 .addComponent(jLabel1)
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

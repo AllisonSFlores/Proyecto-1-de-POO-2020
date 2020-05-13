@@ -33,9 +33,10 @@ public class Sismo {
         descripcion_detallada=pdescripcion;
     }
     
-    /*  METODO A COMPLETAR
-    public String mostrar_sismo(latitud,longitud){
-    }*/
+    //METODO PARA MOSTRAR EL MAPA
+    public String mostrar_sismo(float latitud,float longitud){
+        return null;
+    }
     
     //SETTERS
     public void setFecha(Date pfecha) {

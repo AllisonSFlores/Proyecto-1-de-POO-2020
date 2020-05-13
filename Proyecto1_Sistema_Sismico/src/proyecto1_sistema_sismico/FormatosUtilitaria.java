@@ -55,6 +55,7 @@ public class FormatosUtilitaria {
         return phora.parse(hora);
     }
     
+    
    public static boolean validarFecha(String campoFecha) throws ParseException {
         /*
         Funciones: Validar que la fecha sea una fecha valida en el calendario
@@ -70,9 +71,9 @@ public class FormatosUtilitaria {
         catch(ParseException e){
             return false;
         }
-         
     }
 
+   
     public static boolean validarHora(String campoHora) throws ParseException {
         /*
         Funciones: Validar que la hora sea  valida

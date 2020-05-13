@@ -24,7 +24,7 @@ public class PanelTipo extends javax.swing.JPanel {
     public PanelTipo() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         //VER QUE SE MANTIENE LA LISTA
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
+        JOptionPane.showMessageDialog(null,"PANEL TIPO : "+listaG.lista.size());
         
     }
 

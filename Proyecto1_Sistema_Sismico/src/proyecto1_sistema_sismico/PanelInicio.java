@@ -43,7 +43,6 @@ public final class PanelInicio extends javax.swing.JPanel {
         listaG.lista.clear();
         lenLista = listaG.cargar().size();
         llenarJTable();
-        
        //placeHold();
 
         
@@ -97,15 +96,41 @@ public final class PanelInicio extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Fecha", "Hora", "Profundidad", "Magnitud", "Origen", "Detalle", "Latitud", "Longitud", "Descripcion"
+                "Fecha", "Hora", "Profundidad", "Origen", "Detalle", "Magnitud", "Latitud", "Longitud", "Descripcion"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(10);
+            tabla.getColumnModel().getColumn(2).setResizable(false);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(0);
+            tabla.getColumnModel().getColumn(3).setResizable(false);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(130);
+            tabla.getColumnModel().getColumn(4).setResizable(false);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tabla.getColumnModel().getColumn(5).setResizable(false);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
+            tabla.getColumnModel().getColumn(6).setResizable(false);
+            tabla.getColumnModel().getColumn(6).setPreferredWidth(0);
+            tabla.getColumnModel().getColumn(7).setResizable(false);
+            tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
+            tabla.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         panelInformacion.setBackground(new java.awt.Color(204, 255, 204));
         panelInformacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del sismo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Black", 0, 18))); // NOI18N

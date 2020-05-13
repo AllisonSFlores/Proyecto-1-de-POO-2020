@@ -24,7 +24,7 @@ public class PanelProvincia extends javax.swing.JPanel {
     public PanelProvincia() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         //VER QUE SE MANTIENE LA LISTA
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
+        JOptionPane.showMessageDialog(null,"PANEL PROVINCIA : "+listaG.lista.size());
     }
 
     /**
@@ -38,9 +38,9 @@ public class PanelProvincia extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(102, 255, 102));
+        setBackground(new java.awt.Color(204, 255, 204));
         setMaximumSize(new java.awt.Dimension(1500, 900));
-        setMinimumSize(new java.awt.Dimension(1000, 500));
+        setMinimumSize(new java.awt.Dimension(1500, 900));
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         jLabel1.setText("jLabel1");
@@ -52,14 +52,14 @@ public class PanelProvincia extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel1)
-                .addContainerGap(878, Short.MAX_VALUE))
+                .addContainerGap(1378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addContainerGap(430, Short.MAX_VALUE))
+                .addContainerGap(830, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -24,7 +24,7 @@ public class PanelRangoFecha extends javax.swing.JPanel {
     public PanelRangoFecha() throws IOException, FileNotFoundException, ParseException {
         initComponents();
         //VER QUE SE MANTIENE LA LISTA
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
+        JOptionPane.showMessageDialog(null,"PANEL RANGO FECHAS : "+listaG.lista.size());
     }
 
     /**
@@ -38,8 +38,9 @@ public class PanelRangoFecha extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(51, 51, 255));
+        setBackground(new java.awt.Color(204, 255, 204));
         setMaximumSize(getMaximumSize());
+        setMinimumSize(new java.awt.Dimension(1500, 900));
 
         jLabel1.setText("Rango de fechas");
 
@@ -50,14 +51,14 @@ public class PanelRangoFecha extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel1)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(1350, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(816, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

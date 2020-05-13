@@ -25,7 +25,7 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         initComponents();
         //VER QUE SE MANTIENE LA LISTA
         
-        JOptionPane.showMessageDialog(null,"PANEL MAGNITUD : "+listaG.lista.size());
+        JOptionPane.showMessageDialog(null,"PANEL MES EN ANNIO : "+listaG.lista.size());
     }
 
     /**
@@ -39,8 +39,9 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 0, 0));
+        setBackground(new java.awt.Color(204, 255, 204));
         setMaximumSize(getMaximumSize());
+        setMinimumSize(new java.awt.Dimension(1500, 900));
 
         jLabel1.setText("Panel de sismos en un mes por annio");
 
@@ -51,14 +52,14 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(1246, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(857, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
