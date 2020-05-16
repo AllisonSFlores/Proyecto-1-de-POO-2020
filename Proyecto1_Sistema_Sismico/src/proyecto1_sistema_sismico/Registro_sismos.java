@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -15,6 +16,10 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jfree.chart.*;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -269,14 +274,89 @@ public final class Registro_sismos {
         */
         
     }
-    
-    public void cant_sismos_mesEnAnnio(String pannio){
+    public int[] cant_sismos_mesEnAnnio_lista(int pannio){
+        int[] array = new int[12];
+        for (int i=0; i < lista.size();i++){
+            Sismo sismo = lista.get(i);
+            if (sismo.getAnnio()==pannio){
+                int mes = 1;
+                System.out.println("mes: "+ mes);
+                mes =sismo.getMes();
+                System.out.println("mes2: "+ mes);
+                switch (mes){
+                    case 0 :
+                        array[0] = array[0]+1;
+                        break;
+                    case 1 :
+                        array[1] = array[1]+1;
+                        break;
+                    case 2 :
+                        array[2] = array[2]+1;
+                        break;
+                    case 3 :
+                        array[3] = array[3]+1;
+                        break;
+                    case 4 :
+                        array[4] = array[4]+1;
+                        break;
+                    case 5 :
+                        array[5] = array[5]+1;
+                        break;
+                    case 6 :
+                        array[6] = array[6]+1;
+                        break;
+                    case 7 :
+                        array[7] = array[7]+1;
+                        break;
+                    case 8 :
+                        array[8] = array[8]+1;
+                        break;
+                    case 9 :
+                        array[9] = array[9]+1;
+                        break;
+                    case 10 :
+                        array[10] = array[10]+1;
+                        break;
+                    case 11 :
+                        array[11] = array[11]+1;
+                        break;
+                    
+                    
+                }
+            }
+        }
+        return array;
+    }
+    public ChartPanel cant_sismos_mesEnAnnio(int pannio){
         /*
         Funcion: 
         Entradas: 
         Salidas: 
         */
-                
+        int[] array = cant_sismos_mesEnAnnio_lista(pannio);
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+        data.addValue(array[0], "Sismos en", "Enero");
+        data.addValue(array[1], "Sismos", "Febrero");
+        data.addValue(array[2], "Sismos", "Marzo");
+        data.addValue(array[3], "Sismos", "Abril");
+        data.addValue(array[4], "Sismos", "Mayo");
+        data.addValue(array[5], "Sismos", "Junio");
+        data.addValue(array[6], "Sismos", "Julio");
+        data.addValue(array[7], "Sismos", "Agosto");
+        data.addValue(array[8], "Sismos", "Septiembre");
+        data.addValue(array[9], "Sismos", "Octubre");
+        data.addValue(array[10], "Sismos", "Noviembre");
+        data.addValue(array[11], "Sismos", "Diciembre");
+        
+        
+        
+        //Se crea la grafica de BARRAS pasandole los datos
+        JFreeChart grafica = ChartFactory.createBarChart("Sismos", "Meses", "Cantidad de sismos", data, PlotOrientation.VERTICAL, false, true, false);
+        //Panel de la grafica
+        ChartPanel contenedor = new ChartPanel(grafica);
+        return contenedor;
+        
+        
     }
     
     public void ocurrido_en_rango(Date pfecha_inicio,Date pfecha_final){
@@ -286,14 +366,72 @@ public final class Registro_sismos {
         Salidas: 
         */
     }
-    
+    public int[] cant_sismo_tipo_lista(){
+        /*
+        Funcion: Lee la lista y llena el array con la cantidad dependiento del tipo de origen
+        Entradas: void
+        Salidas: int array 
+        */
+        int [] array =new int[5];
+        for (int i = 0 ; i<lista.size();i++){
+            Sismo sismo = lista.get(i);
+            TipoOrigen origen = sismo.getOrigen();
+            
+            if(origen == TipoOrigen.CHOQUE_PLACAS){
+                array[0] = array[0]+1;
+                break;
+            }
+            if (origen == TipoOrigen.SUBDUCCION_PLACA){
+                array[1] = array[1]+1;
+                break;
+            }
+            if (origen == TipoOrigen.DEFORMACION_INTERNA){
+                array[2] = array[2]+1;
+                break;
+            }
+            if(origen == TipoOrigen.TECTONICO_SUBDUCCION){
+                array[3] = array[3]+1;
+                break;
+            }
+            if (origen == TipoOrigen.TECTONICO_POR_FALLA_LOCAL){
+                array[4] = array[4]+1;
+                break;
+            }
+            
+        }
+        return array;
+    }
     public void cant_sismos_tipo(){
         /*
         Funcion: 
         Entradas: 
         Salidas: 
         */
+        int[] array = this.cant_sismo_tipo_lista();
+        
+        //Crea la "base de datos" que usa la graafica
+        DefaultPieDataset data = new DefaultPieDataset();
+        
+        //El ultimo dato es la porcion que va a cubrir en el grafico
+        data.setValue("Choque de placas", array[0]);
+        data.setValue("Subducción de placa", array[1]);
+        data.setValue("Deformación Interna", array[2]);
+        data.setValue("Téctonico por subducción", array[3]);
+        data.setValue("Téctonico por falla local", array[4]); 
+        
+        //Se crea la grafica de pastel
+        JFreeChart chart = ChartFactory.createPieChart("Tipo de Origen ",data,true, false, false);
+        chart.removeLegend();
+        ChartPanel contenedor = new ChartPanel(chart);
+        
+        //crea la ventana y le agrega la grafica
+        JFrame ventana = new JFrame();
+        ventana.add(contenedor);
+        ventana.setSize(1000,500);
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
     }
+    
     
     public void clasificacion_por_magnitud(){
         /*
@@ -301,7 +439,7 @@ public final class Registro_sismos {
         Entradas: 
         Salidas: 
         */
-        
+
     }
 
     Object size() {

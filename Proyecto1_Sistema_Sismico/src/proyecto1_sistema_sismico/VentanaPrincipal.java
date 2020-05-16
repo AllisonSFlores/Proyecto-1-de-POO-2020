@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import org.jfree.chart.ChartPanel;
 
 /**
  *
@@ -19,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     PanelInicio varpanel;
+    Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
     public VentanaPrincipal() throws IOException, FileNotFoundException, ParseException {
         
@@ -61,7 +63,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
-        setUndecorated(true);
 
         panelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
         panelPrincipal.setMaximumSize(new java.awt.Dimension(1500, 962));
@@ -165,18 +166,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        try {
-            PanelMesEnAnnio varpanel1 =new PanelMesEnAnnio();
-            varpanel1.setLocation(0,0);
-            varpanel1.setSize(varpanel1.getMaximumSize());
-            panelPrincipal.removeAll();
-            panelPrincipal.add(varpanel1,BorderLayout.CENTER);
-            panelPrincipal.revalidate();
-            panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-   
+        ChartPanel contenedor = listaG.cant_sismos_mesEnAnnio(2020);
+        JFrame ventana = new JFrame();
+        ventana.add(contenedor);
+        ventana.setSize(1000,500);
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null); 
+        
+        //listaG.cant_sismos_mesEnAnnio("2019");
         
     }//GEN-LAST:event_menu_annioActionPerformed
 
@@ -206,33 +203,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        
-        /* PanelProvincia varpanel3 =new PanelProvincia();
-        varpanel3.setLocation(0,0);
-        varpanel3.setSize(varpanel3.getMaximumSize());
-        panelPrincipal.removeAll();
-        panelPrincipal.add(varpanel3,BorderLayout.CENTER);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();*/
+       
     }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
         /*
-        Funcion:
-        Entradas:
-        Salidas:
+        Funcion: Llama la funcion que despliega la grafica
+        Entradas: evento 
+        Salidas: void
         */
-        try {
-            PanelTipo varpanel4 =new PanelTipo();
-            varpanel4.setLocation(0,0);
-            varpanel4.setSize(varpanel4.getMaximumSize());
-            panelPrincipal.removeAll();
-            panelPrincipal.add(varpanel4,BorderLayout.CENTER);
-            panelPrincipal.revalidate();
-            panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        listaG.cant_sismos_tipo();
         
         
     }//GEN-LAST:event_menu_tipoActionPerformed

@@ -118,4 +118,12 @@ public class Sismo {
     public String getDescripcion_detallada() {
         return descripcion_detallada;
     }
+    public int getAnnio(){
+        int annio =fecha.getYear()+1900;
+        return annio;
+    }
+    public int getMes(){
+        System.out.println("mes: "+fecha.getMonth());
+        return fecha.getMonth();
+    }
 }
