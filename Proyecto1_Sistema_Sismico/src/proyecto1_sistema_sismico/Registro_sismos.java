@@ -276,13 +276,11 @@ public final class Registro_sismos {
     }
     public int[] cant_sismos_mesEnAnnio_lista(int pannio){
         int[] array = new int[12];
-        for (int i=0; i < lista.size();i++){
+        for (int i=0 ; i < lista.size() ; i++){
             Sismo sismo = lista.get(i);
-            if (sismo.getAnnio()==pannio){
-                int mes = 1;
-                System.out.println("mes: "+ mes);
-                mes =sismo.getMes();
-                System.out.println("mes2: "+ mes);
+            if (sismo.getAnnio() == pannio){
+                int mes = sismo.getMes();
+                System.out.println("mes: " + mes);
                 switch (mes){
                     case 0 :
                         array[0] = array[0]+1;
@@ -377,25 +375,20 @@ public final class Registro_sismos {
             Sismo sismo = lista.get(i);
             TipoOrigen origen = sismo.getOrigen();
             
-            if(origen == TipoOrigen.CHOQUE_PLACAS){
+            if(sismo.getOrigen() == TipoOrigen.CHOQUE_PLACAS){
                 array[0] = array[0]+1;
-                break;
             }
-            if (origen == TipoOrigen.SUBDUCCION_PLACA){
+            else if (sismo.getOrigen() == TipoOrigen.SUBDUCCION_PLACA){
                 array[1] = array[1]+1;
-                break;
             }
-            if (origen == TipoOrigen.DEFORMACION_INTERNA){
+            else if (sismo.getOrigen() == TipoOrigen.DEFORMACION_INTERNA){
                 array[2] = array[2]+1;
-                break;
             }
-            if(origen == TipoOrigen.TECTONICO_SUBDUCCION){
+            else if(origen == TipoOrigen.TECTONICO_SUBDUCCION){
                 array[3] = array[3]+1;
-                break;
             }
-            if (origen == TipoOrigen.TECTONICO_POR_FALLA_LOCAL){
+            else {
                 array[4] = array[4]+1;
-                break;
             }
             
         }
@@ -428,6 +421,7 @@ public final class Registro_sismos {
         JFrame ventana = new JFrame();
         ventana.add(contenedor);
         ventana.setSize(1000,500);
+        ventana.setTitle("Sismos por tipo de origen");
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
     }

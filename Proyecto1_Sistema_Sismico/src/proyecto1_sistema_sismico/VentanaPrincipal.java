@@ -41,8 +41,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //Atributos de VentanaPrincipal
         /**
      *Este metodo se debe llamar en constructor de la clase para que corra la interfaz
-     * WARNING: El codigo con fondo blanco no se puede modificar porque lo genera netbeans mientra estamos arrastrando
-     * cosas de la interfaz.
+     * WARNING: El codigo con fondo blanco no se puede modificar porque lo genera netbeans mientras estamos arrastrando
+     * cosas de la interfaz c:.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -166,10 +166,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        ChartPanel contenedor = listaG.cant_sismos_mesEnAnnio(2020);
+        ChartPanel contenedor = listaG.cant_sismos_mesEnAnnio(2014);
         JFrame ventana = new JFrame();
         ventana.add(contenedor);
         ventana.setSize(1000,500);
+        ventana.setTitle("Sismos en un mes por annio");
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null); 
         
@@ -183,17 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        try {
-            PanelMagnitud varpanel2 =new PanelMagnitud();
-            varpanel2.setLocation(0,0);
-            varpanel2.setSize(varpanel2.getMaximumSize());
-            panelPrincipal.removeAll();
-            panelPrincipal.add(varpanel2,BorderLayout.CENTER);
-            panelPrincipal.revalidate();
-            panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
     }//GEN-LAST:event_menu_magnitudActionPerformed
 
@@ -253,17 +244,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        try {
-            PanelRangoFecha varpanel6 =new PanelRangoFecha();
-            varpanel6.setLocation(0,0);
-            varpanel6.setSize(varpanel6.getMaximumSize());
-            panelPrincipal.removeAll();
-            panelPrincipal.add(varpanel6,BorderLayout.CENTER);
-            panelPrincipal.revalidate();
-            panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
