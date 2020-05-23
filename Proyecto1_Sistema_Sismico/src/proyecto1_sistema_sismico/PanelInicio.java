@@ -43,7 +43,8 @@ public final class PanelInicio extends javax.swing.JPanel {
         listaG.lista.clear();
         lenLista = listaG.cargar().size();
         llenarJTable();
-       //placeHold();
+        placeHold();
+        tabla.getTableHeader().setReorderingAllowed(false);
 
         
     }
@@ -84,12 +85,14 @@ public final class PanelInicio extends javax.swing.JPanel {
         txthora = new javax.swing.JTextField();
         btnVerMapa = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setMaximumSize(getMaximumSize());
 
-        txtHora.setBackground(new java.awt.Color(204, 255, 204));
+        txtHora.setBackground(new java.awt.Color(86, 86, 100));
         txtHora.setMaximumSize(new java.awt.Dimension(1500, 900));
 
+        tabla.setBackground(new java.awt.Color(168, 226, 213));
         tabla.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -132,8 +135,8 @@ public final class PanelInicio extends javax.swing.JPanel {
             tabla.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        panelInformacion.setBackground(new java.awt.Color(204, 255, 204));
-        panelInformacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del sismo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Black", 0, 18))); // NOI18N
+        panelInformacion.setBackground(new java.awt.Color(122, 122, 132));
+        panelInformacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información del sismo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial Black", 0, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 15)); // NOI18N
         jLabel1.setText("Fecha ");
@@ -222,8 +225,9 @@ public final class PanelInicio extends javax.swing.JPanel {
             }
         });
 
-        btnModificar.setBackground(new java.awt.Color(255, 51, 0));
+        btnModificar.setBackground(new java.awt.Color(15, 15, 24));
         btnModificar.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
         btnModificar.setText("Modificar");
         btnModificar.setEnabled(false);
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -232,8 +236,9 @@ public final class PanelInicio extends javax.swing.JPanel {
             }
         });
 
-        btnAgregar.setBackground(new java.awt.Color(255, 51, 0));
+        btnAgregar.setBackground(new java.awt.Color(15, 15, 24));
         btnAgregar.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,8 +253,9 @@ public final class PanelInicio extends javax.swing.JPanel {
             }
         });
 
-        btnVerMapa.setBackground(new java.awt.Color(255, 51, 0));
+        btnVerMapa.setBackground(new java.awt.Color(15, 15, 24));
         btnVerMapa.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        btnVerMapa.setForeground(new java.awt.Color(255, 255, 255));
         btnVerMapa.setText("Ver en mapa");
         btnVerMapa.setEnabled(false);
 
@@ -347,13 +353,15 @@ public final class PanelInicio extends javax.swing.JPanel {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 204));
+        jButton1.setBackground(new java.awt.Color(86, 86, 100));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto1_sistema_sismico/interfaz.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jLabel11.setIcon(new javax.swing.ImageIcon("D:\\1 SEMESTRE 2020\\POO\\PROYECTOS\\Proyecto-1-de-POO-2020\\Proyecto1_Sistema_Sismico\\src\\proyecto1_sistema_sismico\\earthquake.png")); // NOI18N
 
         javax.swing.GroupLayout txtHoraLayout = new javax.swing.GroupLayout(txtHora);
         txtHora.setLayout(txtHoraLayout);
@@ -367,6 +375,8 @@ public final class PanelInicio extends javax.swing.JPanel {
                 .addContainerGap(81, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, txtHoraLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(871, 871, 871)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -374,8 +384,10 @@ public final class PanelInicio extends javax.swing.JPanel {
             txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(txtHoraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(36, 36, 36)
+                .addGroup(txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(txtHoraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -790,6 +802,7 @@ public final class PanelInicio extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

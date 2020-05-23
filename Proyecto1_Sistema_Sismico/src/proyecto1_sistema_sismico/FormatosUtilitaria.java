@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class FormatosUtilitaria {
     
-    private static SimpleDateFormat pfecha = new SimpleDateFormat("dd/mm/yyyy");
+    private static SimpleDateFormat pfecha = new SimpleDateFormat("dd/MM/yyyy");
     private static SimpleDateFormat phora = new SimpleDateFormat("HH:mm:ss");;
     
     
@@ -58,9 +58,8 @@ public class FormatosUtilitaria {
         Salidas: Ninguna
         */
          try{
-            SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-            fecha.setLenient(false);
-            fecha.parse(campoFecha);
+            pfecha.setLenient(false);
+            pfecha.parse(campoFecha);
             return true;
         }
         catch(ParseException e){

@@ -10,8 +10,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -27,9 +31,102 @@ public class Excel_BD {
     private static String filePath =  fileName; 
     private static String hoja = "Hoja1"; 
     private static String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia", "Descripcion Detallada"};
+    private static ArrayList<Sismo> listaSismos = new ArrayList<Sismo>();
 
+    
+        public static ArrayList<Sismo> cargar_Excel() throws FileNotFoundException, IOException, ParseException{
+       /*
+        Funcion: Cargar en una lista, todos los objetos que se encuentran en el excel
+        Entradas: Ninguna
+        Salidas: Ninguna
+       */
+        File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+        if (excelFile.exists()) {
+
+            String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
+            FileInputStream file = new FileInputStream(new File(filePath));
+
+            XSSFWorkbook libro = new XSSFWorkbook(file);
+            XSSFSheet hojaBD = libro.getSheetAt(0);
+
+            int numFilas = hojaBD.getLastRowNum();
+
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = hojaBD.getRow(a);
+                int numCols = fila.getLastCellNum();
+
+                for (int b = 0; b < numCols; b++) {
+                    Cell celda = fila.getCell(b);
+
+                    switch(b){
+
+                        case 0:
+                            laFecha = celda.getStringCellValue();
+                            break;
+
+                        case 1:
+                            laHora = celda.getStringCellValue();
+                            break;
+
+                        case 2:
+                            profundidad = celda.getStringCellValue();
+                            break;
+
+                        case 3:
+                            origen = celda.getStringCellValue();
+                            break;
+
+                        case 4:
+                            detalle = celda.getStringCellValue();
+                            break;
+
+                        case 5:
+                            magnitud = celda.getStringCellValue();
+                            break;
+
+                        case 6:
+                            latitud = celda.getStringCellValue();
+                            break;
+
+                        case 7:
+                            longitud = celda.getStringCellValue();
+                            break;
+
+                        case 8:
+                            provincia = celda.getStringCellValue();
+                            break;
+
+                        case 9:
+                            descripcion = celda.getStringCellValue();
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                }
+                //Crear objetos con la informacion del excel
+                Sismo nuevoSismo = new Sismo(FormatosUtilitaria.convertirAFecha(laFecha), FormatosUtilitaria.convertirAHora(laHora),
+                        Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), 
+                        Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
+                listaSismos.add(nuevoSismo);
+
+            }
+
+     
+        }
+        
+        return listaSismos;
+    }
+    
+    
    public static void crear_Excel(){
-       
+       /*
+       Funcion:
+       Entradas:
+       Salidas:
+       */
         //Cabecera de la hoja de excel
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet hoja1 = book.createSheet(hoja);
@@ -69,14 +166,18 @@ public class Excel_BD {
     
     
     public static void AgregarSismoAExcel(Sismo psismo) throws FileNotFoundException, IOException{
+       /*
+       Funcion:
+       Entradas:
+       Salidas:
+       */
     
     //Contenido de la hoja de excel
         String[] document = new String[]{
             FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
             String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), 
             String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()),
-            psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
-        ;
+            psismo.getProvincia().name(), psismo.getDescripcion_detallada()};
         
         //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
         FileInputStream file = new FileInputStream(new File(filePath));
@@ -105,6 +206,11 @@ public class Excel_BD {
     
     
     public static void ModificarExcel(Sismo psismo, int pos) throws FileNotFoundException, IOException{
+       /*
+       Funcion:
+       Entradas:
+       Salidas:
+       */
         
         String[] document = new String[]{
             FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
@@ -137,4 +243,7 @@ public class Excel_BD {
         fileOuS.close();
     
     }
+    
+    
+    
 }

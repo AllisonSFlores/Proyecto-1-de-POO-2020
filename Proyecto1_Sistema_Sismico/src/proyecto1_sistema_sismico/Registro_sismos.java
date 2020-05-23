@@ -1,21 +1,11 @@
 package proyecto1_sistema_sismico;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -28,15 +18,10 @@ import org.jfree.data.general.DefaultPieDataset;
 public final class Registro_sismos {
   
     ArrayList<Sismo> lista ;   
-    //Para el libro de Excel
-    String fileName = "BD.xlsx";
-    String filePath =  fileName; 
-    String hoja = "Hoja1"; 
-    String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia", "Descripcion Detallada"};
    
 
     @SuppressWarnings("Convert2Diamond")
-    public Registro_sismos() throws IOException, FileNotFoundException, ParseException {
+    public Registro_sismos(){
         lista = new ArrayList<Sismo>();
     }
 
@@ -49,94 +34,18 @@ public final class Registro_sismos {
      * @throws java.text.ParseException
      */
  
-    public ArrayList<Sismo> cargar() throws FileNotFoundException, IOException, ParseException{
+    public ArrayList<Sismo> cargar() throws IOException, FileNotFoundException, ParseException {
        /*
         Funcion: Cargar en una lista, todos los objetos que se encuentran en el excel
         Entradas: Ninguna
         Salidas: Ninguna
        */
-        File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
-        if (excelFile.exists()) {
-
-            String laFecha = "", laHora = "", profundidad = "", origen = "", detalle = "", magnitud = "", latitud= "", longitud= "", provincia= "", descripcion= "";             
-            FileInputStream file = new FileInputStream(new File(filePath));
-
-            XSSFWorkbook libro = new XSSFWorkbook(file);
-            XSSFSheet hojaBD = libro.getSheetAt(0);
-
-            int numFilas = hojaBD.getLastRowNum();
-
-            for (int a = 1; a <= numFilas; a++) {
-                Row fila = hojaBD.getRow(a);
-                int numCols = fila.getLastCellNum();
-
-                for (int b = 0; b < numCols; b++) {
-                    Cell celda = fila.getCell(b);
-
-                    switch(b){
-
-                        case 0:
-                            laFecha = celda.getStringCellValue();
-                            break;
-
-                        case 1:
-                            laHora = celda.getStringCellValue();
-                            break;
-
-                        case 2:
-                            profundidad = celda.getStringCellValue();
-                            break;
-
-                        case 3:
-                            origen = celda.getStringCellValue();
-                            break;
-
-                        case 4:
-                            detalle = celda.getStringCellValue();
-                            break;
-
-                        case 5:
-                            magnitud = celda.getStringCellValue();
-                            break;
-
-                        case 6:
-                            latitud = celda.getStringCellValue();
-                            break;
-
-                        case 7:
-                            longitud = celda.getStringCellValue();
-                            break;
-
-                        case 8:
-                            provincia = celda.getStringCellValue();
-                            break;
-
-                        case 9:
-                            descripcion = celda.getStringCellValue();
-                            break;
-
-                        default:
-                            break;
-
-                    }
-
-                }
-                //Crear objetos con la informacion del excel
-                Sismo nuevoSismo = new Sismo(FormatosUtilitaria.convertirAFecha(laFecha), FormatosUtilitaria.convertirAHora(laHora),
-                        Float.parseFloat(profundidad), TipoOrigen.valueOf(origen) ,detalle,Float.parseFloat(magnitud), 
-                        Float.parseFloat(latitud),Float.parseFloat(longitud),Provincia.valueOf(provincia), descripcion);
-                lista.add(nuevoSismo);
-
-            }
-
-     
-        }
-        
+        lista = Excel_BD.cargar_Excel();
         return lista;
     }
  
     
-    public void crearExcel(Sismo psismo) throws FileNotFoundException, IOException{
+    public void crearExcel(Sismo psismo) throws IOException {
         /*
         Funcion: Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo
         Entradas: Un objeto del tipo Sismo
@@ -155,10 +64,10 @@ public final class Registro_sismos {
     }
     
     @SuppressWarnings("UnusedAssignment")
-    public void agregar_sismo(Sismo psismo) throws FileNotFoundException, IOException{
+    public void agregar_sismo(Sismo psismo) throws IOException{
         
         /*
-        Funcion: Agregar un sismo al archivo excel
+        Funcion: Agregar un sismo a la lista
         Entradas: Un objeto Sismo
         Salidas: Ninguna
         */
@@ -170,14 +79,14 @@ public final class Registro_sismos {
 
     }
     
-    public void modificar_sismo(Sismo psismo, int pos) throws FileNotFoundException, IOException{
+    public void modificar_sismo(Sismo psismo, int pos) throws IOException {
         /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
+        Funcion: Modificar la lista de sismos
+        Entradas: Un sismo y una posicion entera
+        Salidas: Ninguna
         */
-        
-        //FALTA MODIFICAR LA LISTA lista.modificar(psismo,pos) XD
+  
+        lista.set(pos-1, psismo);
         Excel_BD.ModificarExcel(psismo, pos);
         JOptionPane.showMessageDialog(null, "Modificado correctamente!");
         
@@ -192,6 +101,11 @@ public final class Registro_sismos {
         
     }
     public int[] cant_sismos_mesEnAnnio_lista(int pannio){
+        /*
+        Funcion: 
+        Entradas: 
+        Salidas: 
+        */
         int[] array = new int[12];
         for (int i=0 ; i < lista.size() ; i++){
             Sismo sismo = lista.get(i);
