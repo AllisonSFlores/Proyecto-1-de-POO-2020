@@ -143,41 +143,14 @@ public final class Registro_sismos {
         Salidas: Ninguna
         */
 
-        //Cabecera de la hoja de excel
-        XSSFWorkbook book = new XSSFWorkbook();
-        XSSFSheet hoja1 = book.createSheet(hoja);
-    
-        //Aplicando estilo color negrita a los encabezados
-        CellStyle style = book.createCellStyle();
-        Font font = book.createFont();
-        font.setBold(true);//Seteando fuente negrita al encabezado del archivo excel
-        style.setFont(font);
-        
-        File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
+        File excelFile = new File("BD.xlsx"); // Referenciando a la ruta y el archivo Excel a crear
 
         if (excelFile.exists()) { // Si el archivo existe 
             agregar_sismo(psismo);   
     
         }else{
-            try (FileOutputStream fileOuS = new FileOutputStream(excelFile)) { //crea el archivo con su ruta
-                
-                XSSFRow row = hoja1.createRow(0);//se crea una fila
-
-                for (int j = 0; j < header.length; j++) {
-                    XSSFCell cell = row.createCell(j);//Crear la celda para el header
-                    cell.setCellStyle(style); //annadir estilo a la celda creada anteriormente
-                    cell.setCellValue(header[j]);//se ponen los titulos del header
-
-                } 
-                
-                System.out.println("Archivo Creado!");
-                book.write(fileOuS);
-                fileOuS.flush();
-                fileOuS.close(); 
-                agregar_sismo(psismo);
-  
-            }catch (Exception e) {
-            }
+            Excel_BD.crear_Excel();
+            agregar_sismo(psismo);
         }  
     }
     
@@ -191,37 +164,7 @@ public final class Registro_sismos {
         */
         
         lista.add(psismo);  
-        
-        //Contenido de la hoja de excel
-        String[] document = new String[]{
-            FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
-            String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), psismo.getDetalle(), 
-            String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),String.valueOf(psismo.getLongitud()),
-            psismo.getProvincia().name(), psismo.getDescripcion_detallada()}
-        ;
-        
-        //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
-        FileInputStream file = new FileInputStream(new File(filePath));
-        FileOutputStream fileOuS;
-        
-        try (XSSFWorkbook libro = new XSSFWorkbook(file)) {
-            XSSFSheet hojaBD = libro.getSheetAt(0);
-          
-            //Generando el contenido del archivo de Excel
-            XSSFRow row = hojaBD.createRow(hojaBD.getLastRowNum() + 1);
-          
-            for (int j = 0; j < header.length; j++) {
-                XSSFCell cell = row.createCell(j);//Creando celda para el contenido del producto
-                cell.setCellValue(document[j]); //Annadiendo el contenido
-            }
-            
-            fileOuS = null;
-            File excelFile = new File(filePath);
-            fileOuS= new FileOutputStream(excelFile);
-            libro.write(fileOuS);
-        }
-        fileOuS.close();
-
+        Excel_BD.AgregarSismoAExcel(psismo);
         System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
         JOptionPane.showMessageDialog(null, "AGREGAR_SISMO: "+lista.size());
 
@@ -233,35 +176,9 @@ public final class Registro_sismos {
         Entradas: 
         Salidas: 
         */
-        String[] document = new String[]{
-            FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
-            String.valueOf(psismo.getProfundidad()),psismo.getOrigen().name(), 
-            psismo.getDetalle(), String.valueOf(psismo.getMagnitud()), String.valueOf(psismo.getLatitud()),
-            String.valueOf(psismo.getLongitud()), psismo.getProvincia().name(), psismo.getDescripcion_detallada()};
         
-        //CON ESTO SE SABE CUAL HOJA DE CUAL LIBRO EXCEL DEBE LEER//
-            
-        FileInputStream file = new FileInputStream(new File(filePath));
-        FileOutputStream fileOuS;
-        
-        try (XSSFWorkbook libro = new XSSFWorkbook(file)) {
-            XSSFSheet hojaBD = libro.getSheetAt(0);
-          
-            
-            //Generando el contenido del archivo de Excel          
-            XSSFRow fila = hojaBD.getRow(pos);
-          
-            for (int j = 0; j < header.length; j++) {
-                XSSFCell cell = fila.createCell(j);//Creando celda para el contenido del producto
-                cell.setCellValue(document[j]); //Annadiendo el contenido
-            }
-            
-            fileOuS = null;
-            File excelFile = new File(filePath);
-            fileOuS= new FileOutputStream(excelFile);
-            libro.write(fileOuS);
-        }
-        fileOuS.close();
+        //FALTA MODIFICAR LA LISTA lista.modificar(psismo,pos) XD
+        Excel_BD.ModificarExcel(psismo, pos);
         JOptionPane.showMessageDialog(null, "Modificado correctamente!");
         
     }

@@ -613,6 +613,20 @@ public final class PanelInicio extends javax.swing.JPanel {
                        
 
     }
+   
+   
+   private boolean isValidFloat(String num) {
+    boolean isValid = true;
+
+    try {
+        Float.parseFloat(num);
+    } catch(NumberFormatException nfe) {
+        isValid = false;
+    }
+
+    return isValid;
+}
+   
    public boolean validarContenidoCampos() throws ParseException{
        /*
        Funcion:
@@ -642,8 +656,8 @@ public final class PanelInicio extends javax.swing.JPanel {
             bool = false;
         }
        
-        if (txtProfundidad.getText().matches("[0-9]*.*[0-9]*") == false || txtMagnitud.getText().matches("[0-9]*.*[0-9]*") == false || 
-            txtLatitud.getText().matches("[0-9]*.*[0-9]*") == false || txtLongitud.getText().matches("[0-9]*.*[0-9]*") == false){
+        if ((isValidFloat(txtProfundidad.getText()) && isValidFloat(txtMagnitud.getText()) && 
+            isValidFloat(txtLatitud.getText()) && isValidFloat(txtLongitud.getText()))== false){
             
             JOptionPane.showMessageDialog(null, "Solo se permite introducir valores numéricos");
             bool = false;
