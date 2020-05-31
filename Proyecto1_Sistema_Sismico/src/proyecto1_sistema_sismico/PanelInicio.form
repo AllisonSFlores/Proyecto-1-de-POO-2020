@@ -95,7 +95,7 @@
             <Component class="javax.swing.JTable" name="tabla">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="d5" green="e2" red="a8" type="rgb"/>
+                  <Color blue="ff" green="cc" red="cc" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="15" style="1"/>
@@ -588,11 +588,6 @@
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\1 SEMESTRE 2020\POO\PROYECTOS\Proyecto-1-de-POO-2020\Proyecto1_Sistema_Sismico\src\proyecto1_sistema_sismico\earthquake.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

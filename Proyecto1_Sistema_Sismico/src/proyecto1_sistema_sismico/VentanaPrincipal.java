@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyecto1_sistema_sismico;
 
 import java.awt.BorderLayout;
@@ -15,22 +10,28 @@ import javax.swing.*;
 import org.jfree.chart.ChartPanel;
 
 /**
- *
  * @author XT
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     PanelInicio varpanel;
+    //PanelTipo panelTipo;
     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
+    
     public VentanaPrincipal() throws IOException, FileNotFoundException, ParseException {
+        //this.panelTipo= new PanelTipo();
+        //panelTipo.setLocation(0,0);
+        //panelTipo.setSize(panelTipo.getMaximumSize());
+        //panelTipo.setVisible(false);
         
         this.varpanel = new PanelInicio();
-        initComponents();
-
-        //Hacer que empiece con el PanelInicio
         varpanel.setLocation(0,0);
         varpanel.setSize(varpanel.getMaximumSize());
+        varpanel.setVisible(true);
+        initComponents();
+        //Hacer que empiece con el PanelInicio
         panelPrincipal.removeAll();//quita lo que hay en el panelPrincipal
+        //panelPrincipal.add(panelTipo,BorderLayout.CENTER);
         panelPrincipal.add(varpanel,BorderLayout.CENTER); //agrega el atributo tipo panelinicio al panelPrincipal en el centro
         panelPrincipal.revalidate();//Le dice al administrador de diseño que vuelva a calcular el diseño
         panelPrincipal.repaint();//Le dice a Swing que un área de la ventana está sucia
@@ -64,7 +65,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
 
-        panelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        panelPrincipal.setBackground(new java.awt.Color(86, 86, 100));
         panelPrincipal.setMaximumSize(new java.awt.Dimension(1500, 962));
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
@@ -166,16 +167,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-        ChartPanel contenedor = listaG.cant_sismos_mesEnAnnio(2014);
-        JFrame ventana = new JFrame();
-        ventana.add(contenedor);
-        ventana.setSize(1000,500);
-        ventana.setTitle("Sismos en un mes por annio");
-        ventana.setVisible(true);
-        ventana.setLocationRelativeTo(null); 
-        
-        //listaG.cant_sismos_mesEnAnnio("2019");
-        
+        try {
+            PanelMesEnAnnio varPanelMesEnAnnio = new PanelMesEnAnnio();
+            varPanelMesEnAnnio.setLocation(300,50);
+            varPanelMesEnAnnio.setSize(varPanelMesEnAnnio.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varPanelMesEnAnnio);
+            panelPrincipal.validate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
@@ -203,8 +205,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas: evento 
         Salidas: void
         */
-        listaG.cant_sismos_tipo();
-        
+        try {
+            PanelTipo varPanelTipo = new PanelTipo();
+            varPanelTipo.setLocation(200,50);
+            varPanelTipo.setSize(varPanelTipo.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varPanelTipo);
+            panelPrincipal.validate();
+            panelPrincipal.repaint();
+        } catch (IOException | ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
         
     }//GEN-LAST:event_menu_tipoActionPerformed
 
@@ -224,11 +236,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Salidas:
         */
         try {
-            PanelInicio varpanel5 = new PanelInicio();
-            varpanel5.setLocation(0,0);
-            varpanel5.setSize(varpanel5.getMaximumSize());
+            varpanel = new PanelInicio();
+            varpanel.setLocation(0,0);
+            varpanel.setSize(varpanel.getMaximumSize());
             panelPrincipal.removeAll();
-            panelPrincipal.add(varpanel5,BorderLayout.CENTER);
+            panelPrincipal.add(varpanel,BorderLayout.CENTER);
             panelPrincipal.revalidate();
             panelPrincipal.repaint();
         } catch (IOException | ParseException ex) {

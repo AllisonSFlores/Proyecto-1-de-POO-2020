@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.jfree.chart.*;
 import org.jfree.chart.plot.PlotOrientation;
@@ -197,7 +196,7 @@ public final class Registro_sismos {
     }
     public int[] cant_sismo_tipo_lista(){
         /*
-        Funcion: Lee la lista y llena el array con la cantidad dependiento del tipo de origen
+        Funcion: Lee la lista y llena el array con la cantidad dependiendo del tipo de origen
         Entradas: void
         Salidas: int array 
         */
@@ -225,37 +224,7 @@ public final class Registro_sismos {
         }
         return array;
     }
-    public void cant_sismos_tipo(){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
-        int[] array = this.cant_sismo_tipo_lista();
-        
-        //Crea la "base de datos" que usa la graafica
-        DefaultPieDataset data = new DefaultPieDataset();
-        
-        //El ultimo dato es la porcion que va a cubrir en el grafico
-        data.setValue("Choque de placas", array[0]);
-        data.setValue("Subducción de placa", array[1]);
-        data.setValue("Deformación Interna", array[2]);
-        data.setValue("Téctonico por subducción", array[3]);
-        data.setValue("Téctonico por falla local", array[4]); 
-        
-        //Se crea la grafica de pastel
-        JFreeChart chart = ChartFactory.createPieChart("Tipo de Origen ",data,true, false, false);
-        chart.removeLegend();
-        ChartPanel contenedor = new ChartPanel(chart);
-        
-        //crea la ventana y le agrega la grafica
-        JFrame ventana = new JFrame();
-        ventana.add(contenedor);
-        ventana.setSize(1000,500);
-        ventana.setTitle("Sismos por tipo de origen");
-        ventana.setVisible(true);
-        ventana.setLocationRelativeTo(null);
-    }
+    
     
     
     public void clasificacion_por_magnitud(){

@@ -92,7 +92,7 @@ public final class PanelInicio extends javax.swing.JPanel {
         txtHora.setBackground(new java.awt.Color(86, 86, 100));
         txtHora.setMaximumSize(new java.awt.Dimension(1500, 900));
 
-        tabla.setBackground(new java.awt.Color(168, 226, 213));
+        tabla.setBackground(new java.awt.Color(204, 204, 255));
         tabla.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -360,8 +360,6 @@ public final class PanelInicio extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel11.setIcon(new javax.swing.ImageIcon("D:\\1 SEMESTRE 2020\\POO\\PROYECTOS\\Proyecto-1-de-POO-2020\\Proyecto1_Sistema_Sismico\\src\\proyecto1_sistema_sismico\\earthquake.png")); // NOI18N
 
         javax.swing.GroupLayout txtHoraLayout = new javax.swing.GroupLayout(txtHora);
         txtHora.setLayout(txtHoraLayout);
