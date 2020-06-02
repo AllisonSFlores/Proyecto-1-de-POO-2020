@@ -9,7 +9,6 @@ import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
-import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -29,6 +28,7 @@ public class PanelTipo extends javax.swing.JPanel {
      }
      private void agregargrafica(){
         contenedor = graficaTipo(listaG.cant_sismo_tipo_lista());
+        
         contenedor.setSize(this.getWidth(),this.getHeight());
         contenedor.setVisible(true);
         this.removeAll();
@@ -79,7 +79,7 @@ public class PanelTipo extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(86, 86, 100));
         setMaximumSize(new java.awt.Dimension(1500, 900));
-        setPreferredSize(new java.awt.Dimension(1910, 1136));
+        setPreferredSize(new java.awt.Dimension(1450, 850));
         setLayout(new java.awt.BorderLayout());
     }// </editor-fold>//GEN-END:initComponents
 

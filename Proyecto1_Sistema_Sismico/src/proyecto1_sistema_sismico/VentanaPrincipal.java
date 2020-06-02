@@ -54,12 +54,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu_mas = new javax.swing.JMenu();
         menu_incio = new javax.swing.JMenuItem();
         menu_acercade = new javax.swing.JMenuItem();
-        menu_salir = new javax.swing.JMenuItem();
         menu_graficas = new javax.swing.JMenu();
         menu_provincia = new javax.swing.JMenuItem();
-        menu_tipo = new javax.swing.JMenuItem();
         menu_rango_fecha = new javax.swing.JMenuItem();
-        menu_annio = new javax.swing.JMenuItem();
         menu_magnitud = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
+            .addGap(0, 244, Short.MAX_VALUE)
         );
 
         getContentPane().add(panelPrincipal, java.awt.BorderLayout.CENTER);
@@ -84,7 +81,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BarraDelMenu.setBackground(new java.awt.Color(0, 0, 0));
         BarraDelMenu.setBorder(new javax.swing.border.MatteBorder(null));
 
-        menu_mas.setText("☰");
+        menu_mas.setText("▼");
+        menu_mas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         menu_incio.setText("Inicio");
         menu_incio.addActionListener(new java.awt.event.ActionListener() {
@@ -102,33 +100,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menu_mas.add(menu_acercade);
 
-        menu_salir.setText("Salir");
-        menu_salir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_salirActionPerformed(evt);
-            }
-        });
-        menu_mas.add(menu_salir);
-
         BarraDelMenu.add(menu_mas);
 
         menu_graficas.setText(" Gráficas");
+        menu_graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
 
-        menu_provincia.setText("Sismos por provincia");
+        menu_provincia.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        menu_provincia.setText("Graficas - Si quiere puede meter las tablas en el mismo Tabbed Pane, para que este juntito");
         menu_provincia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_provinciaActionPerformed(evt);
             }
         });
         menu_graficas.add(menu_provincia);
-
-        menu_tipo.setText("Sismos por tipo de origen ");
-        menu_tipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_tipoActionPerformed(evt);
-            }
-        });
-        menu_graficas.add(menu_tipo);
 
         menu_rango_fecha.setText("Sismos en un rango de fecha");
         menu_rango_fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -137,14 +121,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         menu_graficas.add(menu_rango_fecha);
-
-        menu_annio.setText("Sismos por mes en un año");
-        menu_annio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_annioActionPerformed(evt);
-            }
-        });
-        menu_graficas.add(menu_annio);
 
         menu_magnitud.setText("Sismos por magnitud");
         menu_magnitud.addActionListener(new java.awt.event.ActionListener() {
@@ -160,25 +136,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void menu_annioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_annioActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
-        try {
-            PanelMesEnAnnio varPanelMesEnAnnio = new PanelMesEnAnnio();
-            varPanelMesEnAnnio.setLocation(300,50);
-            varPanelMesEnAnnio.setSize(varPanelMesEnAnnio.getMaximumSize());
-            panelPrincipal.removeAll();
-            panelPrincipal.add(varPanelMesEnAnnio);
-            panelPrincipal.validate();
-            panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_menu_annioActionPerformed
 
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
         /*
@@ -196,38 +153,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Entradas:
         Salidas:
         */
-       
-    }//GEN-LAST:event_menu_provinciaActionPerformed
-
-    private void menu_tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_tipoActionPerformed
-        /*
-        Funcion: Llama la funcion que despliega la grafica
-        Entradas: evento 
-        Salidas: void
-        */
-        try {
-            PanelTipo varPanelTipo = new PanelTipo();
-            varPanelTipo.setLocation(200,50);
+        
+            PanelGrafica varPanelTipo = new PanelGrafica();
+            varPanelTipo.setLocation(70,0);
             varPanelTipo.setSize(varPanelTipo.getMaximumSize());
             panelPrincipal.removeAll();
             panelPrincipal.add(varPanelTipo);
             panelPrincipal.validate();
             panelPrincipal.repaint();
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
        
-        
-    }//GEN-LAST:event_menu_tipoActionPerformed
-
-    private void menu_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_salirActionPerformed
-        /*
-        Funcion: Cerrar el programa
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
-        System.exit(0); //Termina de correr el programa
-    }//GEN-LAST:event_menu_salirActionPerformed
+       
+    }//GEN-LAST:event_menu_provinciaActionPerformed
 
     private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
         /*
@@ -250,24 +186,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_incioActionPerformed
 
-    private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
-        
-        
-    }//GEN-LAST:event_menu_rango_fechaActionPerformed
-
     private void menu_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_acercadeActionPerformed
         /*
         Funcion: Mostrar informacion a cerca del programa
         Entradas: Ninguna
         Salidas: Ninguna
         */
-        JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano");
+        JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano\nDaniel Madrigal");
     }//GEN-LAST:event_menu_acercadeActionPerformed
+
+    private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
+        /*
+        Funcion:
+        Entradas:
+        Salidas:
+        */
+
+    }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,15 +246,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraDelMenu;
     private javax.swing.JMenuItem menu_acercade;
-    private javax.swing.JMenuItem menu_annio;
     private javax.swing.JMenu menu_graficas;
     private javax.swing.JMenuItem menu_incio;
     private javax.swing.JMenuItem menu_magnitud;
     private javax.swing.JMenu menu_mas;
     private javax.swing.JMenuItem menu_provincia;
     private javax.swing.JMenuItem menu_rango_fecha;
-    private javax.swing.JMenuItem menu_salir;
-    private javax.swing.JMenuItem menu_tipo;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 

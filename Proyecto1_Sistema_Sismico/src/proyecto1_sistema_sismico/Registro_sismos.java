@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 import javax.swing.JOptionPane;
-import org.jfree.chart.*;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -91,20 +87,26 @@ public final class Registro_sismos {
         
     }
     
-    public void cant_sismos_provincia(){
-         /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
+    public double [] cant_sismos_provincia(String pprovincia){
+        double [] magnitudes= new double[100];
+        int array=0;
         
+        for (int i = 0 ; i<lista.size();i++){
+            Sismo sismo = lista.get(i);
+            
+            if(sismo.getProvincia().nombre.equals(pprovincia)){
+                magnitudes[array]=(double) sismo.getMagnitud();
+                array++;        
+            }
+        }
+       return magnitudes;
+                
     }
+    
     public int[] cant_sismos_mesEnAnnio_lista(int pannio){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
+        /**
+         * 
+         */
         int[] array = new int[12];
         for (int i=0 ; i < lista.size() ; i++){
             Sismo sismo = lista.get(i);
@@ -155,38 +157,6 @@ public final class Registro_sismos {
         }
         return array;
     }
-    public ChartPanel cant_sismos_mesEnAnnio(int pannio){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
-        int[] array = cant_sismos_mesEnAnnio_lista(pannio);
-        DefaultCategoryDataset data = new DefaultCategoryDataset();
-        data.addValue(array[0], "Sismos en", "Enero");
-        data.addValue(array[1], "Sismos", "Febrero");
-        data.addValue(array[2], "Sismos", "Marzo");
-        data.addValue(array[3], "Sismos", "Abril");
-        data.addValue(array[4], "Sismos", "Mayo");
-        data.addValue(array[5], "Sismos", "Junio");
-        data.addValue(array[6], "Sismos", "Julio");
-        data.addValue(array[7], "Sismos", "Agosto");
-        data.addValue(array[8], "Sismos", "Septiembre");
-        data.addValue(array[9], "Sismos", "Octubre");
-        data.addValue(array[10], "Sismos", "Noviembre");
-        data.addValue(array[11], "Sismos", "Diciembre");
-        
-        
-        
-        //Se crea la grafica de BARRAS pasandole los datos
-        JFreeChart grafica = ChartFactory.createBarChart("Sismos", "Meses", "Cantidad de sismos", data, PlotOrientation.VERTICAL, false, true, false);
-        //Panel de la grafica
-        ChartPanel contenedor = new ChartPanel(grafica);
-        return contenedor;
-        
-        
-    }
-    
     public void ocurrido_en_rango(Date pfecha_inicio,Date pfecha_final){
         /*
         Funcion: 
@@ -198,7 +168,7 @@ public final class Registro_sismos {
         /*
         Funcion: Lee la lista y llena el array con la cantidad dependiendo del tipo de origen
         Entradas: void
-        Salidas: int array 
+        Salidas: int []
         */
         int [] array =new int[5];
         for (int i = 0 ; i<lista.size();i++){

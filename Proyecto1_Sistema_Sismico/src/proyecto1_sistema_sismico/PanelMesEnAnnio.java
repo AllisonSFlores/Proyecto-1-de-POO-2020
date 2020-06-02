@@ -1,6 +1,7 @@
 package proyecto1_sistema_sismico;
 
 
+import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,7 +28,7 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         contenedor.setVisible(true);
         
         
-        jPanelGrafica.add(contenedor);
+        jPanelGrafica.add(contenedor,BorderLayout.CENTER);
         contenedor.repaint();
         jPanelGrafica.revalidate();
         jPanelGrafica.repaint();
@@ -83,16 +84,18 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1500, 900));
         setMinimumSize(new java.awt.Dimension(900, 800));
         setPreferredSize(new java.awt.Dimension(900, 300));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelEntrada.setBackground(new java.awt.Color(86, 86, 100));
         jPanelEntrada.setMinimumSize(new java.awt.Dimension(0, 30));
+        jPanelEntrada.setPreferredSize(new java.awt.Dimension(1450, 850));
         jPanelEntrada.setLayout(null);
 
-        JLannioGrafica.setFont(new java.awt.Font("Tahoma", 0, 27)); // NOI18N
+        JLannioGrafica.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         JLannioGrafica.setForeground(new java.awt.Color(255, 255, 255));
-        JLannioGrafica.setText("Seleccione el año: ");
+        JLannioGrafica.setText("Año:");
         jPanelEntrada.add(JLannioGrafica);
-        JLannioGrafica.setBounds(0, 0, 240, 50);
+        JLannioGrafica.setBounds(90, 0, 70, 60);
 
         jButton1.setBackground(new java.awt.Color(86, 86, 100));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -105,40 +108,26 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
             }
         });
         jPanelEntrada.add(jButton1);
-        jButton1.setBounds(390, 10, 110, 40);
+        jButton1.setBounds(370, 10, 110, 40);
 
         SpinBoxAnnio.setFont(new java.awt.Font("Tahoma", 0, 32)); // NOI18N
-        SpinBoxAnnio.setCursor(new java.awt.Cursor(java.awt.Cursor.N_RESIZE_CURSOR));
+        SpinBoxAnnio.setModel(new javax.swing.SpinnerNumberModel());
+        SpinBoxAnnio.setBorder(null);
+        SpinBoxAnnio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SpinBoxAnnio.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        SpinBoxAnnio.setEditor(new javax.swing.JSpinner.NumberEditor(SpinBoxAnnio, ""));
         SpinBoxAnnio.setPreferredSize(new java.awt.Dimension(10, 26));
         SpinBoxAnnio.setValue(SpinBoxAnnio.getValue());
         jPanelEntrada.add(SpinBoxAnnio);
-        SpinBoxAnnio.setBounds(220, 10, 160, 40);
+        SpinBoxAnnio.setBounds(190, 10, 160, 40);
+
+        add(jPanelEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 526, 60));
 
         jPanelGrafica.setBackground(new java.awt.Color(86, 86, 100));
+        jPanelGrafica.setMaximumSize(new java.awt.Dimension(1500, 800));
         jPanelGrafica.setPreferredSize(new java.awt.Dimension(1200, 510));
-        jPanelGrafica.setLayout(new java.awt.BorderLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jPanelGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addComponent(jPanelEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanelGrafica.setLayout(new javax.swing.BoxLayout(jPanelGrafica, javax.swing.BoxLayout.LINE_AXIS));
+        add(jPanelGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1340, 780));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
