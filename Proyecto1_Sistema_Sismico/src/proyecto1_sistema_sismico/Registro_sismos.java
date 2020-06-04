@@ -28,24 +28,25 @@ public final class Registro_sismos {
      * @throws IOException
      * @throws java.text.ParseException
      */
- 
+    
+    /**
+     * Cargar en una lista, todos los objetos que se encuentran en el excel
+     * @return
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ParseException 
+     */
     public ArrayList<Sismo> cargar() throws IOException, FileNotFoundException, ParseException {
-       /*
-        Funcion: Cargar en una lista, todos los objetos que se encuentran en el excel
-        Entradas: Ninguna
-        Salidas: Ninguna
-       */
         lista = Excel_BD.cargar_Excel();
         return lista;
     }
  
-    
+    /**
+     * Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo
+     * @param psismo
+     * @throws IOException 
+     */
     public void crearExcel(Sismo psismo) throws IOException {
-        /*
-        Funcion: Crea el archivo de excel si no existe y si existe llamara a la funcion que agrega el sismo
-        Entradas: Un objeto del tipo Sismo
-        Salidas: Ninguna
-        */
 
         File excelFile = new File("BD.xlsx"); // Referenciando a la ruta y el archivo Excel a crear
 
@@ -57,40 +58,48 @@ public final class Registro_sismos {
             agregar_sismo(psismo);
         }  
     }
-    
+    /**
+     * Agregar un sismo a la lista
+     * @param psismo
+     * @throws IOException 
+     */
     @SuppressWarnings("UnusedAssignment")
     public void agregar_sismo(Sismo psismo) throws IOException{
-        
-        /*
-        Funcion: Agregar un sismo a la lista
-        Entradas: Un objeto Sismo
-        Salidas: Ninguna
-        */
-        
         lista.add(psismo);  
         Excel_BD.AgregarSismoAExcel(psismo);
         System.out.println("TAMANO LISTA DESPUES DE AGREGAR: "); System.out.println(lista.size());
         JOptionPane.showMessageDialog(null, "AGREGAR_SISMO: "+lista.size());
 
     }
-    
+    /**
+     * Modificar la lista de sismos
+     * @param psismo :Un sismo y una posicion entera
+     * @param pos
+     * @throws IOException 
+     */
     public void modificar_sismo(Sismo psismo, int pos) throws IOException {
-        /*
-        Funcion: Modificar la lista de sismos
-        Entradas: Un sismo y una posicion entera
-        Salidas: Ninguna
-        */
   
         lista.set(pos-1, psismo);
         Excel_BD.ModificarExcel(psismo, pos);
         JOptionPane.showMessageDialog(null, "Modificado correctamente!");
         
     }
-    
+    /**
+     * busca los sismo en esa provincia y agrega sus magnitudes en un arreglo
+     * @param pprovincia
+     * @return magnitudes double []
+     */
     public double [] cant_sismos_provincia(String pprovincia){
-        double [] magnitudes= new double[100];
+        int largoMagnitud = 0;
         int array=0;
         
+        for (int i =0 ; i<lista.size(); i++){
+            if(lista.get(i).getProvincia().nombre.equals(pprovincia)){
+                largoMagnitud++;
+            }
+        }
+        double [] magnitudes= new double[largoMagnitud];
+        System.out.println(largoMagnitud);
         for (int i = 0 ; i<lista.size();i++){
             Sismo sismo = lista.get(i);
             
@@ -102,7 +111,11 @@ public final class Registro_sismos {
        return magnitudes;
                 
     }
-    
+    /**
+     * genera un arreglo de los sismos por mes en el annio recibido
+     * @param pannio
+     * @return array int []
+     */
     public int[] cant_sismos_mesEnAnnio_lista(int pannio){
         /**
          * 
@@ -157,19 +170,20 @@ public final class Registro_sismos {
         }
         return array;
     }
+    /**
+     * 
+     * @param pfecha_inicio
+     * @param pfecha_final 
+     */
     public void ocurrido_en_rango(Date pfecha_inicio,Date pfecha_final){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
+        
     }
+    
+    /**
+     * Lee la lista y llena el array con la cantidad dependiendo del tipo de origen
+     * @return arra :int []
+     */
     public int[] cant_sismo_tipo_lista(){
-        /*
-        Funcion: Lee la lista y llena el array con la cantidad dependiendo del tipo de origen
-        Entradas: void
-        Salidas: int []
-        */
         int [] array =new int[5];
         for (int i = 0 ; i<lista.size();i++){
             Sismo sismo = lista.get(i);
@@ -196,16 +210,13 @@ public final class Registro_sismos {
     }
     
     
-    
+    /**
+     * 
+     */
     public void clasificacion_por_magnitud(){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
 
     }
-
+    
     Object size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

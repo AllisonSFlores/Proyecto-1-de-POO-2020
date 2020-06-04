@@ -7,7 +7,6 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import org.jfree.chart.ChartPanel;
 
 /**
  * @author XT
@@ -55,7 +54,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu_incio = new javax.swing.JMenuItem();
         menu_acercade = new javax.swing.JMenuItem();
         menu_graficas = new javax.swing.JMenu();
-        menu_provincia = new javax.swing.JMenuItem();
+        menu_Graficas = new javax.swing.JMenuItem();
         menu_rango_fecha = new javax.swing.JMenuItem();
         menu_magnitud = new javax.swing.JMenuItem();
 
@@ -105,14 +104,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu_graficas.setText(" Gráficas");
         menu_graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
 
-        menu_provincia.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        menu_provincia.setText("Graficas - Si quiere puede meter las tablas en el mismo Tabbed Pane, para que este juntito");
-        menu_provincia.addActionListener(new java.awt.event.ActionListener() {
+        menu_Graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
+        menu_Graficas.setText("Graficas - Si quiere puede meter las tablas en el mismo Tabbed Pane, para que este juntito");
+        menu_Graficas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_provinciaActionPerformed(evt);
+                menu_GraficasActionPerformed(evt);
             }
         });
-        menu_graficas.add(menu_provincia);
+        menu_graficas.add(menu_Graficas);
 
         menu_rango_fecha.setText("Sismos en un rango de fecha");
         menu_rango_fecha.addActionListener(new java.awt.event.ActionListener() {
@@ -136,23 +135,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * 
+ * @param evt 
+ */
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+
         
         
     }//GEN-LAST:event_menu_magnitudActionPerformed
-
-    private void menu_provinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_provinciaActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+    /**
+     * Carga un panel que contiene un tabbed pane
+     * @param evt :click en menu
+     */
+    private void menu_GraficasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_GraficasActionPerformed
+        
         
             PanelGrafica varPanelTipo = new PanelGrafica();
             varPanelTipo.setLocation(70,0);
@@ -163,14 +160,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             panelPrincipal.repaint();
        
        
-    }//GEN-LAST:event_menu_provinciaActionPerformed
-
+    }//GEN-LAST:event_menu_GraficasActionPerformed
+    /**
+     * carga y despliega el panel de inicio
+     * @param evt 
+     */
     private void menu_incioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_incioActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+        
         try {
             varpanel = new PanelInicio();
             varpanel.setLocation(0,0);
@@ -185,13 +181,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        
         
     }//GEN-LAST:event_menu_incioActionPerformed
-
+    /**
+     * Mostrar informacion a cerca del programa
+     * @param evt 
+     */
     private void menu_acercadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_acercadeActionPerformed
-        /*
-        Funcion: Mostrar informacion a cerca del programa
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
+
         JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano\nDaniel Madrigal");
     }//GEN-LAST:event_menu_acercadeActionPerformed
 
@@ -245,12 +240,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarraDelMenu;
+    private javax.swing.JMenuItem menu_Graficas;
     private javax.swing.JMenuItem menu_acercade;
     private javax.swing.JMenu menu_graficas;
     private javax.swing.JMenuItem menu_incio;
     private javax.swing.JMenuItem menu_magnitud;
     private javax.swing.JMenu menu_mas;
-    private javax.swing.JMenuItem menu_provincia;
     private javax.swing.JMenuItem menu_rango_fecha;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables

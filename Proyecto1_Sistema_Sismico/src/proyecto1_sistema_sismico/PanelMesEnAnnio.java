@@ -1,6 +1,4 @@
 package proyecto1_sistema_sismico;
-
-
 import java.awt.BorderLayout;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,6 +8,7 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+
 
 /**
  * @author Allison
@@ -21,10 +20,14 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         initComponents();
         agregarGrafica(0);
     }
+    /**
+     * recibe el annio y espera  a que se haga la grafica para insertarla al panel
+     * @param pannio :La provincia que se busca int
+     */
     public void agregarGrafica(int pannio){
+        
         int [] array = listaG.cant_sismos_mesEnAnnio_lista(pannio);
-        contenedor = cant_sismos_mesEnAnnio(array);
-        //contenedor.setSize(900,this.getHeight());
+        contenedor = crearBarGrafica(cant_sismos_mesEnAnnio(array));
         contenedor.setVisible(true);
         
         
@@ -34,28 +37,35 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         jPanelGrafica.repaint();
         
     }
-    public ChartPanel cant_sismos_mesEnAnnio(int []parray){
-        /*
-        Funcion: 
-        Entradas: 
-        Salidas: 
-        */
+    /**
+     * crea el dataset para que requiere la grafica 
+     * @param parray : datos para diagramar
+     * @return DefaultCategoryDataset datos en el tipo que necesita el constructor de la grafica
+     */
+    public DefaultCategoryDataset cant_sismos_mesEnAnnio(int []parray){
         DefaultCategoryDataset data = new DefaultCategoryDataset();
-        data.addValue(parray[0], "Sismos en", "Enero");
-        data.addValue(parray[1], "Sismos", "Febrero");
-        data.addValue(parray[2], "Sismos", "Marzo");
-        data.addValue(parray[3], "Sismos", "Abril");
-        data.addValue(parray[4], "Sismos", "Mayo");
-        data.addValue(parray[5], "Sismos", "Junio");
-        data.addValue(parray[6], "Sismos", "Julio");
-        data.addValue(parray[7], "Sismos", "Agosto");
-        data.addValue(parray[8], "Sismos", "Septiembre");
-        data.addValue(parray[9], "Sismos", "Octubre");
-        data.addValue(parray[10], "Sismos", "Noviembre");
-        data.addValue(parray[11], "Sismos", "Diciembre");
+        data.addValue(parray[0], "Sismos2", "Enero");
+        data.addValue(parray[1], "Sismos2", "Febrero");
+        data.addValue(parray[2], "Sismos2", "Marzo");
+        data.addValue(parray[3], "Sismos2", "Abril");
+        data.addValue(parray[4], "Sismos2", "Mayo");
+        data.addValue(parray[5], "Sismos2", "Junio");
+        data.addValue(parray[6], "Sismos2", "Julio");
+        data.addValue(parray[7], "Sismos2", "Agosto");
+        data.addValue(parray[8], "Sismos2", "Septiembre");
+        data.addValue(parray[9], "Sismos2", "Octubre");
+        data.addValue(parray[10], "Sismos2", "Noviembre");
+        data.addValue(parray[11], "Sismos2", "Diciembre");
         
+        return data;
         
-        
+    }
+    /**
+     * Crea la grafica(interfaz)
+     * @param data : estructura con los datos a graficar
+     * @return Chartpnel grafica montada en un chartpanel
+     */
+    public ChartPanel crearBarGrafica(DefaultCategoryDataset data) {
         //Se crea la grafica de BARRAS pasandole los datos
         JFreeChart grafica = ChartFactory.createBarChart("Sismos", "Meses", "Cantidad de sismos", data, PlotOrientation.VERTICAL, false, true, false);
         
@@ -111,11 +121,9 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         jButton1.setBounds(370, 10, 110, 40);
 
         SpinBoxAnnio.setFont(new java.awt.Font("Tahoma", 0, 32)); // NOI18N
-        SpinBoxAnnio.setModel(new javax.swing.SpinnerNumberModel());
-        SpinBoxAnnio.setBorder(null);
+        SpinBoxAnnio.setModel(new javax.swing.SpinnerNumberModel(0, null, 2020, 1));
         SpinBoxAnnio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SpinBoxAnnio.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        SpinBoxAnnio.setEditor(new javax.swing.JSpinner.NumberEditor(SpinBoxAnnio, ""));
         SpinBoxAnnio.setPreferredSize(new java.awt.Dimension(10, 26));
         SpinBoxAnnio.setValue(SpinBoxAnnio.getValue());
         jPanelEntrada.add(SpinBoxAnnio);

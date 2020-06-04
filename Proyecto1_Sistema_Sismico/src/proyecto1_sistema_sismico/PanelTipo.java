@@ -20,13 +20,17 @@ import org.jfree.data.general.DefaultPieDataset;
  */
 public class PanelTipo extends javax.swing.JPanel {
     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
-    ChartPanel contenedor;
+    
    
      public PanelTipo() throws IOException, FileNotFoundException, ParseException {
          initComponents();
          agregargrafica();
      }
+     /**
+      * Manda los datos a graficar y espera la grafica para annadirla al panel
+      */
      private void agregargrafica(){
+        ChartPanel contenedor;
         contenedor = graficaTipo(listaG.cant_sismo_tipo_lista());
         
         contenedor.setSize(this.getWidth(),this.getHeight());
@@ -38,12 +42,12 @@ public class PanelTipo extends javax.swing.JPanel {
         this.repaint();
         
      }
+     /**
+      * Crea el dataset para la grafica usando el array
+      * @param parray
+      * @return DefaultPieDataset data
+      */
     public DefaultPieDataset data_sismos_tipo(int[] parray){
-        /*
-        Funcion: Crea el dataset para la grafica usando el array
-        Entradas: int[]
-        Salidas: DefaultPieDataset data
-        */
         
         //Crea la "base de datos" que usa la graafica
         DefaultPieDataset data = new DefaultPieDataset();
@@ -57,12 +61,12 @@ public class PanelTipo extends javax.swing.JPanel {
         return data;
         
     }
+    /**
+     * Crea la grafica y la agrega a la ventana
+     * @param parray : dato a graficar
+     * @return chartpanel listo para ser agregado al panel
+     */
     public ChartPanel graficaTipo(int []parray){
-        /*
-        Funcion:Crea la grafica y la agrega a la ventana
-        Entradas:int [] parray
-        Salidas: PanelTipo
-        */
         DefaultPieDataset data =data_sismos_tipo(parray);
         
         //Se crea la grafica de pastel
@@ -71,7 +75,6 @@ public class PanelTipo extends javax.swing.JPanel {
         ChartPanel chartpanel = new ChartPanel(chart,true);
         
         return chartpanel;
-        //return varPanelTipo;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

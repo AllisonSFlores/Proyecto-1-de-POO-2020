@@ -5,6 +5,12 @@
  */
 package proyecto1_sistema_sismico;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Allison
@@ -13,9 +19,11 @@ public class PanelGrafica extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelGrafica
+     * Contiene paneles de las graficas
      */
-    public PanelGrafica() {
+    public PanelGrafica()  {
         initComponents();
+        
     }
 
     /**
@@ -44,7 +52,13 @@ public class PanelGrafica extends javax.swing.JPanel {
         } catch (java.text.ParseException e2) {
             e2.printStackTrace();
         }
-        panelProvincia1 = new proyecto1_sistema_sismico.PanelProvincia();
+        try {
+            panelProvincia1 = new proyecto1_sistema_sismico.PanelProvincia();
+        } catch (java.io.IOException e1) {
+            e1.printStackTrace();
+        } catch (java.text.ParseException e2) {
+            e2.printStackTrace();
+        }
 
         setBackground(new java.awt.Color(86, 86, 100));
 
@@ -123,4 +137,5 @@ public class PanelGrafica extends javax.swing.JPanel {
     private proyecto1_sistema_sismico.PanelProvincia panelProvincia1;
     private proyecto1_sistema_sismico.PanelTipo panelTipo1;
     // End of variables declaration//GEN-END:variables
+
 }
