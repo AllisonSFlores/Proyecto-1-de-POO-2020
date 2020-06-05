@@ -12,7 +12,13 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -257,6 +263,11 @@ public final class PanelInicio extends javax.swing.JPanel {
         btnVerMapa.setForeground(new java.awt.Color(255, 255, 255));
         btnVerMapa.setText("Ver en mapa");
         btnVerMapa.setEnabled(false);
+        btnVerMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerMapaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelInformacionLayout = new javax.swing.GroupLayout(panelInformacion);
         panelInformacion.setLayout(panelInformacionLayout);
@@ -383,15 +394,17 @@ public final class PanelInicio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void placeHold(){
@@ -772,6 +785,26 @@ public final class PanelInicio extends javax.swing.JPanel {
     private void txtProfundidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProfundidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProfundidadActionPerformed
+
+    private void btnVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMapaActionPerformed
+        // TODO add your handling code here:
+        JFrame frame = new JFrame();
+        JFXPanel fxpanel = new JFXPanel();
+        frame.setSize(720,720);
+        frame.setVisible(true);
+        frame.add(fxpanel);
+        Platform.runLater(new Runnable(){
+                @Override
+                public void run() {
+                    WebEngine engine;
+                    WebView wv =new WebView();
+                    engine=wv.getEngine();
+                    engine.load("https://www.google.com/maps/dir//"+txtLatitud.getText()+","+txtLongitud.getText()+"/@"+txtLatitud.getText()+","+txtLongitud.getText()+",5z");  
+                    Scene image = new Scene(wv);
+                    fxpanel.setScene(image);
+                }
+            });
+    }//GEN-LAST:event_btnVerMapaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
