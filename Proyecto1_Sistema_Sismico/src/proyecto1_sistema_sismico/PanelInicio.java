@@ -447,7 +447,7 @@ public final class PanelInicio extends javax.swing.JPanel {
         Salidas: Ninguna
         */
         
-        JOptionPane.showMessageDialog(null,"LLENAR_JTABLE: "+lenLista);
+       
 
         for (int i = 0; i < lenLista; i++){
             modelo.addRow(new Object[]{FormatosUtilitaria.formatoFecha(listaG.lista.get(i).getFecha()),FormatosUtilitaria.formatoHora(listaG.lista.get(i).getHora()),
