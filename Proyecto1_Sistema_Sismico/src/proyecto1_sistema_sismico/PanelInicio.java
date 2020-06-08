@@ -749,11 +749,7 @@ public final class PanelInicio extends javax.swing.JPanel {
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+
         int posicion = tabla.getSelectedRow();
         txtFecha.setText(tabla.getValueAt(posicion, 0).toString());
         txthora.setText(tabla.getValueAt(posicion, 1).toString());
@@ -786,22 +782,9 @@ public final class PanelInicio extends javax.swing.JPanel {
 
     private void btnVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMapaActionPerformed
         // TODO add your handling code here:
-            JFrame frame = new JFrame();
-            JFXPanel fxpanel = new JFXPanel();
-            frame.setVisible(true);
-            frame.add(fxpanel);
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            Platform.runLater(new Runnable(){
-                    @Override
-                    public void run() {
-                        WebEngine engine;
-                        WebView wv =new WebView();
-                        engine=wv.getEngine();
-                        engine.load("https://www.google.com/maps/dir//"+txtLatitud.getText()+","+txtLongitud.getText()+"/@"+txtLatitud.getText()+","+txtLongitud.getText()+",5z");  
-                        Scene image = new Scene(wv);
-                        fxpanel.setScene(image);
-                    }
-                });
+        String latitud = txtLatitud.getText();
+        String longitud = txtLongitud.getText();
+        locate(latitud,longitud);    
     }//GEN-LAST:event_btnVerMapaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -837,5 +820,29 @@ public final class PanelInicio extends javax.swing.JPanel {
 
     private void or(boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    /**
+     * Muestra el punto del sismo
+     * @param latitud
+     * @param longitud 
+     */
+    public void locate(String latitud, String longitud){
+        JFrame frame = new JFrame();
+        JFXPanel fxpanel = new JFXPanel();
+        frame.setVisible(true);
+        frame.add(fxpanel);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+                WebEngine engine;
+                WebView wv =new WebView();
+                engine=wv.getEngine();
+                engine.load("https://www.google.com/maps/dir//"+latitud+","+longitud+"/@"+latitud+","+longitud+",10z");  
+                Scene image = new Scene(wv);
+                fxpanel.setScene(image);
+                }
+        });
     }
 }

@@ -101,7 +101,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         BarraDelMenu.add(menu_mas);
 
-        menu_graficas.setText(" Gráficas");
+        menu_graficas.setText("Estadísticas");
         menu_graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
 
         menu_Graficas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
