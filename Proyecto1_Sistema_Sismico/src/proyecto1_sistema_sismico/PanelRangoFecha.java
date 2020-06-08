@@ -158,6 +158,9 @@ public class PanelRangoFecha extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        /**
+         * Agrega los sismos ocurridos entre las fechas indicadas
+         */
         int fInicio= Integer.parseInt(txtFechaInicio.getText());
         int fFinal= Integer.parseInt(txtFechaFinal.getText());
         for (int i = 0; i < lenLista; i++){
