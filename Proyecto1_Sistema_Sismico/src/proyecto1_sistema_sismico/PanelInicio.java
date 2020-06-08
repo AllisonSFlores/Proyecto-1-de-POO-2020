@@ -405,6 +405,9 @@ public final class PanelInicio extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Hacer un placeholder en las cajas de texto
+     */
     public void placeHold(){
 
         holder = new PlaceHolder(txtFecha, " dd/MM/yyyy");
@@ -418,12 +421,11 @@ public final class PanelInicio extends javax.swing.JPanel {
         
     }
     
+    /**
+     * Llena los ComboBox con la informacion en formato string
+     */
     public void llenarCombo(){
-        /*
-        Funcion: Llenar los ComboBox con la informacion en formato string
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
+
         cbxProvincia.removeAllItems();
         cbxOrigen.removeAllItems();
         for(Provincia provincia: Provincia.values()) {
@@ -435,14 +437,13 @@ public final class PanelInicio extends javax.swing.JPanel {
         
     }
     
+    /**
+     * Llena el Jtable con la informacion del excel
+     * @throws IOException
+     * @throws FileNotFoundException
+     * @throws ParseException 
+     */
     public void llenarJTable() throws IOException, FileNotFoundException, ParseException{
-        /*
-        Funcion: Llena el Jtable con la informacion del excel
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
-        
-       
 
         for (int i = 0; i < lenLista; i++){
             modelo.addRow(new Object[]{FormatosUtilitaria.formatoFecha(listaG.lista.get(i).getFecha()),FormatosUtilitaria.formatoHora(listaG.lista.get(i).getHora()),
@@ -454,14 +455,12 @@ public final class PanelInicio extends javax.swing.JPanel {
         
     }
     
-    
+    /**
+     * Al presionar este boton se hacen llamadas a otras funciones para generar el proceso de agregacion de un sismo
+     * @param evt 
+     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        
-        /*
-        Funcion: Al presionar este boton se hacen llamadas a otras funciones para generar el proceso de agregacion de un sismo
-        Entradas: Ninguna
-        Salidas: Ninguna
-         */
+
         try { 
             
             if (validarCamposNoVacios()){
@@ -478,8 +477,12 @@ public final class PanelInicio extends javax.swing.JPanel {
         }
         
     }//GEN-LAST:event_btnAgregarActionPerformed
-    
- 
+
+    /**
+     * Crea el sismo con la información de los campos de texto y lo retorna
+     * @return
+     * @throws ParseException 
+     */
     public Sismo crearSismo() throws ParseException{
         
         String origen="";
@@ -510,13 +513,11 @@ public final class PanelInicio extends javax.swing.JPanel {
         return nuevoSismo;
 }
     
-    
+    /**
+     * Pone el sismo en el Jtable y llama a la función que lo guarda en el excel
+     */
     public void nuevoSismo(){
-         /*
-         Funcion: Toma los datos de los campos de texto para crear un objeto sismo 
-         Entradas: Ninguna
-         Salidas: Ninguna
-         */
+
         try {
             Sismo nuevoSismo = crearSismo();
             listaG.crearExcel(nuevoSismo); //Hace referncia a la unica Registro_Singleton (crea registro unico)
@@ -533,13 +534,12 @@ public final class PanelInicio extends javax.swing.JPanel {
     
     }
     
+    /**
+     * Modofica el sismo en el Jtable y llama a la función que modifica en el excel
+     * @throws IOException 
+     */
     public void ModificarSismo() throws IOException{
-        /* 
-        Funciones: 
-        Entradas: 
-        Salidas: 
-        */
-       
+
         int posicion = tabla.getSelectedRow(); 
         try {
             Sismo nuevoSismo = crearSismo();
@@ -558,12 +558,13 @@ public final class PanelInicio extends javax.swing.JPanel {
 
     }
 
+   /**
+    * Valida que no hayan campos vacíos
+    * @return true o false
+    * @throws ParseException 
+    */
    public boolean validarCamposNoVacios() throws ParseException{
-       /*
-       Funcion:
-       Entradas:
-       Salidas:
-       */
+
        boolean bool = true;
         if ("".equals(txtFecha.getText())){
             txtFecha.setBorder(BorderFactory.createLineBorder(Color.RED));
@@ -617,7 +618,11 @@ public final class PanelInicio extends javax.swing.JPanel {
 
     }
    
-   
+   /**
+    * Valida que un string contenga un flotante
+    * @param num
+    * @return troe o false
+    */
    private boolean isValidFloat(String num) {
     boolean isValid = true;
 
@@ -630,13 +635,13 @@ public final class PanelInicio extends javax.swing.JPanel {
     return isValid;
 }
    
+   /**
+    * Valida que cada campo de texto tenga el contenido indicado
+    * @return true o false
+    * @throws ParseException 
+    */
    public boolean validarContenidoCampos() throws ParseException{
-       /*
-       Funcion:
-       Entradas:
-       Salidas:
-       */
-       
+
        boolean bool = true;
        System.out.println(txtFecha.getText());
         if(txtFecha.getText().matches("\\d{1,2}/\\d{1,2}/\\d{4}")){
@@ -666,17 +671,13 @@ public final class PanelInicio extends javax.swing.JPanel {
             bool = false;
     }
         
-       
        return bool;
 }
-    
+    /**
+     * Liampia los campos de texto y les pone el borde predeterminado
+     */
     public void configCampos(){
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
-        
+
         txtFecha.setText(null);
         txthora.setText(null);
         txtProfundidad.setText(null);
@@ -698,14 +699,13 @@ public final class PanelInicio extends javax.swing.JPanel {
         txtDescripcion.setBorder(BorderFactory.createLineBorder(Color.decode("#CCCCFF")));
     
     }
+    /**
+     * Llama a modificar el sismo al ser presionado el botón
+     * @param evt 
+     */
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+
         try { 
-            
             if (validarCamposNoVacios()){
                 ModificarSismo();
                 configCampos();
@@ -743,6 +743,10 @@ public final class PanelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescripcionActionPerformed
 
+    /**
+     * Pone los datos de un sismo en sus respectivos campos al ser presionado una fila del Jtable
+     * @param evt 
+     */
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
 
         int posicion = tabla.getSelectedRow();
@@ -775,8 +779,12 @@ public final class PanelInicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProfundidadActionPerformed
 
+    /**
+     * Llama la función que localiza el punto en el mapa, pasándole la latitud y longitud
+     * @param evt 
+     */
     private void btnVerMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerMapaActionPerformed
-        // TODO add your handling code here:
+
         String latitud = txtLatitud.getText();
         String longitud = txtLongitud.getText();
         locate(latitud,longitud);    

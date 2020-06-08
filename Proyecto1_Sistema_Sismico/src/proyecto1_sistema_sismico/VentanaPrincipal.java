@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
- * @author XT
+ * @author Natalia 
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     PanelInicio varpanel;

@@ -117,9 +117,7 @@ public final class Registro_sismos {
      * @return array int []
      */
     public int[] cant_sismos_mesEnAnnio_lista(int pannio){
-        /**
-         * 
-         */
+
         int[] array = new int[12];
         for (int i=0 ; i < lista.size() ; i++){
             Sismo sismo = lista.get(i);
@@ -184,6 +182,7 @@ public final class Registro_sismos {
      * @return arra :int []
      */
     public int[] cant_sismo_tipo_lista(){
+        
         int [] array =new int[5];
         for (int i = 0 ; i<lista.size();i++){
             Sismo sismo = lista.get(i);
