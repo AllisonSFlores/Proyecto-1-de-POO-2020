@@ -85,7 +85,7 @@ public final class Registro_sismos {
         
     }
     /**
-     * busca los sismo en esa provincia y agrega sus magnitudes en un arreglo
+     * Busca los sismo en esa provincia y agrega sus magnitudes en un arreglo
      * @param pprovincia
      * @return magnitudes double []
      */
@@ -112,7 +112,7 @@ public final class Registro_sismos {
                 
     }
     /**
-     * genera un arreglo de los sismos por mes en el annio recibido
+     * Genera un arreglo de los sismos por mes en el annio recibido
      * @param pannio
      * @return array int []
      */

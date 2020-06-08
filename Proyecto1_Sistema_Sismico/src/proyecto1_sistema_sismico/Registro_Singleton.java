@@ -10,20 +10,21 @@ import java.text.ParseException;
 
 /**
  *
- * @author XT
+ * @author Natalia
  */
 public class Registro_Singleton {
-    //Atributos
+
     private static Registro_sismos registro; 
     
     private Registro_Singleton(){}
-    
+    /**
+     * Crear una unica instancia del objeto Registro_sismos
+     * @return El objeto registro
+     * @throws ParseException
+     * @throws IOException 
+     */
     public synchronized static Registro_sismos getRegistro_Singleton() throws ParseException, IOException {
-        /*
-        Funcion: Crear una unica instancia del objeto Registro_sismos
-        Entradas: Ninguna
-        Salidas: El objeto registro
-        */
+
         if (registro == null){
             registro = new Registro_sismos();
         }

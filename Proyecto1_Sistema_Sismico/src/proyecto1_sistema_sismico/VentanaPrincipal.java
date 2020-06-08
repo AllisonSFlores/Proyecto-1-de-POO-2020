@@ -13,15 +13,10 @@ import javax.swing.*;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
     PanelInicio varpanel;
-    //PanelTipo panelTipo;
     Registro_sismos listaG = Registro_Singleton.getRegistro_Singleton();
     
     
     public VentanaPrincipal() throws IOException, FileNotFoundException, ParseException {
-        //this.panelTipo= new PanelTipo();
-        //panelTipo.setLocation(0,0);
-        //panelTipo.setSize(panelTipo.getMaximumSize());
-        //panelTipo.setVisible(false);
         
         this.varpanel = new PanelInicio();
         varpanel.setLocation(0,0);
@@ -30,7 +25,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         //Hacer que empiece con el PanelInicio
         panelPrincipal.removeAll();//quita lo que hay en el panelPrincipal
-        //panelPrincipal.add(panelTipo,BorderLayout.CENTER);
         panelPrincipal.add(varpanel,BorderLayout.CENTER); //agrega el atributo tipo panelinicio al panelPrincipal en el centro
         panelPrincipal.revalidate();//Le dice al administrador de diseño que vuelva a calcular el diseño
         panelPrincipal.repaint();//Le dice a Swing que un área de la ventana está sucia
@@ -143,12 +137,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
  */
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
          try {
-            /*
-            Funcion:Ca
-            Entradas:
-            Salidas:
-            */
-            
+
             PanelClasificacionMagnitud varPanelClasificacion = new PanelClasificacionMagnitud();
             varPanelClasificacion.setLocation(70,0);
             varPanelClasificacion.setSize(varPanelClasificacion.getMaximumSize());
@@ -214,17 +203,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
-         /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
+
         try {
-            /*
-            Funcion:
-            Entradas:
-            Salidas:
-            */
             PanelRangoFecha varPanelRango = new PanelRangoFecha();
             varPanelRango.setLocation(70,0);
             varPanelRango.setSize(varPanelRango.getMaximumSize());

@@ -406,12 +406,7 @@ public final class PanelInicio extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     public void placeHold(){
-        /*
-        Funcion:
-        Entradas:
-        Salidas:
-        */
-        
+
         holder = new PlaceHolder(txtFecha, " dd/MM/yyyy");
         holder = new PlaceHolder(txthora, " HH:mm:ss");
         holder = new PlaceHolder(txtProfundidad, " 0.0");

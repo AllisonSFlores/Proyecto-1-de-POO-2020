@@ -23,7 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
- * @author nvvar
+ * @author Natalia
  */
 public class Excel_BD {
     
@@ -115,10 +115,7 @@ public class Excel_BD {
                 listaSismos.add(nuevoSismo);
 
             }
-
-     
-        }
-        
+        }   
         return listaSismos;
     }
     
@@ -160,10 +157,8 @@ public class Excel_BD {
             }catch (Exception e) {
             }
         
-   
    }
-    
-    
+      
     /**
      * Escribe la información de un sismo en la hoja de excel
      * @param psismo
