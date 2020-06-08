@@ -104,8 +104,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menu_graficas.setText(" Gráficas");
         menu_graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
 
-        menu_Graficas.setFont(new java.awt.Font("Segoe UI", 0, 17)); // NOI18N
-        menu_Graficas.setText("Graficas - Si quiere puede meter las tablas en el mismo Tabbed Pane, para que este juntito");
+        menu_Graficas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_Graficas.setText("Gráficas");
         menu_Graficas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_GraficasActionPerformed(evt);
@@ -113,7 +113,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menu_graficas.add(menu_Graficas);
 
-        menu_rango_fecha.setText("Sismos en un rango de fecha");
+        menu_rango_fecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_rango_fecha.setText("Tabla de sismos en un rango de fecha");
         menu_rango_fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_rango_fechaActionPerformed(evt);
@@ -121,7 +122,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menu_graficas.add(menu_rango_fecha);
 
-        menu_magnitud.setText("Sismos por magnitud");
+        menu_magnitud.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_magnitud.setText("Tabla de sismos por magnitud");
         menu_magnitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_magnitudActionPerformed(evt);
@@ -136,11 +138,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 /**
- * 
+ * Carga un panel en el que se presenta una tabla
  * @param evt 
  */
     private void menu_magnitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_magnitudActionPerformed
-
+         try {
+            /*
+            Funcion:Ca
+            Entradas:
+            Salidas:
+            */
+            
+            PanelClasificacionMagnitud varPanelClasificacion = new PanelClasificacionMagnitud();
+            varPanelClasificacion.setLocation(70,0);
+            varPanelClasificacion.setSize(varPanelClasificacion.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varPanelClasificacion);
+            panelPrincipal.validate();
+            panelPrincipal.repaint();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
     }//GEN-LAST:event_menu_magnitudActionPerformed
@@ -189,14 +209,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null,"Proyecto 1 de POO GR03.\nNatalia Vargas\nMax Lee\nAllison Solano\nDaniel Madrigal");
     }//GEN-LAST:event_menu_acercadeActionPerformed
-
+/**
+     *Carga un panel que presenta la tabla de sismos entre rango de fechas
+     * @param evt 
+     */
     private void menu_rango_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_rango_fechaActionPerformed
-        /*
+         /*
         Funcion:
         Entradas:
         Salidas:
         */
-
+        try {
+            /*
+            Funcion:
+            Entradas:
+            Salidas:
+            */
+            PanelRangoFecha varPanelRango = new PanelRangoFecha();
+            varPanelRango.setLocation(70,0);
+            varPanelRango.setSize(varPanelRango.getMaximumSize());
+            panelPrincipal.removeAll();
+            panelPrincipal.add(varPanelRango);
+            panelPrincipal.validate();
+            panelPrincipal.repaint();
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_menu_rango_fechaActionPerformed
 
     /**

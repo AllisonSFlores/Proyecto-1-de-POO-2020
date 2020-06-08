@@ -51,9 +51,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="menu_Graficas">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="17" style="0"/>
+                  <Font name="Segoe UI" size="14" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Graficas - Si quiere puede meter las tablas en el mismo Tabbed Pane, para que este juntito"/>
+                <Property name="text" type="java.lang.String" value="Gr&#xe1;ficas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_GraficasActionPerformed"/>
@@ -61,7 +61,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_rango_fecha">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sismos en un rango de fecha"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tabla de sismos en un rango de fecha"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_rango_fechaActionPerformed"/>
@@ -69,7 +72,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menu_magnitud">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sismos por magnitud"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Tabla de sismos por magnitud"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_magnitudActionPerformed"/>
