@@ -363,6 +363,8 @@ public final class PanelInicio extends javax.swing.JPanel {
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto1_sistema_sismico/earthquake.png"))); // NOI18N
+
         javax.swing.GroupLayout txtHoraLayout = new javax.swing.GroupLayout(txtHora);
         txtHora.setLayout(txtHoraLayout);
         txtHoraLayout.setHorizontalGroup(
