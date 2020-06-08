@@ -169,15 +169,6 @@ public final class Registro_sismos {
         return array;
     }
     /**
-     * 
-     * @param pfecha_inicio
-     * @param pfecha_final 
-     */
-    public void ocurrido_en_rango(Date pfecha_inicio,Date pfecha_final){
-        
-    }
-    
-    /**
      * Lee la lista y llena el array con la cantidad dependiendo del tipo de origen
      * @return arra :int []
      */
@@ -208,13 +199,6 @@ public final class Registro_sismos {
         return array;
     }
     
-    
-    /**
-     * 
-     */
-    public void clasificacion_por_magnitud(){
-
-    }
     
     Object size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
