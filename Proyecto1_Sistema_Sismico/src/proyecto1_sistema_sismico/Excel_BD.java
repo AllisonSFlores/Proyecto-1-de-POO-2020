@@ -33,13 +33,15 @@ public class Excel_BD {
     private static String[] header = new String[]{"Fecha", "Hora", "Profundidad","Origen","Detalle","Magnitud","Latitud","Longitud", "Provincia", "Descripcion Detallada"};
     private static ArrayList<Sismo> listaSismos = new ArrayList<Sismo>();
 
-    
+        /**
+         * Carga en una lista, todos los objetos que se encuentran en el excel
+         * @return listaSismos
+         * @throws FileNotFoundException
+         * @throws IOException
+         * @throws ParseException 
+         */
         public static ArrayList<Sismo> cargar_Excel() throws FileNotFoundException, IOException, ParseException{
-       /*
-        Funcion: Cargar en una lista, todos los objetos que se encuentran en el excel
-        Entradas: Ninguna
-        Salidas: Ninguna
-       */
+
         File excelFile = new File(filePath); // Referenciando a la ruta y el archivo Excel a crear
         if (excelFile.exists()) {
 
@@ -120,13 +122,12 @@ public class Excel_BD {
         return listaSismos;
     }
     
-    
+   /**
+    * Crear un archivo de excel si no existe en el directorio
+    */
+        
    public static void crear_Excel(){
-       /*
-       Funcion:
-       Entradas:
-       Salidas:
-       */
+
         //Cabecera de la hoja de excel
         XSSFWorkbook book = new XSSFWorkbook();
         XSSFSheet hoja1 = book.createSheet(hoja);
@@ -163,14 +164,15 @@ public class Excel_BD {
    }
     
     
-    
+    /**
+     * Escribe la información de un sismo en la hoja de excel
+     * @param psismo
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     
     public static void AgregarSismoAExcel(Sismo psismo) throws FileNotFoundException, IOException{
-       /*
-       Funcion:
-       Entradas:
-       Salidas:
-       */
+
     
     //Contenido de la hoja de excel
         String[] document = new String[]{
@@ -204,13 +206,16 @@ public class Excel_BD {
     
     }
     
+    /**
+     * Modificar la información un sismo en la hoja de excel
+     * @param psismo
+     * @param pos
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     
     public static void ModificarExcel(Sismo psismo, int pos) throws FileNotFoundException, IOException{
-       /*
-       Funcion:
-       Entradas:
-       Salidas:
-       */
+
         
         String[] document = new String[]{
             FormatosUtilitaria.formatoFecha(psismo.getFecha()), FormatosUtilitaria.formatoHora(psismo.getHora()), 
