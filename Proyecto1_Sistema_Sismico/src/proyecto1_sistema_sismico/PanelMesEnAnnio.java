@@ -94,7 +94,6 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1500, 900));
         setMinimumSize(new java.awt.Dimension(900, 800));
         setPreferredSize(new java.awt.Dimension(900, 300));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelEntrada.setBackground(new java.awt.Color(86, 86, 100));
         jPanelEntrada.setMinimumSize(new java.awt.Dimension(0, 30));
@@ -105,7 +104,7 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         JLannioGrafica.setForeground(new java.awt.Color(255, 255, 255));
         JLannioGrafica.setText("Año:");
         jPanelEntrada.add(JLannioGrafica);
-        JLannioGrafica.setBounds(90, 0, 70, 60);
+        JLannioGrafica.setBounds(570, 0, 70, 60);
 
         jButton1.setBackground(new java.awt.Color(86, 86, 100));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -118,7 +117,7 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
             }
         });
         jPanelEntrada.add(jButton1);
-        jButton1.setBounds(370, 10, 110, 40);
+        jButton1.setBounds(860, 10, 110, 40);
 
         SpinBoxAnnio.setFont(new java.awt.Font("Tahoma", 0, 32)); // NOI18N
         SpinBoxAnnio.setModel(new javax.swing.SpinnerNumberModel(0, null, 2020, 1));
@@ -127,15 +126,16 @@ public class PanelMesEnAnnio extends javax.swing.JPanel {
         SpinBoxAnnio.setPreferredSize(new java.awt.Dimension(10, 26));
         SpinBoxAnnio.setValue(SpinBoxAnnio.getValue());
         jPanelEntrada.add(SpinBoxAnnio);
-        SpinBoxAnnio.setBounds(190, 10, 160, 40);
-
-        add(jPanelEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 526, 60));
+        SpinBoxAnnio.setBounds(670, 10, 160, 40);
 
         jPanelGrafica.setBackground(new java.awt.Color(86, 86, 100));
         jPanelGrafica.setMaximumSize(new java.awt.Dimension(1500, 800));
         jPanelGrafica.setPreferredSize(new java.awt.Dimension(1200, 510));
         jPanelGrafica.setLayout(new javax.swing.BoxLayout(jPanelGrafica, javax.swing.BoxLayout.LINE_AXIS));
-        add(jPanelGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 1340, 780));
+        jPanelEntrada.add(jPanelGrafica);
+        jPanelGrafica.setBounds(70, 60, 1320, 810);
+
+        add(jPanelEntrada);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

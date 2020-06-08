@@ -206,8 +206,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         try {
             PanelRangoFecha varPanelRango = new PanelRangoFecha();
-            varPanelRango.setLocation(70,0);
-            varPanelRango.setSize(varPanelRango.getMaximumSize());
+            varPanelRango.setLocation(270,90);
+            varPanelRango.setSize(1400, 900);
             panelPrincipal.removeAll();
             panelPrincipal.add(varPanelRango);
             panelPrincipal.validate();

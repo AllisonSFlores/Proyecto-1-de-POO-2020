@@ -106,11 +106,13 @@ public class PanelProvincia extends javax.swing.JPanel {
                 jComboBoxProvinciaGActionPerformed(evt);
             }
         });
-        add(jComboBoxProvinciaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 1350, 40));
+        add(jComboBoxProvinciaG, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 1330, 40));
 
         jPanelGrafica.setBackground(new java.awt.Color(86, 86, 100));
+        jPanelGrafica.setMinimumSize(new java.awt.Dimension(10, 10));
+        jPanelGrafica.setPreferredSize(new java.awt.Dimension(100, 100));
         jPanelGrafica.setLayout(new javax.swing.BoxLayout(jPanelGrafica, javax.swing.BoxLayout.LINE_AXIS));
-        add(jPanelGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 1350, 760));
+        add(jPanelGrafica, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 1320, 760));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBoxProvinciaGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProvinciaGActionPerformed

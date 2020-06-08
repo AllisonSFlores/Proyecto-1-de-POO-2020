@@ -53,7 +53,7 @@ public class PanelGrafica extends javax.swing.JPanel {
             e2.printStackTrace();
         }
         try {
-            panelProvincia1 = new proyecto1_sistema_sismico.PanelProvincia();
+            panelProvincia2 = new proyecto1_sistema_sismico.PanelProvincia();
         } catch (java.io.IOException e1) {
             e1.printStackTrace();
         } catch (java.text.ParseException e2) {
@@ -84,7 +84,7 @@ public class PanelGrafica extends javax.swing.JPanel {
             .addGroup(jPanelTipoLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(panelTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Sismos Tipo de Origen", jPanelTipo);
@@ -104,11 +104,14 @@ public class PanelGrafica extends javax.swing.JPanel {
             jPanelMesEnAnnioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMesEnAnnioLayout.createSequentialGroup()
                 .addComponent(panelMesEnAnnio1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 115, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Sismos por Mes en un Año", jPanelMesEnAnnio);
-        jTabbedPane1.addTab("Sismos por magnitud en Provincia", panelProvincia1);
+        jTabbedPane1.addTab("Sismos por Mes en un Año", null, jPanelMesEnAnnio, "");
+
+        panelProvincia2.setMaximumSize(new java.awt.Dimension(110, 962));
+        panelProvincia2.setPreferredSize(new java.awt.Dimension(1777, 948));
+        jTabbedPane1.addTab("Sismos por magnitud por Provincia", panelProvincia2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -134,7 +137,7 @@ public class PanelGrafica extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelTipo;
     private javax.swing.JTabbedPane jTabbedPane1;
     private proyecto1_sistema_sismico.PanelMesEnAnnio panelMesEnAnnio1;
-    private proyecto1_sistema_sismico.PanelProvincia panelProvincia1;
+    private proyecto1_sistema_sismico.PanelProvincia panelProvincia2;
     private proyecto1_sistema_sismico.PanelTipo panelTipo1;
     // End of variables declaration//GEN-END:variables
 
