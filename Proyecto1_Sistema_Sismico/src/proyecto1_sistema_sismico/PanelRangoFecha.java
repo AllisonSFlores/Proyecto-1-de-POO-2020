@@ -69,6 +69,11 @@ public class PanelRangoFecha extends javax.swing.JPanel {
 
         txtFechaFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jtblFecha = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex){
+                return false;
+            }
+        };
         jtblFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
