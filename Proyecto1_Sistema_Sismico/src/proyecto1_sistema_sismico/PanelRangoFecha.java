@@ -52,6 +52,8 @@ public class PanelRangoFecha extends javax.swing.JPanel {
         jtblFecha = new javax.swing.JTable();
         btnMostrar = new javax.swing.JButton();
         textoAdv = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(86, 86, 100));
         setMaximumSize(new java.awt.Dimension(1080, 720));
@@ -98,6 +100,14 @@ public class PanelRangoFecha extends javax.swing.JPanel {
 
         textoAdv.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel3.setText("dd/MM/yyyy");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setText("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -105,18 +115,22 @@ public class PanelRangoFecha extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(textoAdv, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addGap(80, 80, 80)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(textoAdv, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(167, 167, 167)
+                        .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)))
+                .addGap(97, 97, 97)
                 .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -133,7 +147,9 @@ public class PanelRangoFecha extends javax.swing.JPanel {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textoAdv, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -164,11 +180,11 @@ public class PanelRangoFecha extends javax.swing.JPanel {
          */
         textoAdv.setText("");
         try{
-        int fInicio= Integer.parseInt(txtFechaInicio.getText());
-        int fFinal= Integer.parseInt(txtFechaFinal.getText());
+        String fInicio=txtFechaInicio.getText();
+        String fFinal=txtFechaFinal.getText();
         for (int i = 0; i < lenLista; i++){
-            if(listaG.lista.get(i).getAnnio()>=fInicio){
-             if(listaG.lista.get(i).getAnnio()<= fFinal){
+            if(listaG.lista.get(i).getFecha().compareTo(FormatosUtilitaria.convertirAFecha(fInicio))>0){
+             if(listaG.lista.get(i).getFecha().compareTo(FormatosUtilitaria.convertirAFecha(fFinal))<0){
                  md.addRow(new Object[]{FormatosUtilitaria.formatoFecha(listaG.lista.get(i).getFecha()),
                 String.valueOf(listaG.lista.get(i).getMagnitud()),listaG.lista.get(i).getOrigen().toString(), 
                  String.valueOf(listaG.lista.get(i).getLatitud()),String.valueOf(listaG.lista.get(i).getLongitud()),listaG.lista.get(i).getProvincia().toString(),listaG.lista.get(i).getDetalle()});
@@ -178,7 +194,7 @@ public class PanelRangoFecha extends javax.swing.JPanel {
         }
         }
         catch(Exception e){
-            textoAdv.setText("No Ingresó el año correctamente");
+            textoAdv.setText("No Ingresó la fecha correctamente \n Por Favor usar el formato de la derecha  del cuadro");
         
         }
         cont ++;
@@ -188,6 +204,8 @@ public class PanelRangoFecha extends javax.swing.JPanel {
     private javax.swing.JButton btnMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblFecha;
