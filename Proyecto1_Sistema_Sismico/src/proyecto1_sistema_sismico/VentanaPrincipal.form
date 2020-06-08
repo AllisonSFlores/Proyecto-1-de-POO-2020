@@ -42,7 +42,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_graficas">
           <Properties>
-            <Property name="text" type="java.lang.String" value=" Gr&#xe1;ficas"/>
+            <Property name="text" type="java.lang.String" value="Estad&#xed;sticas"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="17" style="0"/>
             </Property>
