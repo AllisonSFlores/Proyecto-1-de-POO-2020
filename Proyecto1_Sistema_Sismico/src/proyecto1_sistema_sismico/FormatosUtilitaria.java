@@ -13,50 +13,54 @@ public class FormatosUtilitaria {
     private static SimpleDateFormat pfecha = new SimpleDateFormat("dd/MM/yyyy");
     private static SimpleDateFormat phora = new SimpleDateFormat("HH:mm:ss");;
     
-    
+    /**
+     * Pasa un date fecha a un string
+     * @param fecha
+     * @return un string
+     */
     public static String formatoFecha(Date fecha){
-        /*
-        Funcion: Pasar un date fecha a un string
-        Entradas: un date
-        Salidas: un string
-        */
+
         return pfecha.format(fecha);
     }
-    
+    /**
+     * Pasa un date hora a un string
+     * @param hora
+     * @return un string
+     */
     public static String formatoHora(Date hora){
-        /*
-        Funcion: Pasar un date hora a un string
-        Entradas: un date
-        Salidas: un string
-        */
+        
         return phora.format(hora);
     }
     
+    /**
+     * Convierte un string de fecha a un date
+     * @param fecha
+     * @return un date
+     * @throws ParseException 
+     */
     public static Date convertirAFecha(String fecha) throws ParseException{
-        /*
-        Funcion: Convertir un string de fecha a date
-        Entradas: un string
-        Salidas: un date
-        */
+
         return pfecha.parse(fecha);
     }
-    
+    /**
+     * Convierte un string de hora a date
+     * @param hora
+     * @return
+     * @throws ParseException 
+     */
     public static Date convertirAHora(String hora) throws ParseException{
-        /*
-        Funcion: Convertir un string de hora a date
-        Entradas: un string
-        Salidas: un date
-        */
+
         return phora.parse(hora);
     }
     
-    
+    /**
+     * Valida que la fecha sea una fecha valida en el calendario
+     * @param campoFecha
+     * @return true o false
+     * @throws ParseException 
+     */
    public static boolean validarFecha(String campoFecha) throws ParseException {
-        /*
-        Funciones: Validar que la fecha sea una fecha valida en el calendario
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */
+
          try{
             pfecha.setLenient(false);
             pfecha.parse(campoFecha);
@@ -67,13 +71,14 @@ public class FormatosUtilitaria {
         }
     }
 
-   
+   /**
+    * Valida que la hora sea  valida
+    * @param campoHora
+    * @return
+    * @throws ParseException 
+    */
     public static boolean validarHora(String campoHora) throws ParseException {
-        /*
-        Funciones: Validar que la hora sea  valida
-        Entradas: Ninguna
-        Salidas: Ninguna
-        */  
+        
         try{
             phora.setLenient(false);
             phora.parse(campoHora);
